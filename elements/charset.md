@@ -1,20 +1,21 @@
-# alignment
+# charset
 
 ```xml
 <xs:element name="charset" type="xs:string"/>
 ```
 
-Justering bør være høyrestilt, men andre varianter aksepteres. Eventuelle blanke tegn fjernes under behandlingen. Mulige varianter er høyre, venstre og midt. Dersom justeringen er høyrestilt, kan taggen sløyfes. Dersom justering ikke er med, forventes at feltet er høyrestilt.
+Akseptert tegnsett for fil.
 
 Eksempel:
 ```xml
-<alignment>right</alignment> 
+<charset>right</charset> 
 ```
 
 ## Verdier
-* left
-* center
-* right
+Nav på tegnsett. Lovlige verdier i Norge inkluderer
+* ISO 8859-1
+* ISO 8859-4
+* UTF-8
 
 ## Datatype
 tekst-streng

@@ -1,5 +1,5 @@
 # ADDML
 
-Non-official dokumentasjon og the ADDML (Archival Data Description Mark-up Language) standard.
+Uoffisiell dokumentasjon av ADDML (Archival Data Description Mark-up Language) standarden.
 
-Will contain different versions of the xsd, individual pages with descriptions and usage / templates.
+Vil inneholde ulike versjoner av xsd-skjemaet, beskrivelser av elementer, bruk, maler m.m.
