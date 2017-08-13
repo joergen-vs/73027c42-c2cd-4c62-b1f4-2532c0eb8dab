@@ -1,5 +1,7 @@
 # alignment
 
+Justering av tekst i felt.
+
 ```xml
 <xs:element name="alignment" type="xs:string"/>
 ```
