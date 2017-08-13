@@ -26,4 +26,7 @@ tekst-streng
 ## Finnes i
 * [fieldType](fieldType.md)
 
+
+
+
 \* Ikke i spec
