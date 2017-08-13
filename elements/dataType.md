@@ -16,7 +16,7 @@ Eksempel:
 * integer
 * float
 * date
-* time(\*)
+* time\*
 * boolean
 * link
 
@@ -25,3 +25,5 @@ tekst-streng
 
 ## Finnes i
 * [fieldType](fieldType.md)
+
+\* Ikke i spec
