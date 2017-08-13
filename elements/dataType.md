@@ -4,7 +4,7 @@
 <xs:element name="dataType" type="xs:string"/>
 ```
 
-Justering bør være høyrestilt, men andre varianter aksepteres. Eventuelle blanke tegn fjernes under behandlingen. Mulige varianter er høyre, venstre og midt. Dersom justeringen er høyrestilt, kan taggen sløyfes. Dersom justering ikke er med, forventes at feltet er høyrestilt.
+Justering bÃ¸r vÃ¦re hÃ¸yrestilt, men andre varianter aksepteres. Eventuelle blanke tegn fjernes under behandlingen. Mulige varianter er hÃ¸yre, venstre og midt. Dersom justeringen er hÃ¸yrestilt, kan taggen slÃ¸yfes. Dersom justering ikke er med, forventes at feltet er hÃ¸yrestilt.
 
 Eksempel:
 ```xml
@@ -12,9 +12,13 @@ Eksempel:
 ```
 
 ## Verdier (Arkivverkets bruk)
-* left
-* center
-* right
+* string
+* integer
+* float
+* date
+* time(\*)
+* boolean
+* link
 
 ## Datatype
 tekst-streng
