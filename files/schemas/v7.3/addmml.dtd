@@ -18,8 +18,9 @@
 
 <!--  Nivaa 1: REFERANSE, STRUKTUR, PROSESSER  -->
 
-<!ELEMENT reference (archives, system)>			<!-- Referanseinformasjon om arkiv, arkivskaper, det aktuelle datasystemet og
-                                                 tidsrom for uttrekket: -->
+<!ELEMENT reference (archives, system)>
+<!-- Referanseinformasjon om arkiv, arkivskaper, det aktuelle datasystemet og
+     tidsrom for uttrekket: -->
 
 <!ELEMENT archives (ar_name)> <!-- Informasjon om det aktuelle arkivet og arkivskaperen: -->
 <!ATTLIST archives
