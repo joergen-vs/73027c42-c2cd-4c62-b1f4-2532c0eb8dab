@@ -18,7 +18,8 @@
 
 <!--  Nivaa 1: REFERANSE, STRUKTUR, PROSESSER  -->
 
-<!ELEMENT reference (archives, system)>			<!-- Referanseinformasjon om arkiv, arkivskaper, det aktuelle datasystemet og tidsrom for uttrekket: -->
+<!ELEMENT reference (archives, system)>			<!-- Referanseinformasjon om arkiv, arkivskaper, det aktuelle datasystemet og
+                                                 tidsrom for uttrekket: -->
 
 <!ELEMENT archives (ar_name)> <!-- Informasjon om det aktuelle arkivet og arkivskaperen: -->
 <!ATTLIST archives
@@ -69,7 +70,8 @@
 <!ELEMENT float_null (#PCDATA)>   <!-- Nullverdi benyttet i FLOAT-felter gjennom hele datasettet -->
 <!ELEMENT date_null (#PCDATA)>    <!-- Nullverdi benyttet i DATE-felter gjennom hele datasettet -->
 <!ELEMENT nu_files (#PCDATA)>     <!-- Antall filer tilhoerende datasettet, format: heltall -->
-<!ELEMENT sql (#PCDATA)>          <!-- SQL92-setning som skal kunne kjoeres mot datasettet hvis det regenereres	i et databasesystem (f.eks. SAS). SQL-setningen parses ikke og kan	inneholde markuptegn. Format: <![CDATA[select .....]]>  -->
+<!ELEMENT sql (#PCDATA)>          <!-- SQL92-setning som skal kunne kjoeres mot datasettet hvis det regenereres	i et
+  databasesystem (f.eks. SAS). SQL-setningen parses ikke og kan	inneholde markuptegn. Format: <![CDATA[select .....]]>  -->
 <!ATTLIST sql
 		stnr CDATA #REQUIRED> <!-- SQL-setningens unike loepenummer (S1, S2, S3, S4 osv) -->
 
