@@ -63,7 +63,8 @@
   "CR"
   "LF"
   "NO" (=intet fysisk postskille) -->
-<!ELEMENT string_null (#PCDATA)>  <!-- Nullverdi benyttet i STRING-felter gjennom hele datasettet. En nullverdi	er en feltverdi som skal tolkes som null/missing. ' ' er default	nullverdi i format FIXED og spesifiseres ikke.  -->
+<!ELEMENT string_null (#PCDATA)>  <!-- Nullverdi benyttet i STRING-felter gjennom hele datasettet. En nullverdi	
+  er en feltverdi som skal tolkes som null/missing. ' ' er default	nullverdi i format FIXED og spesifiseres ikke.  -->
 <!ELEMENT integer_null (#PCDATA)> <!-- Nullverdi benyttet i INTEGER-felter gjennom hele datasettet -->
 <!ELEMENT float_null (#PCDATA)>   <!-- Nullverdi benyttet i FLOAT-felter gjennom hele datasettet -->
 <!ELEMENT date_null (#PCDATA)>    <!-- Nullverdi benyttet i DATE-felter gjennom hele datasettet -->
