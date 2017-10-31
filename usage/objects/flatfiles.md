@@ -25,15 +25,14 @@ Inneholder informasjon, spesifikt knyttet til arkivuttrekket.
   </flatFile>
   <flatFileDefinitions>
 	<flatFileDefinition name="Unikt navn for fildefinisjon" typeReference="Referanse til type">
-	  <recordDefinitionFieldIdentifier>fd</recordDefinitionFieldIdentifier>
+	  <recordDefinitionFieldIdentifier>Unik nøkkel for post</recordDefinitionFieldIdentifier>
 	    <recordDefinitions>
 	      <recordDefinition name="Unikt navn for postdefinisjon">
-			<recordDefinitionFieldValue>1</recordDefinitionFieldValue>
 			<keys>
 			  <key name="Unikt navn for nøkkel">
 			    <primaryKey />
 				<fieldDefinitionReferences>
-				  <fieldDefinitionReference name="Nav på feltdefinisjon" />
+				  <fieldDefinitionReference name="Navn på feltdefinisjon" />
 				</fieldDefinitionReferences>
 			  </key>
 			</keys>
@@ -59,7 +58,7 @@ Inneholder informasjon, spesifikt knyttet til arkivuttrekket.
 	</flatFileTypes>
 	<fieldTypes>
 	  <fieldType name="Unikt navn for type">
-	    <dataType>string</dataType>
+	    <dataType>Data-type for felt</dataType>
 	  </fieldType>
 	</fieldTypes>
   </structureTypes>
