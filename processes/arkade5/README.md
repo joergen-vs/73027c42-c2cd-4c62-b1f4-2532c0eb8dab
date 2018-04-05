@@ -2,9 +2,42 @@
 
 ### Addml
 
+- [A.01 - Teller opp antall poster i en fil](addml/A_01/README.md)
+- [A.02 - Teller opp antall tegn i en fil](addml/A_02/README.md)
+- [A.03 - Finner lengste og korteste post for hver posttype](addml/A_03/README.md)
+- [A.04 - Teller opp antall poster for hver posttype](addml/A_04/README.md)
+- [A.05 - Utfører en frekvensanalyse for samtlige felt hvor det er definert et kodesett](addml/A_05/README.md)
+- [A.07 - Teller opp antall forekomster av verdien null i feltet](addml/A_07/README.md)
+- [A.08 - Finner lengste og korteste verdi i feltet](addml/A_08/README.md)
+- [A.09 - Finner laveste og høyeste verdi i feltet](addml/A_09/README.md)
+- [A.10 - Teller opp antall forekomster for hver verdi i feltet](addml/A_10/README.md)
+- [A.11 - Kontrollerer at oppgitt postlengde på samtlige posttyper er korrekt (kun fast format)](addml/A_11/README.md)
+- [A.12 - Teller opp og kontrollerer at antall poster i filen er lik antallet som er oppgitt i egenskapen numberOfRecords i flatFile](addml/A_12/README.md)
+- [A.13 - Kontrollerer om oppgitt postlengde er korrekt (kun for fast format)](addml/A_13/README.md)
+- [A.14 - Kontrollerer om denne posttypen benyttes i datasettet](addml/A_14/README.md)
+- [A.15 - Kontrollerer at nøkkelen (primary eller alternate) er unik](addml/A_15/README.md)
+- [A.16 - Kontrollerer fremmednøkler for å sjekke at de går til en faktisk forekomst](addml/A_16/README.md)
+- [A.17 - Kontrollerer om oppgitt minste lengde faktisk er minste lengde i feltet](addml/A_17/README.md)
+- [A.18 - Kontrollerer om oppgitt største lengde faktisk er største lengde i feltet](addml/A_18/README.md)
+- [A.19 - Kontrollerer om oppgitt dataformat er korrekt](addml/A_19/README.md)
+- [A.20 - Kontrollerer om det fines null-verdier i feltet](addml/A_20/README.md)
+- [A.21 - Kontrollerer om verdiene i feltet er unike](addml/A_21/README.md)
+- [A.22 - Kontrollerer om definerte koder benyttes og om det benyttes koder som ikke er definert i kodelisten](addml/A_22/README.md)
+- [A.32 - Kontroll av kontrollsifferne i et fødselsnummer](addml/A_32/README.md)
+- [A.33 - Kontroll av kontrollsifferne i et organisasjonsnummer](addml/A_33/README.md)
+- [A.34 - Kontroll av kontrollsifferne i et kontonummer](addml/A_34/README.md)
+- [A.35 - Kontroll av verdiene i et dato-felt](addml/A_35/README.md)
+- [A.36 - Kontroll av verdiene i et boolsk felt](addml/A_36/README.md)
+
 ### Addml-hardkodet
 
+- [AH.01 - Kontrollerer checksum](addml/AH_01/README.md)
+- [AH.02 - Kontrollerer om det finnes filer som ikke er definert i ADDML og omvendt](addml/AH_02/README.md)
+- [AH.03 - Oppsummering av antall poster som har feil tilknyttet feltseparator og/eller postseparator.](addml/AH_03/README.md)
+
 ### Addml-intern
+
+- [AI.01 - Kontrollerer at nøkkelen (primary eller alternate) er unik](addml/AI_01/README.md)
 
 ### Noark-5
 
