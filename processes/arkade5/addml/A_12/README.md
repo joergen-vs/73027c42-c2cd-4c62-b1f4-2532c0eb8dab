@@ -1,7 +1,9 @@
 # Testpunkt 12
 #### Teller opp og kontrollerer at antall poster i filen er lik antallet som er oppgitt i egenskapen numberOfRecords i flatFile
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

@@ -1,7 +1,9 @@
 # Testpunkt 01
 #### Kontrollerer at nøkkelen (primary eller alternate) er unik
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

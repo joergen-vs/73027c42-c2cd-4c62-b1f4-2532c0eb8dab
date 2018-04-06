@@ -1,7 +1,9 @@
 # Testpunkt 10
 #### Teller opp antall forekomster for hver verdi i feltet
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

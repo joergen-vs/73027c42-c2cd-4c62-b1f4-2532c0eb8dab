@@ -1,7 +1,9 @@
 # Testpunkt 45
 #### Antall utførte kassasjoner
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

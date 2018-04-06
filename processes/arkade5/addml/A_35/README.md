@@ -1,7 +1,9 @@
 # Testpunkt 35
 #### Kontroll av verdiene i et dato-felt
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

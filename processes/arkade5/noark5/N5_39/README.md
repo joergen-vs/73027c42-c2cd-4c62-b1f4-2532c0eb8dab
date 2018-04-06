@@ -1,7 +1,9 @@
 # Testpunkt 39
 #### Antall korrespondanseparter
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

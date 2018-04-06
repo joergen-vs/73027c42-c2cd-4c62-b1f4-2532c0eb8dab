@@ -1,7 +1,9 @@
 # Testpunkt 47
 #### Systemidentifikasjoner
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

@@ -1,7 +1,9 @@
 # Testpunkt 08
 #### Finn antall klasser
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

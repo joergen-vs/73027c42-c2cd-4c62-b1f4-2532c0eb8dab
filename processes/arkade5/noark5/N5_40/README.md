@@ -1,7 +1,9 @@
 # Testpunkt 40
 #### Antall avskrivninger
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

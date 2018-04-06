@@ -1,7 +1,9 @@
 # Testpunkt 09
 #### Antall klasser i det primære klassifikasjonssystemet uten underklasser, mapper eller registreringer
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

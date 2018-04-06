@@ -1,7 +1,9 @@
 # Testpunkt 14
 #### Kontrollerer om denne posttypen benyttes i datasettet
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

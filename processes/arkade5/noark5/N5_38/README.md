@@ -1,7 +1,9 @@
 # Testpunkt 38
 #### Antall presedenser
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

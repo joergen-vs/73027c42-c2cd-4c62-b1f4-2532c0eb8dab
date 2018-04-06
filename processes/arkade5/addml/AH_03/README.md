@@ -1,7 +1,9 @@
 # Testpunkt 03
 #### Oppsummering av antall poster som har feil tilknyttet feltseparator og/eller postseparator.
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 StructureControl

@@ -1,7 +1,9 @@
 # Testpunkt 19
 #### Kontrollerer om oppgitt dataformat er korrekt
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

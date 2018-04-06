@@ -1,7 +1,9 @@
 # Testpunkt 13
 #### Kontrollerer om oppgitt postlengde er korrekt (kun for fast format)
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

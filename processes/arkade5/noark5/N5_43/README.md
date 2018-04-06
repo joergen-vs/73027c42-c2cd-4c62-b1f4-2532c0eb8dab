@@ -1,7 +1,9 @@
 # Testpunkt 43
 #### Antall graderinger
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

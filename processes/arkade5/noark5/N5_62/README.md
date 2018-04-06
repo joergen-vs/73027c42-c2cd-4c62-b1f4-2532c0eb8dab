@@ -1,7 +1,9 @@
 # Testpunkt 62
 #### Endringslogg-referanser til arkivstrukturen
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

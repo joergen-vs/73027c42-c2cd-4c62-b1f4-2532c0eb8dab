@@ -1,7 +1,9 @@
 # Testpunkt 34
 #### Kontroll av kontrollsifferne i et kontonummer
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

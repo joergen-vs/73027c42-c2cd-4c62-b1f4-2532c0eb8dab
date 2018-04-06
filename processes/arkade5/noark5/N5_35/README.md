@@ -1,7 +1,9 @@
 # Testpunkt 35
 #### Antall saksparter
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

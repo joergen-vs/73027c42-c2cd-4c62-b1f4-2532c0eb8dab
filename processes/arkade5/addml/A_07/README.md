@@ -1,7 +1,9 @@
 # Testpunkt 07
 #### Teller opp antall forekomster av verdien null i feltet
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

@@ -1,7 +1,9 @@
 # Testpunkt 26
 #### Antall dokumentobjekter
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

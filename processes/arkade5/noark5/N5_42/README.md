@@ -1,7 +1,9 @@
 # Testpunkt 42
 #### Antall skjerminger
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

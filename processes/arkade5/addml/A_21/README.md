@@ -1,7 +1,9 @@
 # Testpunkt 21
 #### Kontrollerer om verdiene i feltet er unike
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

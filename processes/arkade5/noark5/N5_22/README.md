@@ -1,7 +1,9 @@
 # Testpunkt 22
 #### Antall ulike journalstatuser
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

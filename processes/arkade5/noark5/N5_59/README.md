@@ -1,7 +1,9 @@
 # Testpunkt 59
 #### Antall journalposter
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

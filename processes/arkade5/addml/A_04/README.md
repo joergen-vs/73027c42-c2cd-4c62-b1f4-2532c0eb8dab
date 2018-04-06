@@ -1,7 +1,9 @@
 # Testpunkt 04
 #### Teller opp antall poster for hver posttype
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

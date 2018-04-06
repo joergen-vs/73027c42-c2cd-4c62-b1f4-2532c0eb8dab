@@ -1,7 +1,9 @@
 # Testpunkt 13
 #### Antall mapper for hver klasse
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

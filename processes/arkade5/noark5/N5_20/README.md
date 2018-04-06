@@ -1,7 +1,9 @@
 # Testpunkt 20
 #### Antall registreringer for hver klasse (Registreringer under mappe regnes ikke)
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

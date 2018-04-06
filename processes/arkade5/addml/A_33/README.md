@@ -1,7 +1,9 @@
 # Testpunkt 33
 #### Kontroll av kontrollsifferne i et organisasjonsnummer
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

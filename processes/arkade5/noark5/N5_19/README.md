@@ -1,7 +1,9 @@
 # Testpunkt 19
 #### Klasser med både underklasse(r) og registrering(er)
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

@@ -1,7 +1,9 @@
 # Testpunkt 03
 #### Valider xml i henhold til skjema (ADDML)
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 StructureControl

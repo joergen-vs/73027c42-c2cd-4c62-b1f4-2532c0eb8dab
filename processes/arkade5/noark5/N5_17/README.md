@@ -1,7 +1,9 @@
 # Testpunkt 17
 #### Antall av ulike journalposttyper
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

@@ -1,7 +1,9 @@
 # Testpunkt 22
 #### Kontrollerer om definerte koder benyttes og om det benyttes koder som ikke er definert i kodelisten
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

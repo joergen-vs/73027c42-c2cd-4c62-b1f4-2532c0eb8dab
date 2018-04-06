@@ -1,7 +1,9 @@
 # Testpunkt 51
 #### Klassereferanser
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

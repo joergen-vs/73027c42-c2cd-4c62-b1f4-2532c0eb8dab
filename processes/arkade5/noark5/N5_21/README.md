@@ -1,7 +1,9 @@
 # Testpunkt 21
 #### Antall registreringer uten dokumentbeskrivelse
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

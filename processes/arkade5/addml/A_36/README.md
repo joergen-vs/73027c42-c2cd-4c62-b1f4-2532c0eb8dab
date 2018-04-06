@@ -1,7 +1,9 @@
 # Testpunkt 36
 #### Kontroll av verdiene i et boolsk felt
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

@@ -1,7 +1,9 @@
 # Testpunkt 24
 #### Antall dokumentbeskrivelser uten dokumentobjekt
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

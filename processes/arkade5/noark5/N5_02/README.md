@@ -1,7 +1,9 @@
 # Testpunkt 02
 #### Valider sjekksummer
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 StructureControl

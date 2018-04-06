@@ -1,7 +1,9 @@
 # Testpunkt 02
 #### Teller opp antall tegn i en fil
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis

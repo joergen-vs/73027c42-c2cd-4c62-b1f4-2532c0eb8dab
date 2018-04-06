@@ -1,7 +1,9 @@
 # Testpunkt 17
 #### Kontrollerer om oppgitt minste lengde faktisk er minste lengde i feltet
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentControl

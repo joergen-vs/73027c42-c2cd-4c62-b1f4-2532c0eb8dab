@@ -1,7 +1,9 @@
 # Testpunkt 12
 #### Klasser med både underklasse(r) og mappe(r)
 
-<Beskrivelse/>
+```
+Beskrivelse
+```
 
 ##### Type prosess
 ContentAnalysis
