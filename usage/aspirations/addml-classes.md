@@ -14,10 +14,6 @@ Classes are not extensions of each other, they are rules.
 	</properties>
 </dataObject>
 ```
-<script src="flowchart-latest.js"></script>
-```flow
-st=>start: Start:>https://www.google.com[blank]
-```
 ## unit
 Small building-block, with the purpose of adding type and label to all classes.
 #### Properties
