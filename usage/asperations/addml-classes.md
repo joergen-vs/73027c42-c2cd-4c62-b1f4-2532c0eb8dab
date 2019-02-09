@@ -14,6 +14,10 @@ Classes are not extensions of each other, they are rules.
 	</properties>
 </dataObject>
 ```
+<script src="flowchart-latest.js"></script>
+```flow
+st=>start: Start:>https://www.google.com[blank]
+```
 ## unit
 Small building-block, with the purpose of adding type and label to all classes.
 #### Properties
@@ -67,6 +71,14 @@ File in the archive.
 #### Properties
 * file
   * name `Relative file-path.`
+  ```
+  Useful, but necessary?
+  * format
+	* name
+	* version
+	* mime
+	* puid
+  ```
   * checksum `Contains the algorithm and value of checksum-calculation for file.`
     * algorithm `Checksum-algorithm used for calculation.`
     * value `Calculated value of file.`
@@ -83,7 +95,7 @@ File with a set of records.
     * recordCount `Number of records`
 ## xmlFile : dataFile
 Xml-file.
-#### Items
+#### Properties
 * schemas
   * schema `Connects a validation-file to a xml-file.`
     * fileReference `Reference to the file to validate the xml-file against`
@@ -131,8 +143,8 @@ TBD
 ## defintions
 Collection of definition-objects
 #### Items
-* definition
-## defintion : [unit](#unit)
+* [definition](#definition)
+## definition : [unit](#unit)
 ..
 #### Items
 ..
