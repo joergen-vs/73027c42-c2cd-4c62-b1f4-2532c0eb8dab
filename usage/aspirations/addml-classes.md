@@ -1,5 +1,10 @@
+<style>
+dO{color:blue}
+pp{color:orangered}
+val{color:green}
+classRef{color:lightsteelblue}
+</style>
 # Classes
-
 All classes will be inplemented as a property of dataObject, in form of a type. Along with this, there is a change in naming, from a human-readable name to machine-readable UUID, along with a new property 'label'. This is to allow truly unique references, along with a dedicated property to be displayed to users.
 Classes are not extensions of each other, they are rules.
 ```xml
@@ -14,13 +19,13 @@ Classes are not extensions of each other, they are rules.
 	</properties>
 </dataObject>
 ```
-## unit
+## <a id="unit"/>unit
 Small building-block, with the purpose of adding type and label to all classes.
 #### Properties
 * type `Class-name of object`
 * label `Label of object`
 
-## container : [unit](#unit)
+## <a id="container"/>container : [unit](#unit)
 Top-level object, containing different kinds of data-structures.
 #### Properties
 * info
@@ -28,14 +33,14 @@ Top-level object, containing different kinds of data-structures.
     * version `Version of container-type`
 * [namespace](#namespace) `Namespaces used inside container`
 
-## namespace : [unit](#unit)
+## <a id="namespace"/>namespace : [unit](#unit)
 Refers to a set of pre-defined objects.
 #### Properties
 * identifier `Shorthand name used as reference for namespace`
 * source `Reference to source`
 
-## archive : [container](#container)
-
+## <a id="archive"/>archive : [container](#container)
+..
 #### Items
 * [file](#file) `Files which are part of the archive, as metadata or documentation.`
 * [definitions](#definitions) `Defines the meaning of the objects in the structure.`
@@ -54,7 +59,8 @@ Refers to a set of pre-defined objects.
   * containsBusinessSpesificinformation `True or false: Are there metadata in the archive which is business-specific?`
   * containsDocumentsScheduledForDisposal `True or False: Are there documents in the archive which is scheduled for disposal?`
   * containsDocumentsWhichIsDisposed `True or False: Are there documents in the archive which is disposed?`
-## folder : [unit](#unit)
+
+## <a id="folder"/>folder : [unit](#unit)
 Filesystem-folder, used for grouping similar types of files.
 #### Properties
 * folder
@@ -62,7 +68,8 @@ Filesystem-folder, used for grouping similar types of files.
 * info
   * numberOf
     * '.extension' `Number of files recursively in folder, based on extension. All files available with '.*'`
-## file : [unit](#unit)
+
+## <a id="file"/>file : [unit](#unit)
 File in the archive.
 #### Properties
 * file
@@ -78,7 +85,8 @@ File in the archive.
   * checksum `Contains the algorithm and value of checksum-calculation for file.`
     * algorithm `Checksum-algorithm used for calculation.`
     * value `Calculated value of file.`
-## dataFile : [file](#file)
+
+## <a id="dataFile"/>dataFile : [file](#file)
 File with a set of records.
 #### Items
 * [record](#record)
@@ -89,84 +97,167 @@ File with a set of records.
   * numberOf `Contains a reference to a type of record, and the number of times it occurs in the file.`
     * recordIdentifier `Name of record-object`
     * recordCount `Number of records`
-## xmlFile : dataFile
+
+## <a id="xmlFile"/>xmlFile : dataFile
 Xml-file.
 #### Properties
 * schemas
   * schema `Connects a validation-file to a xml-file.`
     * fileReference `Reference to the file to validate the xml-file against`
-## delimitedFile : dataFile
+
+## <a id="delimitedFile"/>delimitedFile : dataFile
 File where the records and fields are separated by a delimiter.
-## fixedLengthFile : dataFile
+
+## <a id="fixedLengthFile"/>fixedLengthFile : dataFile
 File where the length of records and fields do not vary.
-## record : [unit](#unit)
+
+## <a id="record"/>record : [unit](#unit)
 Composed of fields.
 #### Items
 * keys
   * key `Key-object, in the form of primary, foreign and candidate.`
-## dataRecord : record
+
+## <a id="dataRecord"/>dataRecord : record
 Sub-class for record, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the record.`
 * typeReference `Reference to type-object which contains how the record is read.`
-## xmlRecord
+
+## <a id="xmlRecord"/>xmlRecord
 TBD
-## delimitedRecord
+
+## <a id="delimitedRecord"/>delimitedRecord
 TBD
-## fixedLengthRecord
+
+## <a id="fixedLengthRecord"/>fixedLengthRecord
 TBD
-## key : [unit](#unit)
+
+## <a id="key"/>key : [unit](#unit)
 Key for record, in the form of primary, foreign and candidate.
-## primaryKey : key
+
+## <a id="primaryKey"/>primaryKey : key
 ..
-## candidateKey
+
+## <a id="candidateKey"/>candidateKey
 ..
-## foreignKey
+
+## <a id="foreignKey"/>foreignKey
 ..
-## field : [unit](#unit)
+
+## <a id="field"/>field : [unit](#unit)
 Contains one item of information.
-## dataField : field
+
+## <a id="dataField"/>dataField : field
 Abstract class for field, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the field`
 * typeReference `Reference to type-object which contains how the field is read.`
-## xmlField
+
+## <a id="xmlField"/>xmlField
 TBD
-## delimitedField
+
+## <a id="delimitedField"/>delimitedField
 TBD
-## fixedLengthField
+
+## <a id="fixedLengthField"/>fixedLengthField
 TBD
-## defintions
+#### Properties
+* startPos
+* endPos
+* 
+
+## <a id="defintions"/>defintions
 Collection of definition-objects
 #### Items
 * [definition](#definition)
-## definition : [unit](#unit)
+
+## <a id="definition"/>definition : [unit](#unit)
 ..
 #### Items
 ..
 #### Properties
 ..
-## types
+
+## <a id="fileDefinition"/>fileDefinition : [definition](#definition)
+
+#### Items
+* recordDefinitionReference `Reference-object pointing to a record.`
+  * definitionReference `Pointer to recordDefinition.`
+  * minOccurs `Lower limit of occurence of record in file.`
+  * maxOccurs `Upper limit of occurence of record in file.`
+
+## <a id="recordDefinition"/>recordDefinition : [definition](#definition)
+Declaration of how the record is constructed.
+#### Items
+* fieldDefinitionReference `Reference-object pointing to a field.`
+  * definitionReference `Pointer to fieldDefinition.`
+  * minOccurs `Lower limit of occurence for field in record.`
+  * maxOccurs `Upper limit of occurence for field in record.`
+* recordDefinitionReference `Reference-object pointing to a record.`
+  * definitionReference `Pointer to recordDefinition.`
+  * minOccurs `Lower limit of occurence of record in record.`
+  * maxOccurs `Upper limit of occurence of record in record.`
+
+## <a id="definitionReference"/>definitionReference : [unit](#unit)
+Reference-object pointing to a definition
+#### Properties
+* definitionReference `Pointer to definition.`
+
+## <a id="fieldDefinitionReference"/>fieldDefinitionReference : [definitionReference](#definitionReference)
+Reference-object pointing to a fieldDefinition
+#### Properties
+* minOccurs `Lower limit of occurence of field.`
+* maxOccurs `Upper limit of occurence of field.`
+
+## <a id="recordDefinitionReference"/>recordDefinitionReference : [definitionReference](#definitionReference)
+Reference-object pointing to a recordDefinition
+#### Properties
+* minOccurs `Lower limit of occurence of record.`
+* maxOccurs `Upper limit of occurence of record.`
+
+## <a id="fieldDefinition"/>fieldDefinition : [definition](#definition)
+..
+#### Items
+* codes `Contains pre-defined code-values for field`
+
+## <a id="codes"/>codes
+Collection of code-objects
+#### Items
+* [code](#code)
+
+## <a id="code"/> code : [unit](#unit)
+Contains pre-defined code-values for field
+#### Properties
+* description `Meaning behind the value.`
+* value `Code-value.`
+
+## <a id="types"/>types
 Collection of type-objects
 #### Items
 * [type](#type)
-## type : [unit](#unit)
+
+## <a id="type"/>type : [unit](#unit)
 ..
 #### Items
 ..
 #### Properties
 ..
-## processes
+
+## <a id="processes"/>processes
 Collection of process-objects
 #### Items
 * [process](#process)
-## process : [unit](#unit)
+
+## <a id="process"/>process : [unit](#unit)
 ..
 #### Items
 ..
 #### Properties
 ..
+
 # ```Wishlist```
-## database
-## table
-## column
+## <a id="database"/>database
+
+## <a id="table"/>table
+
+## <a id="column"/>column
