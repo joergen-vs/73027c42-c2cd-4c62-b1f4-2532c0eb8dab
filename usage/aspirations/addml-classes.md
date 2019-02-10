@@ -20,7 +20,7 @@ Classes are not extensions of each other, they are rules.
 </dataObject>
 ```
 ## <a id="unit"/>unit
-Small building-block, with the purpose of adding type and label to all classes.
+Basic building-block, with the purpose of adding type and label to all classes.
 #### Properties
 * type `Class-name of object`
 * label `Label of object`
@@ -42,10 +42,11 @@ Refers to a set of pre-defined objects.
 ## <a id="archive"/>archive : [container](#container)
 ..
 #### Items
-* [file](#file) `Files which are part of the archive, as metadata or documentation.`
 * [definitions](#definitions) `Defines the meaning of the objects in the structure.`
-* [types](#types) `Defines how the structure is supposed to be read.`
+* [file](#file) `Files which are part of the archive, as metadata or documentation.`
+* [folder](#folder) `Folders which are part of the archive.`
 * [processes](#processes)
+* [types](#types) `Defines how the structure is supposed to be read.`
 #### Properties
 * info
   * numberOf
@@ -65,6 +66,7 @@ Filesystem-folder, used for grouping similar types of files.
 #### Properties
 * folder
   * name `Relative file-path for folder.`
+  * size `Size of folder in bytes.`
 * info
   * numberOf
     * '.extension' `Number of files recursively in folder, based on extension. All files available with '.*'`
@@ -74,6 +76,7 @@ File in the archive.
 #### Properties
 * file
   * name `Relative file-path.`
+  * size `Size of file in bytes.`
   ```
   Useful, but necessary?
   * format
@@ -114,8 +117,7 @@ File where the length of records and fields do not vary.
 ## <a id="record"/>record : [unit](#unit)
 Composed of fields.
 #### Items
-* keys
-  * key `Key-object, in the form of primary, foreign and candidate.`
+* field
 
 ## <a id="dataRecord"/>dataRecord : record
 Sub-class for record, adding definition-reference and type-reference.
