@@ -61,6 +61,9 @@ Refers to a set of pre-defined objects.
   * containsDocumentsScheduledForDisposal `True or False: Are there documents in the archive which is scheduled for disposal?`
   * containsDocumentsWhichIsDisposed `True or False: Are there documents in the archive which is disposed?`
 
+```plantuml
+!include uml-location.puml
+```
 ## <a id="folder"/>folder : [unit](#unit)
 Filesystem-folder, used for grouping similar types of files.
 #### Properties
@@ -101,17 +104,17 @@ File with a set of records.
     * recordIdentifier `Name of record-object`
     * recordCount `Number of records`
 
-## <a id="xmlFile"/>xmlFile : dataFile
+## <a id="xmlFile"/>xmlFile : [dataFile](#dataFile)
 Xml-file.
 #### Properties
 * schemas
   * schema `Connects a validation-file to a xml-file.`
     * fileReference `Reference to the file to validate the xml-file against`
 
-## <a id="delimitedFile"/>delimitedFile : dataFile
+## <a id="delimitedFile"/>delimitedFile : [dataFile](#dataFile)
 File where the records and fields are separated by a delimiter.
 
-## <a id="fixedLengthFile"/>fixedLengthFile : dataFile
+## <a id="fixedLengthFile"/>fixedLengthFile : [dataFile](#dataFile)
 File where the length of records and fields do not vary.
 
 ## <a id="record"/>record : [unit](#unit)
@@ -119,19 +122,19 @@ Composed of fields.
 #### Items
 * field
 
-## <a id="dataRecord"/>dataRecord : record
+## <a id="dataRecord"/>dataRecord : [record](#record)
 Sub-class for record, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the record.`
 * typeReference `Reference to type-object which contains how the record is read.`
 
-## <a id="xmlRecord"/>xmlRecord
+## <a id="xmlRecord"/>xmlRecord : [dataRecord](#dataRecord)
 TBD
 
-## <a id="delimitedRecord"/>delimitedRecord
+## <a id="delimitedRecord"/>delimitedRecord : [dataRecord](#dataRecord)
 TBD
 
-## <a id="fixedLengthRecord"/>fixedLengthRecord
+## <a id="fixedLengthRecord"/>fixedLengthRecord : [dataRecord](#dataRecord)
 TBD
 
 ## <a id="key"/>key : [unit](#unit)
@@ -149,19 +152,19 @@ Key for record, in the form of primary, foreign and candidate.
 ## <a id="field"/>field : [unit](#unit)
 Contains one item of information.
 
-## <a id="dataField"/>dataField : field
+## <a id="dataField"/>dataField : [field](#field)
 Abstract class for field, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the field`
 * typeReference `Reference to type-object which contains how the field is read.`
 
-## <a id="xmlField"/>xmlField
+## <a id="xmlField"/>xmlField : [dataField](#dataField)
 TBD
 
-## <a id="delimitedField"/>delimitedField
+## <a id="delimitedField"/>delimitedField : [dataField](#dataField)
 TBD
 
-## <a id="fixedLengthField"/>fixedLengthField
+## <a id="fixedLengthField"/>fixedLengthField : [dataField](#dataField)
 TBD
 #### Properties
 * startPos
@@ -222,7 +225,7 @@ Reference-object pointing to a recordDefinition
 #### Items
 * codes `Contains pre-defined code-values for field`
 
-## <a id="codes"/>codes
+## <a id="codes">codes</a>
 Collection of code-objects
 #### Items
 * [code](#code)
@@ -233,7 +236,7 @@ Contains pre-defined code-values for field
 * description `Meaning behind the value.`
 * value `Code-value.`
 
-## <a id="types"/>types
+## <a id="types">types</a>
 Collection of type-objects
 #### Items
 * [type](#type)

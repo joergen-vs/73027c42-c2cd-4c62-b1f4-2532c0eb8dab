@@ -1,0 +1,12 @@
+@startuml "archival extraction"
+skinparam linetype polyline
+skinparam linetype ortho
+
+interface container
+dataset -- container
+
+!include uml-archival.puml
+
+!include uml-database.puml
+
+@enduml

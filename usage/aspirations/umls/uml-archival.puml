@@ -1,0 +1,14 @@
+@startuml
+
+interface container
+
+package "Archival extraction" <<Folder>> {
+
+    container .. archive
+!include uml-location.puml
+!include uml-definition.puml
+!include uml-type.puml
+
+}
+
+@enduml

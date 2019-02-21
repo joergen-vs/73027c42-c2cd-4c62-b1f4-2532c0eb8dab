@@ -1,0 +1,33 @@
+@startuml "database"
+
+package "Database" <<Database>> {
+    container .. system
+
+    package "Tables" <<Rectangle>> {
+        system -- database
+
+        database -- table
+        interface db::key
+        
+        table -- db::primaryKey
+        table -- db::foreignKey
+        table -- db::candidateKey
+        db::primaryKey .. db::key
+        db::foreignKey .. db::key
+        db::candidateKey ..  db::key
+
+        table -- column
+
+
+    }
+
+    package "Views" <<Rectangle>> {
+        system -- views
+    }
+
+    package "Users" <<Rectangle>> {
+        system -- user
+    }
+}
+
+@enduml
