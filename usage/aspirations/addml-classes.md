@@ -61,9 +61,8 @@ Refers to a set of pre-defined objects.
   * containsDocumentsScheduledForDisposal `True or False: Are there documents in the archive which is scheduled for disposal?`
   * containsDocumentsWhichIsDisposed `True or False: Are there documents in the archive which is disposed?`
 
-```plantuml
-!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-location.puml
-```
+![cached image](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-location.puml)
+
 ## <a id="folder"/>folder : [unit](#unit)
 Filesystem-folder, used for grouping similar types of files.
 #### Properties
