@@ -19,6 +19,8 @@ recordDefinition -- candidateKey
 primaryKey .. key
 foreignKey ..key
 candidateKey ..  key
+
+fieldDefinition -- code
 }
 
 @enduml
