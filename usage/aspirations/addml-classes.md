@@ -1,9 +1,4 @@
-<style>
-dO{color:blue}
-pp{color:orangered}
-val{color:green}
-classRef{color:lightsteelblue}
-</style>
+
 # Classes
 All classes will be inplemented as a property of dataObject, in form of a type. Along with this, there is a change in naming, from a human-readable name to machine-readable UUID, along with a new property 'label'. This is to allow truly unique references, along with a dedicated property to be displayed to users.
 Classes are not extensions of each other, they are rules.
