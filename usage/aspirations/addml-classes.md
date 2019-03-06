@@ -185,7 +185,7 @@ Collection of definition-objects
 ..
 
 ## <a id="fileDefinition"/>fileDefinition : [definition](#definition)
-
+Declaration of how the file is structured
 #### Items
 * recordDefinitionReference `Reference-object pointing to a record.`
   * definitionReference `Pointer to recordDefinition.`
@@ -193,7 +193,7 @@ Collection of definition-objects
   * maxOccurs `Upper limit of occurence of record in file.`
 
 ## <a id="recordDefinition"/>recordDefinition : [definition](#definition)
-Declaration of how the record is constructed.
+Declaration of how the record is structured.
 #### Items
 * fieldDefinitionReference `Reference-object pointing to a field.`
   * definitionReference `Pointer to fieldDefinition.`
@@ -218,6 +218,7 @@ Reference-object pointing to a fieldDefinition
 ## <a id="recordDefinitionReference"/>recordDefinitionReference : [definitionReference](#definitionReference)
 Reference-object pointing to a recordDefinition
 #### Properties
+* definitionReference `Pointer to recordDefinition`
 * minOccurs `Lower limit of occurence of record.`
 * maxOccurs `Upper limit of occurence of record.`
 
