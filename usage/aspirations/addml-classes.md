@@ -19,6 +19,9 @@ Classes are not extensions of each other, they are rules.
 	</properties>
 </dataObject>
 ```
+
+![Complete](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml.puml)
+
 ## <a id="unit"/>unit
 Basic building-block, with the purpose of adding type and label to all classes.
 #### Properties
@@ -38,6 +41,8 @@ Refers to a set of pre-defined objects.
 #### Properties
 * identifier `Shorthand name used as reference for namespace`
 * source `Reference to source`
+
+![Archival](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml)
 
 ## <a id="archive"/>archive : [container](#container)
 ..
