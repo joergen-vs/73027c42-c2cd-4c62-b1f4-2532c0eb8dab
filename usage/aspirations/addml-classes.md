@@ -15,7 +15,7 @@ Classes are not extensions of each other, they are rules.
 </dataObject>
 ```
 
-![Complete](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml.puml)
+![Complete](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml.puml)
 
 ## <a id="unit"/>unit
 Basic building-block, with the purpose of adding type and label to all classes.
@@ -37,7 +37,7 @@ Refers to a set of pre-defined objects.
 * identifier `Shorthand name used as reference for namespace`
 * source `Reference to source`
 
-![Archival](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml)
+![Archival](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml)
 
 ## <a id="archive"/>archive : [container](#container)
 ..
@@ -61,7 +61,7 @@ Refers to a set of pre-defined objects.
   * containsDocumentsScheduledForDisposal `True or False: Are there documents in the archive which is scheduled for disposal?`
   * containsDocumentsWhichIsDisposed `True or False: Are there documents in the archive which is disposed?`
 
-![Location](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-location.puml)
+![Location](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-location.puml)
 
 ## <a id="folder"/>folder : [unit](#unit)
 Filesystem-folder, used for grouping similar types of files.
@@ -170,7 +170,7 @@ TBD
 * endPos
 * 
 
-![Definition](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-definition.puml)
+![Definition](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-definition.puml)
 
 ## <a id="defintions"/>defintions
 Collection of definition-objects
@@ -238,7 +238,7 @@ Contains pre-defined code-values for field
 * description `Meaning behind the value.`
 * value `Code-value.`
 
-![Type](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml)
+![Type](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml)
 
 ## <a id="types">types</a>
 Collection of type-objects
