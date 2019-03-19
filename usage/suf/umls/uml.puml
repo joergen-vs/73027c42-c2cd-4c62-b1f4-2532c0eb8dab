@@ -1,0 +1,14 @@
+@startuml "SUF"
+skinparam linetype polyline
+skinparam linetype ortho
+
+interface container
+dataset -- container
+
+Fagsystem -- Saksbehandling
+Saksbehandling -- Noark
+Noark -- "Noark v3"
+Noark -- "Noark v4"
+Noark -- "Noark v5"
+
+@enduml
