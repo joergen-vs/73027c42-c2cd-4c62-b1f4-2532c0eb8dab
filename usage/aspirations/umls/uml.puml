@@ -5,7 +5,8 @@ skinparam linetype ortho
 interface container
 dataset -- container
 
-page 3x1
+scale 1280 width // 1280 pixels
+scale 800 height // 800 pixels
 
 !includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml
 
