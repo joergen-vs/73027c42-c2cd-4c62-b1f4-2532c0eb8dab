@@ -13,6 +13,15 @@ Components are not extensions of each other, they are rules.
   </properties>
 </additionalElement>
 ```
+
+Context contains zero or more of the following items:
+* agents `Set of agents`
+  * agent (individual / organization / software / system)
+
+Content contains zero or more of the following items:
+* extraction
+* archivalperiod
+
 ## <a id="component-unit"/>unit
 Basic building-block, with the purpose of adding type and label to all components.
 #### Properties
@@ -37,6 +46,9 @@ Found under context.
   * email
   * nationality
 
+#### Items
+* contacts `Set of agents representing the organization`
+
 ## <a id="individual-agent"/>individual : [agent](#agent)
 Found under context.
 #### Properties
@@ -59,19 +71,34 @@ Found under context. Origin of the data.
   * version
   * note `Freetext description of agent`
   * type `Type of system.`
-  * subjects
-    * subject `Fields of knowledge covered by the system`
+  * operationalPeriod `Timeperiod when the system was in use. End-date i`
+    * startDate
+    * endDate `Indicates when system is taken out of use.`
+  * subjects `Set of fields`
+    * subject `Field of knowledge covered by the system`
 
-## <a id="extraction-agent"/>extraction : [system](#system-agent)
+## <a id="system-agent"/>system : [agent](#agent)
+Found under context. Origin of the data.
+#### Properties
+* entity `Value: SOFTWARE`
+* info
+  * name
+  * version
+  * note `Freetext description of agent`
+
+## <a id="extraction-agent"/>extraction : [agent](#agent)
 Found under content. The archival entity extracted from the system(s) described in context.
 * entity `Value: EXTRACTION.`
 * info
   * name
   * note `Freetext description of agent`
   * type `Type of extraction.`
-  * version ``
-  * subjects
+  * version `Type-version of extraction`
+  * subjects `Set of fields`
     * subject `Fields of knowledge covered by the system`
+
+## <a id="archivalperiod" />archivalPeriod : [unit](#unit)
+Found under content. Gives the 
 
 # Classes in dataObject
 All classes will be inplemented as a property of dataObject, in form of a type. Along with this, there is a change in naming, from a human-readable name to machine-readable UUID, along with a new property 'label'. This is to allow truly unique references, along with a dedicated property to be displayed to users.
