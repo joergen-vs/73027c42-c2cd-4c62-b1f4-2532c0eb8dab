@@ -32,6 +32,7 @@ Context contains zero or more of the following items:
 Content contains zero or more of the following items:
 * extraction
 * documentation
+* namespace
 * comments
     * comment
 
