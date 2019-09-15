@@ -1,3 +1,12 @@
+# Classes in ADDML
+This is an attempt to declare complex elements, or classes, for additionalElement- and dataObject-element, along with declaring rules for property-element.
+
+## <a id="unit"/>unit
+Basic building-block, with the purpose of adding type and label. This enables identifying additionalElement or dataObject as classes.
+#### Properties
+* type `Class-name`
+* label `Name for instance of class`
+
 # Components in additionalElement
 All components will be inplemented as a property of additionalElement, in form of a type. Along with this, there is a change in naming, from a human-readable name to machine-readable UUID, along with a new property 'label'. This is to allow truly unique references, along with a dedicated property to be displayed to users.
 Components are not extensions of each other, they are rules.
@@ -16,91 +25,113 @@ Components are not extensions of each other, they are rules.
 
 Context contains zero or more of the following items:
 * agents `Set of agents`
-  * agent (individual / organization / software / system)
+  * [agent](#agent) (individual / organization / software / system)
+* comments
+    * comment
 
 Content contains zero or more of the following items:
 * extraction
-* archivalperiod
+* documentation
+* comments
+    * comment
 
-## <a id="component-unit"/>unit
-Basic building-block, with the purpose of adding type and label to all components.
-#### Properties
-* type `Component-name of element`
-* label `Label of element`
-
-## <a id="agent"/>agent : [unit](#component-unit)
+## <a id="agent"/>[agent](#agent) : [unit](#unit)
 #### Properties
 * role `Representation of individual or organization. Allowed values: ARCHIVIST, CONSUMER, CREATOR, OWNER, PRESERVATION, PRODUCER, SUBMITTER.`
 
-## <a id="organization-agent"/>organization : [agent](#agent)
+## <a id="organization-agent"/>[organization](#organization-agent) : [agent](#agent)
 Found under context.
 #### Properties
 * entity `Value: ORGANIZATION.`
 * info
   * name
   * id `Tax Identification Number or national equivalent`
-  * note `Freetext description of agent`
   * address
   * telephone
     * type `FAX, HOME, MOBILE, WORK`
   * email
   * nationality
+  * operationalPeriod `Timeperiod when the organization was active.`
+    * startDate
+    * endDate `Indicates when organization is shut down.`
 
 #### Items
 * contacts `Set of agents representing the organization`
+  * [agent](#agent) (individual / organization / software / system)
 
-## <a id="individual-agent"/>individual : [agent](#agent)
+## <a id="individual-agent"/>[individual](#individual-agent) : [agent](#agent)
 Found under context.
 #### Properties
 * entity `Value: INDIVIDUAL.`
 * info
   * name
-  * note `Freetext description of agent`
   * address
   * telephone
     * type `FAX, HOME, MOBILE, WORK`
   * email
   * nationality
 
-## <a id="system-agent"/>system : [agent](#agent)
+## <a id="system-agent"/>[system](#system-agent) : [agent](#agent)
 Found under context. Origin of the data.
 #### Properties
 * entity `Value: SYSTEM.`
 * info
   * name
   * version
-  * note `Freetext description of agent`
   * type `Type of system.`
-  * operationalPeriod `Timeperiod when the system was in use. End-date i`
+  * operationalPeriod `Timeperiod when the system was in use.`
     * startDate
     * endDate `Indicates when system is taken out of use.`
   * subjects `Set of fields`
     * subject `Field of knowledge covered by the system`
 
-## <a id="system-agent"/>system : [agent](#agent)
+## <a id="software-agent"/>[software](#software-agent) : [agent](#agent)
 Found under context. Origin of the data.
 #### Properties
 * entity `Value: SOFTWARE`
 * info
   * name
   * version
-  * note `Freetext description of agent`
 
-## <a id="extraction-agent"/>extraction : [agent](#agent)
+## <a id="extraction-agent"/>[extraction](#extraction-agent) : [agent](#agent)
 Found under content. The archival entity extracted from the system(s) described in context.
-* entity `Value: EXTRACTION.`
+#### Properties
+* entity `Value: EXTRACTION`
 * info
   * name
-  * note `Freetext description of agent`
-  * type `Type of extraction.`
+  * type `Type of extraction`
   * version `Type-version of extraction`
+  * archivalperiod `Gives the timeperiod of the extracted data`
+    * startDate
+    * endDate
+  * agreement `Reference to case-number containing agreement of delivery (preservation-id)`
+  * extractionDate `Date when extraction was accomplished`
   * subjects `Set of fields`
     * subject `Fields of knowledge covered by the system`
 
-## <a id="archivalperiod" />archivalPeriod : [unit](#unit)
-Found under content. Gives the 
+## <a id="documentation-agent"/>[documentation](#documentation-agent) : [agent](#agent)
+Found under content. Describes accompanying documentation, such as manuals for system, user or records managemen plan.
+#### Properties
+* entity `Value: DOCUMENTATION`
+* info
+  * name
+  * describes `Defines what area the documentation covers, like SYSTEM, USAGE, RMP etc`
+  * reference `Name of dataObject-file or -folder with the documentation`
+
+## <a id="namespace"/>[namespace](#namespace) : [unit](#unit)
+Found under content. Connects to a source
+#### Properties
+* name `Full name of namespace`
+* version
+* prefix `Shorthand id used for referencing namespace`
+* source `Resource identifier specifying the real or virtual origin of namespace`
+* reference `Name of dataObject-file with the definitions`
+
+## <a id="comment" />[comment](#comment) : [unit](#unit)
+Found under context and content. Contains information.
 
 # Classes in dataObject
+
 All classes will be inplemented as a property of dataObject, in form of a type. Along with this, there is a change in naming, from a human-readable name to machine-readable UUID, along with a new property 'label'. This is to allow truly unique references, along with a dedicated property to be displayed to users.
 Classes are not extensions of each other, they are rules.
 ```xml
@@ -118,13 +149,7 @@ Classes are not extensions of each other, they are rules.
 
 ![Complete](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml.puml)
 
-## <a id="object-unit"/>unit
-Basic building-block, with the purpose of adding type and label to all classes.
-#### Properties
-* type `Class-name of object`
-* label `Label of object`
-
-## <a id="container"/>container : [unit](#object-unit)
+## <a id="container"/>[container](#container) : [unit](#unit)
 Top-level object, containing different kinds of data-structures.
 #### Properties
 * info
@@ -132,7 +157,7 @@ Top-level object, containing different kinds of data-structures.
     * version `Version of container-type`
 * [namespace](#namespace) `Namespaces used inside container`
 
-## <a id="namespace"/>namespace : [unit](#object-unit)
+## <a id="namespace"/>[namespace](#namespace) : [unit](#unit)
 Refers to a set of pre-defined objects.
 #### Properties
 * identifier `Shorthand name used as reference for namespace`
@@ -140,7 +165,7 @@ Refers to a set of pre-defined objects.
 
 ![Archival](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml)
 
-## <a id="archive"/>archive : [container](#container)
+## <a id="archive"/>[archive](#archive) : [container](#container)
 Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk. Inneholder beskrivelse av selve arkivuttrekket.
 #### Items
 * [definitions](#definitions) `Defines the meaning of the objects in the structure.`
@@ -164,7 +189,7 @@ Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk. 
 
 ![Location](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-location.puml)
 
-## <a id="folder"/>folder : [unit](#object-unit)
+## <a id="folder"/>[folder](#folder) : [unit](#unit)
 Filesystem-folder, used for grouping similar types of files.
 #### Properties
 * folder
@@ -174,7 +199,7 @@ Filesystem-folder, used for grouping similar types of files.
   * numberOf
     * '.extension' `Number of files recursively in folder, based on extension. All files available with '.*'`
 
-## <a id="file"/>file : [unit](#object-unit)
+## <a id="file"/>[file](#file) : [unit](#unit)
 File in the archive.
 #### Properties
 * file
@@ -192,7 +217,7 @@ File in the archive.
     * algorithm `Checksum-algorithm used for calculation.`
     * value `Calculated value of file.`
 
-## <a id="dataFile"/>dataFile : [file](#file)
+## <a id="dataFile"/>[dataFile](#dataFile) : [file](#file)
 File with a set of records.
 #### Items
 * [record](#record)
@@ -204,40 +229,40 @@ File with a set of records.
     * recordIdentifier `Name of record-object`
     * recordCount `Number of records`
 
-## <a id="xmlFile"/>xmlFile : [dataFile](#dataFile)
+## <a id="xmlFile"/>[xmlFile](#xmlFile) : [dataFile](#dataFile)
 Xml-file.
 #### Properties
 * schemas
   * schema `Connects a validation-file to a xml-file.`
     * fileReference `Reference to the file to validate the xml-file against`
 
-## <a id="delimitedFile"/>delimitedFile : [dataFile](#dataFile)
+## <a id="delimitedFile"/>[delimitedFile](#delimitedFile) : [dataFile](#dataFile)
 File where the records and fields are separated by a delimiter.
 
-## <a id="fixedLengthFile"/>fixedLengthFile : [dataFile](#dataFile)
+## <a id="fixedLengthFile"/>[fixedLengthFile](#fixedLengthFile) : [dataFile](#dataFile)
 File where the length of records and fields do not vary.
 
-## <a id="record"/>record : [unit](#object-unit)
+## <a id="record"/>[record](#record) : [unit](#unit)
 Composed of fields.
 #### Items
 * field
 
-## <a id="dataRecord"/>dataRecord : [record](#record)
+## <a id="dataRecord"/>[dataRecord](#dataRecord) : [record](#record)
 Sub-class for record, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the record.`
 * typeReference `Reference to type-object which contains how the record is read.`
 
-## <a id="xmlRecord"/>xmlRecord : [dataRecord](#dataRecord)
+## <a id="xmlRecord"/>[xmlRecord](#xmlRecord) : [dataRecord](#dataRecord)
 TBD
 
-## <a id="delimitedRecord"/>delimitedRecord : [dataRecord](#dataRecord)
+## <a id="delimitedRecord"/>[delimitedRecord](#delimitedRecord) : [dataRecord](#dataRecord)
 TBD
 
-## <a id="fixedLengthRecord"/>fixedLengthRecord : [dataRecord](#dataRecord)
+## <a id="fixedLengthRecord"/>[fixedLengthRecord](#fixedLengthRecord) : [dataRecord](#dataRecord)
 TBD
 
-## <a id="key"/>key : [unit](#object-unit)
+## <a id="key"/>[key](#key) : [unit](#unit)
 Key for record, in the form of primary, foreign and candidate.
 
 ## <a id="primaryKey"/>primaryKey : key
@@ -249,22 +274,22 @@ Key for record, in the form of primary, foreign and candidate.
 ## <a id="foreignKey"/>foreignKey
 ..
 
-## <a id="field"/>field : [unit](#object-unit)
+## <a id="field"/>[field](#field) : [unit](#unit)
 Contains one item of information.
 
-## <a id="dataField"/>dataField : [field](#field)
+## <a id="dataField"/>[dataField](#dataField) : [field](#field)
 Abstract class for field, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the field`
 * typeReference `Reference to type-object which contains how the field is read.`
 
-## <a id="xmlField"/>xmlField : [dataField](#dataField)
+## <a id="xmlField"/>[xmlField](#xmlField) : [dataField](#dataField)
 TBD
 
-## <a id="delimitedField"/>delimitedField : [dataField](#dataField)
+## <a id="delimitedField"/>[delimitedField](#delimitedField) : [dataField](#dataField)
 TBD
 
-## <a id="fixedLengthField"/>fixedLengthField : [dataField](#dataField)
+## <a id="fixedLengthField"/>[fixedLengthField](#fixedLengthField) : [dataField](#dataField)
 TBD
 #### Properties
 * startPos
@@ -278,14 +303,14 @@ Collection of definition-objects
 #### Items
 * [definition](#definition)
 
-## <a id="definition"/>definition : [unit](#object-unit)
+## <a id="definition"/>[definition](#definition) : [unit](#unit)
 ..
 #### Items
 ..
 #### Properties
 ..
 
-## <a id="fileDefinition"/>fileDefinition : [definition](#definition)
+## <a id="fileDefinition"/>[fileDefinition](#fileDefinition) : [definition](#definition)
 Declaration of how the file is structured
 #### Items
 * recordDefinitionReference `Reference-object pointing to a record.`
@@ -293,8 +318,12 @@ Declaration of how the file is structured
   * minOccurs `Lower limit of occurence of record in file.`
   * maxOccurs `Upper limit of occurence of record in file.`
 
-## <a id="recordDefinition"/>recordDefinition : [definition](#definition)
+## <a id="recordDefinition"/>[recordDefinition](#recordDefinition) : [definition](#definition)
 Declaration of how the record is structured.
+#### Properties
+* ..
+* namespaceReference `Reference to prefix + element-name associated with recordDefinition`
+* ..
 #### Items
 * fieldDefinitionReference `Reference-object pointing to a field.`
   * definitionReference `Pointer to fieldDefinition.`
@@ -305,26 +334,30 @@ Declaration of how the record is structured.
   * minOccurs `Lower limit of occurence of record in record.`
   * maxOccurs `Upper limit of occurence of record in record.`
 
-## <a id="definitionReference"/>definitionReference : [unit](#object-unit)
+## <a id="definitionReference"/>[definitionReference](#definitionReference) : [unit](#unit)
 Reference-object pointing to a definition
 #### Properties
 * definitionReference `Pointer to definition.`
 
-## <a id="fieldDefinitionReference"/>fieldDefinitionReference : [definitionReference](#definitionReference)
+## <a id="fieldDefinitionReference"/>[fieldDefinitionReference](#fieldDefinitionReference) : [definitionReference](#definitionReference)
 Reference-object pointing to a fieldDefinition
 #### Properties
 * minOccurs `Lower limit of occurence of field.`
 * maxOccurs `Upper limit of occurence of field.`
 
-## <a id="recordDefinitionReference"/>recordDefinitionReference : [definitionReference](#definitionReference)
+## <a id="recordDefinitionReference"/>[recordDefinitionReference](#recordDefinitionReference) : [definitionReference](#definitionReference)
 Reference-object pointing to a recordDefinition
 #### Properties
 * definitionReference `Pointer to recordDefinition`
 * minOccurs `Lower limit of occurence of record.`
 * maxOccurs `Upper limit of occurence of record.`
 
-## <a id="fieldDefinition"/>fieldDefinition : [definition](#definition)
+## <a id="fieldDefinition"/>[fieldDefinition](#fieldDefinition) : [definition](#definition)
 ..
+#### Properties
+* ..
+* namespaceReference `Reference to prefix + element-name associated with fieldDefinition`
+* ..
 #### Items
 * codes `Contains pre-defined code-values for field`
 
@@ -333,7 +366,7 @@ Collection of code-objects
 #### Items
 * [code](#code)
 
-## <a id="code"/> code : [unit](#object-unit)
+## <a id="code"/>[code](#code) : [unit](#unit)
 Contains pre-defined code-values for field
 #### Properties
 * description `Meaning behind the value.`
@@ -346,7 +379,7 @@ Collection of type-objects
 #### Items
 * [type](#type)
 
-## <a id="type"/>type : [unit](#object-unit)
+## <a id="type"/>[type](#type) : [unit](#unit)
 ..
 #### Items
 ..
@@ -358,7 +391,7 @@ Collection of process-objects
 #### Items
 * [process](#process)
 
-## <a id="process"/>process : [unit](#object-unit)
+## <a id="process"/>[process](#process) : [unit](#unit)
 ..
 #### Items
 ..
