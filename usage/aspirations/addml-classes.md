@@ -55,6 +55,8 @@ Found under context.
   * operationalPeriod `Timeperiod when the organization was active.`
     * startDate
     * endDate `Indicates when organization is shut down.`
+  * areal `Ser of areas`
+    * area `Functional area of the organisation`
 
 #### Items
 * contacts `Set of agents representing the organization`
@@ -167,7 +169,7 @@ Refers to a set of pre-defined objects.
 ![Archival](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml)
 
 ## <a id="archive"/>[archive](#archive) : [container](#container)
-Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk. Inneholder beskrivelse av selve arkivuttrekket.
+Rotkatalogen for samlingen av filer og dokumenter som gjÃ¸r opp et arkivuttrekk. Inneholder beskrivelse av selve arkivuttrekket.
 #### Items
 * [definitions](#definitions) `Defines the meaning of the objects in the structure.`
 * [file](#file) `Files which are part of the archive, as metadata or documentation.`
