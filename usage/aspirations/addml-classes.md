@@ -25,16 +25,16 @@ Components are not extensions of each other, they are rules.
 
 Context contains zero or more of the following items:
 * agents `Set of agents`
-  * [agent](#agent) (individual / organization / software / system)
+  * [agent](#agent) ([individual](#individual) / [organization](#organization) / [software](#software) / [system](#system))
 * comments
-    * comment
+    * [comment](#comment)
 
 Content contains zero or more of the following items:
-* extraction
-* documentation
-* namespace
+* [extraction](#extraction-agent)
+* [documentation](#documentation-agent)
+* [namespace](#namespace)
 * comments
-    * comment
+    * [comment](#comment)
 
 ## <a id="agent"/>[agent](#agent) : [unit](#unit)
 #### Properties
