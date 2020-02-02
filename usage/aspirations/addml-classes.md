@@ -202,8 +202,8 @@ Filesystem-folder, used for grouping similar types of files.
 Folder of data-files, used for grouping similar types of files with data-properties. Enables validating a group of files.
 #### Properties
 * schemas
-  * schema `Connects a validation-file to a file in folder.`
-    * fileReference `Reference to the file to validate the group of files against`
+  * schema `Connects a validation-file to all files in folder.`
+    * fileReference `Reference to the validation-file`
 
 ## <a id="file"/>[file](#file) : [unit](#unit)
 File in the archive.
