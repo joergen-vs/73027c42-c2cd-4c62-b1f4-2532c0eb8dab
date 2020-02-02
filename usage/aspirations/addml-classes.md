@@ -1,7 +1,7 @@
 # Classes in ADDML
 This is an attempt to declare complex elements, or classes, for additionalElement- and dataObject-element, along with declaring rules for property-element.
 
-## <a id="unit"/>unit
+## <a id="unit"/>[unit](#unit)
 Basic building-block, with the purpose of adding type and label. This enables identifying additionalElement or dataObject as classes.
 #### Properties
 * type `Class-name`
@@ -25,7 +25,7 @@ Components are not extensions of each other, they are rules.
 
 Context contains zero or more of the following items:
 * agents `Set of agents`
-  * [agent](#agent) ([individual](#individual) / [organization](#organization) / [software](#software) / [system](#system))
+  * [agent](#agent) ([individual](#individual-agent) / [organization](#organization-agent) / [software](#software-agent) / [system](#system-agent))
 * comments
     * [comment](#comment)
 
@@ -178,10 +178,6 @@ Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk.
 * [types](#types) `Defines how the structure is supposed to be read.`
 #### Properties
 * info
-  * numberOf
-    * files `Number of files in archive`
-  * sizeOf
-    * files `Size of all files in archive`
   * period `Declares the timeperiod for the data in the archive`
     * inboundPeriod `Start-date`
     * outgoingPeriod `End-date`
@@ -201,6 +197,13 @@ Filesystem-folder, used for grouping similar types of files.
 * info
   * numberOf
     * '.extension' `Number of files recursively in folder, based on extension. All files available with '.*'`
+
+## <a id="dataFolder"/>[dataFolder](#dataFolder) : [folder](#folder)
+Folder of data-files, used for grouping similar types of files with data-properties. Enables validating a group of files.
+#### Properties
+* schemas
+  * schema `Connects a validation-file to a file in folder.`
+    * fileReference `Reference to the file to validate the group of files against`
 
 ## <a id="file"/>[file](#file) : [unit](#unit)
 File in the archive.
@@ -232,6 +235,10 @@ File with a set of records.
     * recordIdentifier `Name of record-object`
     * recordCount `Number of records`
 
+## <a id="jsonFile"/>[jsonFile](#jsonFile) : [dataFile](#dataFile)
+Json-file
+####
+
 ## <a id="xmlFile"/>[xmlFile](#xmlFile) : [dataFile](#dataFile)
 Xml-file.
 #### Properties
@@ -255,6 +262,9 @@ Sub-class for record, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the record.`
 * typeReference `Reference to type-object which contains how the record is read.`
+
+## <a id="jsonRecord"/>[jsonRecord](#jsonRecord) : [dataRecord](#dataRecord)
+TBD
 
 ## <a id="xmlRecord"/>[xmlRecord](#xmlRecord) : [dataRecord](#dataRecord)
 TBD
@@ -285,6 +295,9 @@ Abstract class for field, adding definition-reference and type-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the field`
 * typeReference `Reference to type-object which contains how the field is read.`
+
+## <a id="jsonField"/>[jsonField](#jsonField) : [dataField](#dataField)
+TBD
 
 ## <a id="xmlField"/>[xmlField](#xmlField) : [dataField](#dataField)
 TBD

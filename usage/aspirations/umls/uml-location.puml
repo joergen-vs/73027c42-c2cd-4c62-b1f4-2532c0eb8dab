@@ -1,6 +1,4 @@
 @startuml
-skinparam linetype polyline
-skinparam linetype ortho
 
 package "Location" <<Rectangle>> {
 interface dataFile
@@ -10,10 +8,15 @@ interface field
 archive -- folder
 archive -- file
 
+folder .. dataFolder
+
 file .. dataFile
+dataFile .. jsonFile
 dataFile .. xmlFile
 dataFile .. delimitedFile
 dataFile .. fixedLengthFile
+jsonFile -- record
+record .. jsonRecord
 xmlFile -- record
 record .. xmlRecord
 delimitedFile -- record
@@ -21,6 +24,8 @@ record .. delimitedRecord
 fixedLengthFile -- record
 record .. fixedLengthRecord
 
+jsonRecord -- jsonField
+jsonField .. field 
 xmlRecord -- xmlField
 xmlField .. field 
 delimitedRecord -- delimitedField
