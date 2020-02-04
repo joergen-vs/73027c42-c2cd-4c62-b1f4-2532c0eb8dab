@@ -1,7 +1,7 @@
 @startuml
 
 package "Location" <<Rectangle>> {
-interface dataFile
+interface dataFile [[https://github.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/blob/master/usage/aspirations/addml-classes.md#dataFile]]
 interface record
 interface field
 

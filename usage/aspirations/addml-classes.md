@@ -194,6 +194,8 @@ Filesystem-folder, used for grouping similar types of files.
 * folder
   * name `Relative file-path for folder.`
   * size `Size of folder in bytes.`
+  * content `Type of content`
+    * VALUE = DATAFILES | DOCUMENTATION | DOCUMENTS | REPORTS | OTHER
 * info
   * numberOf
     * '.extension' `Number of files recursively in folder, based on extension. All files available with '.*'`
