@@ -3,24 +3,24 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 package "Definition" <<Rectangle>> {
-archive -- definitions
+archive *-- definitions
 
 interface definition
 interface key
 
-definitions -- definition
-definition .. fileDefinition
-definition .. recordDefinition
-definition .. fieldDefinition
+definitions *-- definition
+definition <.. fileDefinition
+definition <.. recordDefinition
+definition <.. fieldDefinition
 
-recordDefinition -- primaryKey
-recordDefinition -- foreignKey
-recordDefinition -- candidateKey
-primaryKey .. key
-foreignKey ..key
-candidateKey ..  key
+recordDefinition *-- primaryKey
+recordDefinition *-- foreignKey
+recordDefinition *-- candidateKey
+primaryKey ..> key
+foreignKey ..> key
+candidateKey ..> key
 
-fieldDefinition -- code
+fieldDefinition *-- code
 }
 
 @enduml

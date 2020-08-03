@@ -404,6 +404,36 @@ Collection of type-objects
 #### Properties
 ..
 
+## <a id="fileType"/>[fileType](#fileType) : [type](#type)
+Declaration of how the file is read
+#### Properties
+* charset `Defines the charset used in the file.`
+* charDefinitions `Redefined characters are listed here.`
+
+## <a id="flatFileType"/>[flatFileType](#flatFileType) : [fileType](#fileType)
+Declaration of how a flat-file is read
+#### Properties
+* charset `Defines the charset used in the file.`
+  * definitionReference `Pointer to recordDefinition.`
+  * minOccurs `Lower limit of occurence of record in file.`
+  * maxOccurs `Upper limit of occurence of record in file.`
+
+## <a id="recordType"/>[recordType](#recordType) : [type](#type)
+Declaration of how the record is read.
+#### Properties
+* ..
+* namespaceReference `Reference to prefix + element-name associated with recordDefinition`
+* ..
+#### Items
+* fieldDefinitionReference `Reference-object pointing to a field.`
+  * definitionReference `Pointer to fieldDefinition.`
+  * minOccurs `Lower limit of occurence for field in record.`
+  * maxOccurs `Upper limit of occurence for field in record.`
+* recordDefinitionReference `Reference-object pointing to a record.`
+  * definitionReference `Pointer to recordDefinition.`
+  * minOccurs `Lower limit of occurence of record in record.`
+  * maxOccurs `Upper limit of occurence of record in record.`
+
 ## <a id="processes"/>processes
 Collection of process-objects
 #### Items

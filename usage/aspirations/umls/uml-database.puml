@@ -1,32 +1,30 @@
 @startuml "database"
 
 package "Database" <<Database>> {
-    container .. system
+    container <.. system
 
     package "Tables" <<Rectangle>> {
-        system -- database
+        system *-- database
 
-        database -- table
+        database *-- table
         interface db::key
         
-        table -- db::primaryKey
-        table -- db::foreignKey
-        table -- db::candidateKey
-        db::primaryKey .. db::key
-        db::foreignKey .. db::key
-        db::candidateKey ..  db::key
+        table *-- db::key
+        db::key <.. db::primaryKey
+        db::key <.. db::foreignKey
+        db::key <.. db::candidateKey
 
-        table -- column
+        table *-- column
 
 
     }
 
     package "Views" <<Rectangle>> {
-        system -- views
+        system *-- views
     }
 
     package "Users" <<Rectangle>> {
-        system -- user
+        system *-- user
     }
 }
 

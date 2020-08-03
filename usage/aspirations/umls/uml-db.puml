@@ -4,13 +4,13 @@ skinparam linetype ortho
 
 class dataset
 interface container
-dataset -- container
+dataset *-- container
 
 package "Database" <<Database>> {
-container .. system
-system -- table
-system -- views
-system -- user
+container <.. system
+system *-- table
+system *-- views
+system *-- user
 }
 
 @enduml

@@ -3,14 +3,14 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 package "Type" <<Rectangle>> {
-archive -- types
+archive *-- types
 interface type
-types -- fileType
-types -- recordType
-types -- fieldType
-fileType .. type
-recordType .. type
-fieldType .. type
+types *.. type
+type -- fileType
+type -- recordType
+type -- fieldType
+
+fileType --> flatFileType
 }
 
 @enduml
