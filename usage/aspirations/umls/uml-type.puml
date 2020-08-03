@@ -6,9 +6,9 @@ package "Type" <<Rectangle>> {
 archive *-- types
 interface type
 types *.. type
-type -- fileType
-type -- recordType
-type -- fieldType
+type <-- fileType
+type <-- recordType
+type <-- fieldType
 
 fileType --> flatFileType
 }
