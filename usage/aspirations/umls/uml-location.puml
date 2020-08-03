@@ -8,29 +8,29 @@ interface field
 archive *-- folder
 archive *-- file
 
-folder <.. dataFolder
+folder <-- dataFolder
 
-file <.. dataFile
-dataFile <.. jsonFile
-dataFile <.. xmlFile
-dataFile <.. delimitedFile
-dataFile <.. fixedLengthFile
+file <-- dataFile
+dataFile <-- jsonFile
+dataFile <-- xmlFile
+dataFile <-- delimitedFile
+dataFile <-- fixedLengthFile
 jsonFile *-- record
-record <.. jsonRecord
+record <-- jsonRecord
 xmlFile *-- record
-record <.. xmlRecord
+record <-- xmlRecord
 delimitedFile *-- record
-record <.. delimitedRecord
+record <-- delimitedRecord
 fixedLengthFile *-- record
-record <.. fixedLengthRecord
+record <-- fixedLengthRecord
 
 jsonRecord *-- jsonField
-jsonField ..> field 
+jsonField --> field 
 xmlRecord *-- xmlField
-xmlField ..> field 
+xmlField --> field 
 delimitedRecord *-- delimitedField
-delimitedField ..> field 
+delimitedField --> field 
 fixedLengthRecord *-- fixedLengthField
-fixedLengthField ..> field 
+fixedLengthField --> field 
 }
 @enduml

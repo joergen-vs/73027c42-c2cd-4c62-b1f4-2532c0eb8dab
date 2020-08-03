@@ -7,7 +7,7 @@ interface container
 dataset *-- container
 
 package "Database" <<Database>> {
-container <.. system
+container <-- system
 system *-- table
 system *-- views
 system *-- user

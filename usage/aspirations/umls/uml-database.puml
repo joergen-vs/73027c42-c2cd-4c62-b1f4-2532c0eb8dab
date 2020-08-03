@@ -1,7 +1,7 @@
 @startuml "database"
 
 package "Database" <<Database>> {
-    container <.. system
+    container <-- system
 
     package "Tables" <<Rectangle>> {
         system *-- database
@@ -10,9 +10,9 @@ package "Database" <<Database>> {
         interface db::key
         
         table *-- db::key
-        db::key <.. db::primaryKey
-        db::key <.. db::foreignKey
-        db::key <.. db::candidateKey
+        db::key <-- db::primaryKey
+        db::key <-- db::foreignKey
+        db::key <-- db::candidateKey
 
         table *-- column
 

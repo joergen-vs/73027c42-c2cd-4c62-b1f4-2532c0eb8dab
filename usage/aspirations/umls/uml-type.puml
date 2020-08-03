@@ -3,12 +3,12 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 package "Type" <<Rectangle>> {
-archive *-- types
-interface type
-types *.. type
-type <-- fileType
-type <-- recordType
-type <-- fieldType
+interface structureType
+
+archive *-- structureType
+structureType <-- fileType
+structureType <-- recordType
+structureType <-- fieldType
 
 fileType --> flatFileType
 }

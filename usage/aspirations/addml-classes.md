@@ -171,7 +171,7 @@ Refers to a set of pre-defined objects.
 ## <a id="archive"/>[archive](#archive) : [container](#container)
 Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk. Inneholder beskrivelse av selve arkivuttrekket.
 #### Items
-* [definitions](#definitions) `Defines the meaning of the objects in the structure.`
+* [definition](#definition) `Defines the meaning of the objects in the structure.`
 * [file](#file) `Files which are part of the archive, as metadata or documentation.`
 * [folder](#folder) `Folders which are part of the archive.`
 * [processes](#processes)
@@ -231,7 +231,7 @@ File with a set of records.
 * [record](#record)
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the file`
-* typeReference `Reference to type-object which contains how the file is read.`
+* typeReference `Reference to structureType-object which contains how the file is read.`
 * info
   * numberOf `Contains a reference to a type of record, and the number of times it occurs in the file.`
     * recordIdentifier `Name of record-object`
@@ -260,10 +260,10 @@ Composed of fields.
 * field
 
 ## <a id="dataRecord"/>[dataRecord](#dataRecord) : [record](#record)
-Sub-class for record, adding definition-reference and type-reference.
+Sub-class for record, adding definition-reference and structureType-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the record.`
-* typeReference `Reference to type-object which contains how the record is read.`
+* typeReference `Reference to structureType-object which contains how the record is read.`
 
 ## <a id="jsonRecord"/>[jsonRecord](#jsonRecord) : [dataRecord](#dataRecord)
 TBD
@@ -293,10 +293,10 @@ Key for record, in the form of primary, foreign and candidate.
 Contains one item of information.
 
 ## <a id="dataField"/>[dataField](#dataField) : [field](#field)
-Abstract class for field, adding definition-reference and type-reference.
+Abstract class for field, adding definition-reference and structureType-reference.
 #### Properties
 * definitionReference `Reference to definition-object which contains the description of the field`
-* typeReference `Reference to type-object which contains how the field is read.`
+* typeReference `Reference to structureType-object which contains how the field is read.`
 
 ## <a id="jsonField"/>[jsonField](#jsonField) : [dataField](#dataField)
 TBD
@@ -315,11 +315,6 @@ TBD
 * 
 
 ![Definition](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-definition.puml)
-
-## <a id="defintions"/>defintions
-Collection of definition-objects
-#### Items
-* [definition](#definition)
 
 ## <a id="definition"/>[definition](#definition) : [unit](#unit)
 ..
@@ -392,19 +387,14 @@ Contains pre-defined code-values for field
 
 ![Type](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml)
 
-## <a id="types">types</a>
-Collection of type-objects
-#### Items
-* [type](#type)
-
-## <a id="type"/>[type](#type) : [unit](#unit)
+## <a id="structureType"/>[structureType](#structureType) : [unit](#unit)
 ..
 #### Items
 ..
 #### Properties
 ..
 
-## <a id="fileType"/>[fileType](#fileType) : [type](#type)
+## <a id="fileType"/>[fileType](#fileType) : [structureType](#structureType)
 Declaration of how the file is read
 #### Properties
 * charset `Defines the charset used in the file.`
@@ -414,11 +404,8 @@ Declaration of how the file is read
 Declaration of how a flat-file is read
 #### Properties
 * charset `Defines the charset used in the file.`
-  * definitionReference `Pointer to recordDefinition.`
-  * minOccurs `Lower limit of occurence of record in file.`
-  * maxOccurs `Upper limit of occurence of record in file.`
 
-## <a id="recordType"/>[recordType](#recordType) : [type](#type)
+## <a id="recordType"/>[recordType](#recordType) : [structureType](#structureType)
 Declaration of how the record is read.
 #### Properties
 * ..
