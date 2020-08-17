@@ -19,11 +19,11 @@ package "Database" <<Database>> {
 
     }
 
-    package "Views" <<Rectangle>> {
+    package "Views" <<Frame>> {
         system *-- views
     }
 
-    package "Users" <<Rectangle>> {
+    package "Users" <<Frame>> {
         system *-- user
     }
 }

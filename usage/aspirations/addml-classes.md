@@ -2,7 +2,7 @@
 This is an attempt to declare complex elements, or classes, for additionalElement- and dataObject-element, along with declaring rules for property-element.
 
 ## <a id="unit"/>[unit](#unit)
-Basic building-block, with the purpose of adding type and label. This enables identifying additionalElement or dataObject as classes.
+Abstract building-block, with the purpose of adding type and label. This enables identifying additionalElement or dataObject as classes.
 #### Properties
 * type `Class-name`
 * label `Name for instance of class`
@@ -74,7 +74,15 @@ Found under context.
   * email
   * nationality
 
-## <a id="system-agent"/>[system](#system-agent) : [agent](#agent)
+## <a id="software-agent"/>[software](#software-agent) : [agent](#agent)
+Found under context. Origin of the data.
+#### Properties
+* entity `Value: SOFTWARE`
+* info
+  * name
+  * version
+
+## <a id="system-software"/>[system](#system-software) : [software](#software-agent)
 Found under context. Origin of the data.
 #### Properties
 * entity `Value: SYSTEM.`
@@ -88,22 +96,14 @@ Found under context. Origin of the data.
   * subjects `Set of fields`
     * subject `Field of knowledge covered by the system`
 
-## <a id="software-agent"/>[software](#software-agent) : [agent](#agent)
-Found under context. Origin of the data.
-#### Properties
-* entity `Value: SOFTWARE`
-* info
-  * name
-  * version
-
-## <a id="extraction-agent"/>[extraction](#extraction-agent) : [agent](#agent)
+## <a id="extraction-software"/>[extraction](#extraction-agent) : [agent](#agent)
 Found under content. The archival entity extracted from the system(s) described in context.
 #### Properties
 * entity `Value: EXTRACTION`
 * info
   * name
-  * type `Type of extraction`
   * version `Type-version of extraction`
+  * type `Type of extraction`
   * archivalperiod `Gives the timeperiod of the extracted data`
     * startDate `Beginning of actual timeperiod`
     * endDate `End of actual timeperiod`

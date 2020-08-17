@@ -2,7 +2,7 @@
 skinparam linetype polyline
 skinparam linetype ortho
 
-package "Definition" <<Rectangle>> {
+package "Definition" <<Frame>> {
 archive *-- definition
 
 interface definition
