@@ -105,8 +105,8 @@ Found under content. The archival entity extracted from the system(s) described 
   * type `Type of extraction`
   * version `Type-version of extraction`
   * archivalperiod `Gives the timeperiod of the extracted data`
-    * startDate
-    * endDate
+    * startDate `Beginning of actual timeperiod`
+    * endDate `End of actual timeperiod`
   * agreement `Reference to case-number containing agreement of delivery (preservation-id)`
   * extractionDate `Date when extraction was accomplished`
   * subjects `Set of fields`
@@ -118,8 +118,19 @@ Found under content. Describes accompanying documentation, such as manuals for s
 * entity `Value: DOCUMENTATION`
 * info
   * name
-  * describes `Defines what area the documentation covers, like SYSTEM, USAGE, RMP etc`
-  * reference `Name of dataObject-file or -folder with the documentation`
+  * description `Defines what area the documentation covers, like SYSTEM, USAGE, RMP etc.`
+  * link `Link to documentation.`
+  * reference `Name of dataObject-file or -folder with the documentation.`
+
+## <a id="standard-agent"/>[standard](#standard-agent) : [agent](#agent)
+Found under content. Describes standards used, such as structure and files.
+#### Properties
+* entity `Value: STANDARD`
+* info
+  * name
+  * description `Short description of the standard.`
+  * link `Link to standard.`
+  * reference `Name of dataObject-file or -folder which uses the standard.`
 
 ## <a id="namespace"/>[namespace](#namespace) : [unit](#unit)
 Found under content. Connects to a source
@@ -174,8 +185,8 @@ Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk.
 * [definition](#definition) `Defines the meaning of the objects in the structure.`
 * [file](#file) `Files which are part of the archive, as metadata or documentation.`
 * [folder](#folder) `Folders which are part of the archive.`
-* [processes](#processes)
-* [types](#types) `Defines how the structure is supposed to be read.`
+* [process](#process)
+* [structureType](#structureType) `Defines how the structure is supposed to be read.`
 #### Properties
 * info
   * period `Declares the timeperiod for the data in the archive`
@@ -185,6 +196,8 @@ Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk.
   * containsBusinessSpesificinformation `True or false: Are there metadata in the archive which is business-specific?`
   * containsDocumentsScheduledForDisposal `True or False: Are there documents in the archive which is scheduled for disposal?`
   * containsDocumentsWhichIsDisposed `True or False: Are there documents in the archive which is disposed?`
+  * standards
+    * referencedStandard `Reference to standard used to understand how to locate, read and understand the information.`
 
 ![Location](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-location.puml)
 
@@ -372,12 +385,7 @@ Reference-object pointing to a recordDefinition
 * namespaceReference `Reference to prefix + element-name associated with fieldDefinition`
 * ..
 #### Items
-* codes `Contains pre-defined code-values for field`
-
-## <a id="codes">codes</a>
-Collection of code-objects
-#### Items
-* [code](#code)
+* [code](#code) `Contains pre-defined code-values for field`
 
 ## <a id="code"/>[code](#code) : [unit](#unit)
 Contains pre-defined code-values for field
@@ -403,28 +411,17 @@ Declaration of how the file is read
 ## <a id="flatFileType"/>[flatFileType](#flatFileType) : [fileType](#fileType)
 Declaration of how a flat-file is read
 #### Properties
-* charset `Defines the charset used in the file.`
+* recordSeparator `Specifies character[s] used as record-separator.`
+* fieldSeparatingChar `Specifies character[s] used as field-separator.`
+* quotingChar `Specifies character[s] used as quotation around complex fields.`
 
 ## <a id="recordType"/>[recordType](#recordType) : [structureType](#structureType)
 Declaration of how the record is read.
 #### Properties
-* ..
-* namespaceReference `Reference to prefix + element-name associated with recordDefinition`
-* ..
-#### Items
-* fieldDefinitionReference `Reference-object pointing to a field.`
-  * definitionReference `Pointer to fieldDefinition.`
-  * minOccurs `Lower limit of occurence for field in record.`
-  * maxOccurs `Upper limit of occurence for field in record.`
-* recordDefinitionReference `Reference-object pointing to a record.`
-  * definitionReference `Pointer to recordDefinition.`
-  * minOccurs `Lower limit of occurence of record in record.`
-  * maxOccurs `Upper limit of occurence of record in record.`
+* trimmed `True or false, based on whether all fields in record have removed leading zeros and tailing blanks`
 
-## <a id="processes"/>processes
-Collection of process-objects
 #### Items
-* [process](#process)
+..
 
 ## <a id="process"/>[process](#process) : [unit](#unit)
 ..
