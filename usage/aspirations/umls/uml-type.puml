@@ -10,7 +10,8 @@ types <-- fileType
 types <-- recordType
 types <-- fieldType
 
-fileType --> flatFileType
+fileType <-- flatFileType
+fileType <-- structuredFileType
 }
 
 @enduml
