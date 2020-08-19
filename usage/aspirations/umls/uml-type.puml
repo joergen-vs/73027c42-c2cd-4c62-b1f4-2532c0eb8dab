@@ -2,10 +2,10 @@
 skinparam linetype polyline
 skinparam linetype ortho
 
-package "Type" <<Frame>> {
+package "Types" <<Frame>> {
 interface types
 
-archive *-- types
+container *--- types
 types <-- fileType
 types <-- recordType
 types <-- fieldType

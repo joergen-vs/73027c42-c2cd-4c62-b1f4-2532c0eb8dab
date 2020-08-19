@@ -7,12 +7,6 @@ package "Database" <<Database>> {
         system *-- database
 
         database *-- table
-        interface db::key
-        
-        table *-- db::key
-        db::key <-- db::primaryKey
-        db::key <-- db::foreignKey
-        db::key <-- db::candidateKey
 
         table *-- column
 

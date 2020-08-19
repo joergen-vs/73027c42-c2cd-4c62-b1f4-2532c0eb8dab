@@ -328,10 +328,15 @@ TBD
 
 ![Definition](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-definition.puml)
 
-## <a id="definition"/>[definition](#definition) : [dataObject](#dataObject)
-..
+## <a id="definitions"/>[definitions](#definitions) : [dataObject](#dataObject)
+Collection of definitions in a container
 #### Items
+..* [definition](#definition)
+#### Properties
 ..
+
+## <a id="definition"/>[definition](#definition) : [dataObject](#dataObject)
+
 #### Properties
 ..
 
@@ -395,7 +400,7 @@ Contains pre-defined code-values for field
 ![Type](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml)
 
 ## <a id="types"/>[types](#types) : [dataObject](#dataObject)
-Collection of types
+Collection of types for a container
 #### Items
 * [structureType](#structureType)
 

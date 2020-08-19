@@ -2,8 +2,8 @@
 skinparam linetype polyline
 skinparam linetype ortho
 
-package "Definition" <<Frame>> {
-archive *-- definition
+package "Definitions" <<Frame>> {
+container *--- definition
 
 interface definition
 interface key
