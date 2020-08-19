@@ -3,12 +3,14 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 package "Types" <<Frame>> {
-interface types
+interface structureType
 
 container *-- types
-types <-- fileType
-types <-- recordType
-types <-- fieldType
+
+container *-- structureType
+structureType <-- fileType
+structureType <-- recordType
+structureType <-- fieldType
 
 fileType <-- flatFileType
 fileType <-- structuredFileType
