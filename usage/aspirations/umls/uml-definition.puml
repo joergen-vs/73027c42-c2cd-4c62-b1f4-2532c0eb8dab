@@ -7,7 +7,9 @@ package "Definitions" <<Frame>> {
 interface definition
 interface key
 
-container *-- definition
+container *-- definitions
+
+definitions *-- definition
 
 definition <-- fileDefinition
 definition <-- recordDefinition
