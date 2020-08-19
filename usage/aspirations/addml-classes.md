@@ -438,6 +438,13 @@ Declaration of how the record is read.
 #### Items
 ..
 
+## <a id="processes"/>[processes](#processes) : [dataObject](#dataObject)
+Collection of processes for a container
+#### Items
+* [process](#process)
+#### Properties
+..
+
 ## <a id="process"/>[process](#process) : [dataObject](#dataObject)
 ..
 #### Items
