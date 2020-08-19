@@ -7,7 +7,7 @@ interface structureType
 
 container *-- types
 
-container *-- structureType
+types *-- structureType
 structureType <-- fileType
 structureType <-- recordType
 structureType <-- fieldType

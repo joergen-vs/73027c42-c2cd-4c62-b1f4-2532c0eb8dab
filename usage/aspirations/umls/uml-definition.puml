@@ -3,12 +3,13 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 package "Definitions" <<Frame>> {
-container *-- definitions
-
-definitions *--definition
 
 interface definition
 interface key
+
+container *-- definitions
+
+definitions *-- definition
 
 definition <-- fileDefinition
 definition <-- recordDefinition
