@@ -5,7 +5,7 @@ skinparam linetype ortho
 package "Types" <<Frame>> {
 interface types
 
-container *--- types
+container *-- types
 types <-- fileType
 types <-- recordType
 types <-- fieldType

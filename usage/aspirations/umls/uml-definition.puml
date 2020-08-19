@@ -3,7 +3,7 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 package "Definitions" <<Frame>> {
-container *--- definition
+container *-- definition
 
 interface definition
 interface key
