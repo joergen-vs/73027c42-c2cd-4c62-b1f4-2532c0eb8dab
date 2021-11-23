@@ -168,7 +168,7 @@ Classes are not extensions of each other, they are rules.
 
 
 
-![Complete](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml.puml)
+![Complete](http://www.plantuml.com/plantuml/png/pPAnRiCm34HtVOMQNP6Zf4rGTCYlq19ZiPKbWwGJvEzh5nawT6yMWdS740y7daM1THwBtK1AOzaO-Q8w0SDe2rNK-uHsQkM-Yh-onfgRCLGL-G8HRMnLOKdP950GLFlXt2_NI8I2TXTEdRrHqlmmJbrdCzAGrPWNgh7C2MSkDgjEykuzmsqxaEQvdmLvlOTLjx6D_hCX3rZTLVnntuLZF0GNGqpk4D-2wtUNWmkl-n0xx4y9UZ-2ABAV1GRq81CnABKgVgdXPpZWcEaAPJijwlznrY9x47mM7BnGfTLy4g3r4HyePwnfMRu1)
 
 ## <a id="container"/>[container](#container) : [dataObject](#dataObject)
 Top-level object, containing different kinds of data-structures.
@@ -184,7 +184,7 @@ Refers to a set of pre-defined objects.
 * identifier `Shorthand name used as reference for namespace`
 * source `Reference to source`
 
-![Archival](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml)
+![Archival](http://www.plantuml.com/plantuml/png/RO_FJiCm38VlUGgpUvgH5OPGDOqBx-6wNXj8ayfn1XBYtUbwuRBB9__HP_btBegYTOwmUnEQmXKZyBSAaeQSTiQ4f2mN90RAIJ4a5cCMf4yS-Ru3NVUUuy1oEi6FCG3mhq9dBU0cyRRPy10InJfmbGYJwb9UdHFyQiQWK-rhORaTuAGDvTbzP9QHaxqMTppi_P5QRydJO5jwzhP_lBJMFnqyxRb_6R1tCnPbSRNWo0xB4WHlVnQtfjvWOwPjr2nhPyolCMTEmrh_0G00)
 
 ## <a id="archive"/>[archive](#archive) : [container](#container)
 Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk. Inneholder beskrivelse av selve arkivuttrekket.
@@ -206,7 +206,7 @@ Rotkatalogen for samlingen av filer og dokumenter som gjør opp et arkivuttrekk.
   * standards
     * referencedStandard `Reference to standard used to understand how to locate, read and understand the information.`
 
-![Location](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-location.puml)
+![Location](http://www.plantuml.com/plantuml/png/TP71Ry8W5CRl_1N4tPOWhhgvBCPuykHfL-FX5LvR71G3r9Wi-z-NGbTP6a-Gx_q-tlU5dG_WGcSq8HSGNr0ZdHsiWA1iEwERpTw1mUsMVXFL1dGL2AGI0koLHdeyDY5S_0VdjGfDLyw5DVniqTNOigldw-MYM8jLmKGX95k9juALBzMA5Q_BGYomV9TGybBRaXlm0HtlFDJ8mL-KYmay1ocDPaA3z-ZdHZxzBJ-TiaGEXNKo4og5MX82JZJgYlIPCLfPBT7zbvH6GjA0RXXBpH97-k5TxCdXajIpj-rKlHaz5ILgPLH0EHrLweRoW6qTcZWSNatnXbRf69T-9ZLkUW3670ENBtz4ZypWoLCzTcNKu2FtVD4JsyIV66-KiMtw7TfN6E4OEHAzF46pXADXr29zHoRcIT1epzJeoB794pzaXwtiZFu5)
 
 ## <a id="folder"/>[folder](#folder) : [dataObject](#dataObject)
 Filesystem-folder, used for grouping similar types of files.
@@ -326,7 +326,7 @@ TBD
 * endPos
 * 
 
-![Definition](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-definition.puml)
+![Definition](http://www.plantuml.com/plantuml/png/TP11QWCn34NtEeN9iZ0t68OiIZSzXR2_Kp4UsMYSXIczUvCiOZCaI_ttlYnytYjRlMw9zbMqiF7caYXgAt0bftOVNh5izISJ5VOhN-1EduYYKYNhVdBp_7MJiIpkbqYqmY9xkF1qXd158_9PAul2tCSq3TvED0m7E38ttr2KX7x7aHfyjl2UHq4QCHqBZ-UBoSRMlj5UyvWDSj6ttBC62LnnD_eoDqtBuokU_HuDbHxIS6vVdWFeZ-WC3TSj_GC0)
 
 ## <a id="definitions"/>[definitions](#definitions) : [dataObject](#dataObject)
 Collection of definitions in a container
@@ -397,7 +397,7 @@ Contains pre-defined code-values for field
 * description `Meaning behind the value.`
 * value `Code-value.`
 
-![Type](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml)
+![Type](http://www.plantuml.com/plantuml/png/TOn1YeH034NtEKLmEU0DH5nvWhb0AEDCOQmgKgc5D7ttBkr64DfLo7l__o4RgPLL82y-959QKNnWsn9ZYhBjppSNrVuZG2Atq1zZyrjXRh3hnXhZliS7-62iCpd6R5gS5UKz1U1YCAf3YZzjYxOt0OvpW6lwyc5N_UpbJYcxgDDjZ-Nju9WukP2D7t0rvyPq-YV0m64ggxm0)
 
 ## <a id="types"/>[types](#types) : [dataObject](#dataObject)
 Collection of types for a container
