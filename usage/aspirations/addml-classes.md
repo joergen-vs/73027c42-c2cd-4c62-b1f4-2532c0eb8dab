@@ -168,7 +168,7 @@ Classes are not extensions of each other, they are rules.
 
 
 
-![Complete](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml.puml)
+![Complete](http://www.plantuml.com/plantuml/png/pPAnRiCm34HtVOMQNP6Zf4rGTCYlq19ZiPKbWwGJvEzh5nawT6yMWdS740y7daM1THwBtK1AOzaO-Q8w0SDe2rNK-uHsQkM-Yh-onfgRCLGL-G8HRMnLOKdP950GLFlXt2_NI8I2TXTEdRrHqlmmJbrdCzAGrPWNgh7C2MSkDgjEykuzmsqxaEQvdmLvlOTLjx6D_hCX3rZTLVnntuLZF0GNGqpk4D-2wtUNWmkl-n0xx4y9UZ-2ABAV1GRq81CnABKgVgdXPpZWcEaAPJijwlznrY9x47mM7BnGfTLy4g3r4HyePwnfMRu1)
 
 ## <a id="container"/>[container](#container) : [dataObject](#dataObject)
 Top-level object, containing different kinds of data-structures.
