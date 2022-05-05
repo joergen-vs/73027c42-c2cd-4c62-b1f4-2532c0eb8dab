@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addml xsi:schemaLocation="http://www.arkivverket.no/standarder/addml addml.xsd"
+    xmlns="http://www.arkivverket.no/standarder/addml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<dataset>
+		<dataObjects2>
+			<container name="arkivuttrekk" xsi:type="archive">
+				<name>Noark 5</name>
+				<version>5.0</version>
+				<period>
+					<inboundPeriod>soft</inboundPeriod>
+					<outgoingPeriod>soft</outgoingPeriod>
+				</period>
+				<containsScreenedInformation>true</containsScreenedInformation>
+				<containsDocumentsWhichIsDisposed>false</containsDocumentsWhichIsDisposed>
+				<containsDocumentsScheduledForDisposal>false</containsDocumentsScheduledForDisposal>
+				<containsBusinessSpesificinformation>false</containsBusinessSpesificinformation>
+				<numberOfDocuments>0</numberOfDocuments>
+				<file name="arkivstruktur" label="arkivstruktur" xsi:type="xmlFile">
+					<name>arkivstruktur.xml</name>
+					<checksum>
+						<algorithm>SHA-256</algorithm>
+						<value>hash</value>
+					</checksum>
+					<definitionReference>arkivstrukturDefinition</definitionReference>
+					<typeReference>xmlType</typeReference>
+					<targetNamespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</targetNamespace>
+					<schemas>
+						<schema>
+							<namespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</namespace>
+							<fileReference>arkivstruktur-schema</fileReference>
+						</schema>
+						<schema>
+							<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
+							<fileReference>metadatakatalog-schema</fileReference>
+						</schema>
+					</schemas>
+				</file>
+				<file name="addml-schema" label="XML-skjema for addml" xsi:type="file">
+					<name>addml.xsd</name>
+					<checksum>
+						<algorithm>SHA-256</algorithm>
+						<value>hash</value>
+					</checksum>
+				</file>
+				<file name="arkivstruktur-schema" label="XML-skjema for arkivstruktur" xsi:type="file">
+					<name>arkivstruktur.xsd</name>
+					<checksum>
+						<algorithm>SHA-256</algorithm>
+						<value>hash</value>
+					</checksum>
+				</file>
+				<file name="metadatakatalog-schema" label="XML-skjema for metadatakatalog" xsi:type="file">
+					<name>metadatakatalog.xsd</name>
+					<checksum>
+						<algorithm>SHA-256</algorithm>
+						<value>hash</value>
+					</checksum>
+				</file>
+			</container>
+			<definitions>
+				<fileDefinition name="xml-file-def" xsi:type="xmlFileDefinition">
+				</fileDefinition>
+			</definitions>
+			<types>
+				<fileType name="xmlType" label="XML" xsi:type="xmlFileType">
+					<format>
+						<name>XML</name>
+						<version>1.0</version>
+					</format>
+					<charset>UTF-8</charset>
+				</fileType>
+				<fieldType name="string" label="Tekstfelt" xsi:type="xmlFieldType">
+					<description>Tekststreng</description>
+					<dataType>string</dataType>
+				</fieldType>
+			</types>
+		</dataObjects2>
+	</dataset>
+</addml>
