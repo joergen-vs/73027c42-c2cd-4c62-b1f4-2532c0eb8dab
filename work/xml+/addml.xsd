@@ -667,7 +667,7 @@
 					<xs:documentation>True or false: Are there metadata in the archive which is business-specific?</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="numberOfDocuments" type="xs:boolean" minOccurs="0">
+			<xs:element name="numberOfDocuments" type="xs:boolean">
 				<xs:annotation>
 					<xs:documentation>Number of documents in document-folder</xs:documentation>
 				</xs:annotation>
@@ -770,7 +770,16 @@
 
 	<xs:group name="flatFileProperties">
 		<xs:sequence>
-			
+			<xs:element name="definitionReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Reference to definitions-object which contains the description of the file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeReference" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Reference to types-object which contains how the file is read.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -953,101 +962,7 @@
 		<xs:attributeGroup ref="addml:unitAttributeGroup"/>
 	</xs:complexType>
 
-	<xs:complexType name ="flatField">
-		<xs:complexContent>
-			<xs:extension base="addml:field">
-				<xs:sequence>
-					<xs:element name="startPos" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="endPos" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="fixedLength" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="minLength" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="maxLength" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="unique" type="xs:boolean" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="notNull" type="xs:boolean" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="codes" type="xs:string" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name ="fixedField">
-		<xs:complexContent>
-			<xs:extension base="addml:flatField">
-				<xs:sequence>
-					<xs:group ref="addml:fixedFieldProperties"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name ="delimitedField">
-		<xs:complexContent>
-			<xs:extension base="addml:flatField">
-				<xs:sequence>
-					<xs:group ref="addml:delimitedFieldProperties"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name ="xmlField">
-		<xs:complexContent>
-			<xs:extension base="addml:field">
-				<xs:sequence>
-					<xs:group ref="addml:xmlFieldProperties"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
 	<xs:group name="fieldProperties">
-		<xs:sequence>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="fixedFieldProperties">
-		<xs:sequence>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="delimitedFieldProperties">
-		<xs:sequence>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="xmlFieldProperties">
 		<xs:sequence>
 		</xs:sequence>
 	</xs:group>
