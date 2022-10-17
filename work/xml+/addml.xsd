@@ -1885,7 +1885,6 @@
 								<xs:element name="recordSeparator" type="xs:string" minOccurs="0">
 									<xs:annotation>
 										<xs:documentation>Overrides parent-properties</xs:documentation>
-										<xs:documentation>recordSeparator is prohibited for repeating fieldgroups, ex: a bc,bc d</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 								<xs:element name="trimmed">
@@ -1952,7 +1951,124 @@
 								<xs:element name="recordSeparator" type="xs:string" minOccurs="0">
 									<xs:annotation>
 										<xs:documentation>Overrides parent-properties</xs:documentation>
-										<xs:documentation>recordSeparator is prohibited for repeating fieldgroups, ex: a;b;c;b;c;d</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="fieldSeparator" type="xs:string">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="quotingChar" type="xs:string" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="trimmed">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+									<xs:complexType />
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fixedRepeatingGroupType">
+		<xs:annotation>
+			<xs:documentation>recordSeparator is prohibited for repeating fieldgroups, ex: (b, c) in abcbcd</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:_groupType">
+				<xs:sequence>
+					<xs:element name="properties">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="format" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="name" type="xs:string" fixed="FLAT" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="charset" type="addml:charset" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="charDefinitions" type="addml:charDefinitions" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="trimmed">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+									<xs:complexType />
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="delimitedRepeatingGroupType">
+		<xs:annotation>
+			<xs:documentation>recordSeparator is prohibited for repeating fieldgroups, ex: (b, c) in a;b;c;b;c;d</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:_groupType">
+				<xs:sequence>
+					<xs:element name="properties">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="format" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="name" default="CSV">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="CSV">
+															<xs:annotation>
+																<xs:documentation>Comma-separated values, that uses a comma to separate values.</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="DSV">
+															<xs:annotation>
+																<xs:documentation>Custom delimited file format, using custom characters for separation and quotation.</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+														<xs:enumeration value="TSV">
+															<xs:annotation>
+																<xs:documentation>Tabular-separated values, that uses a tab to separate values.</xs:documentation>
+															</xs:annotation>
+														</xs:enumeration>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="charset" type="addml:charset" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="charDefinitions" type="addml:charDefinitions" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Overrides parent-properties</xs:documentation>
 									</xs:annotation>
 								</xs:element>
 								<xs:element name="fieldSeparator" type="xs:string">
