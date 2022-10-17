@@ -19,6 +19,7 @@
 			1. Changed all elements to complex- or simpletype, except root-element
 			2. Changed structure from specialised to object-oriented, where new objects may be implemented on abstract types
 			3. Clarification: All indices are 1-based
+			4. Locked down certain properties for objects, while allowing flexibility with 'additionalInfo'
 		</xs:documentation>
 	</xs:annotation>
 	<xs:element name="addml">
@@ -75,7 +76,7 @@
 	<xs:complexType name="additionalElement">
 		<xs:sequence>
 			<xs:element name="value" type="xs:string" minOccurs="0" />
-			<xs:element name="properties" type="addml:properties_old" minOccurs="0" />
+			<xs:element name="properties" type="addml:properties" minOccurs="0" />
 			<xs:element name="additionalElements" type="addml:additionalElements" minOccurs="0" />
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required" />
@@ -83,16 +84,16 @@
 		<xs:attribute name="format" type="xs:string" />
 	</xs:complexType>
 
-	<xs:complexType name="properties_old">
+	<xs:complexType name="properties">
 		<xs:sequence>
-			<xs:element name="property" type="addml:property_old" maxOccurs="unbounded" />
+			<xs:element name="property" type="addml:property" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="property_old">
+	<xs:complexType name="property">
 		<xs:sequence>
 			<xs:element name="value" type="xs:string" minOccurs="0" />
-			<xs:element name="properties" type="addml:properties_old" minOccurs="0" />
+			<xs:element name="properties" type="addml:properties" minOccurs="0" />
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required" />
 		<xs:attribute name="dataType" type="xs:string" />
@@ -178,6 +179,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:containerProperties" />
 								<xs:group ref="addml:archiveProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -205,6 +207,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:containerProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -239,10 +242,19 @@
 			<xs:documentation>Archive-properties.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="period" minOccurs="0">
+			<xs:element name="period">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="inboundPeriod">
+						<xs:element name="startDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Date when the archive or part of is put into active use</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="inboundPeriod" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Indicate whether information created before start-date is included</xs:documentation>
+								<xs:documentation>Not relevant for new implementation of systems</xs:documentation>
+							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="soft"></xs:enumeration>
@@ -250,7 +262,16 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="outgoingPeriod">
+						<xs:element name="endDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Date when the archive or part of is taken out of active use</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="outgoingPeriod" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Indicate whether information created after end-date is included</xs:documentation>
+								<xs:documentation>Not relevant for end-of-life systems</xs:documentation>
+							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
 									<xs:enumeration value="soft"></xs:enumeration>
@@ -261,30 +282,38 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="containsScreenedInformation" type="xs:boolean">
+			<xs:element name="containsScreenedInformation" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>True or false: Are there metadata in the archive which is screened?</xs:documentation>
+					<xs:documentation>Relevant for archives implementing screening</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="containsDocumentsWhichIsDisposed" type="xs:boolean">
+			<xs:element name="containsDocumentsWhichIsDisposed" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>True or False: Are there documents in the archive which is disposed?</xs:documentation>
+					<xs:documentation>Relevant for archives implementing disposal</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="containsDocumentsScheduledForDisposal" type="xs:boolean">
+			<xs:element name="containsDocumentsScheduledForDisposal" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>True or False: Are there documents in the archive which is scheduled for disposal?</xs:documentation>
+					<xs:documentation>Relevant for archives implementing disposal</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="containsBusinessSpesificinformation" type="xs:boolean">
-				<xs:annotation>
-					<xs:documentation>True or false: Are there metadata in the archive which is business-specific?</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="numberOfDocuments" type="xs:boolean">
-				<xs:annotation>
-					<xs:documentation>Number of documents in document-folder</xs:documentation>
-				</xs:annotation>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="additionalProperties">
+		<xs:annotation>
+			<xs:documentation>Any additional information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="additionalInfo" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="properties" type="addml:properties" />
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
 	</xs:group>
@@ -325,6 +354,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:fileProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -345,6 +375,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -364,6 +395,7 @@
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
 								<xs:group ref="addml:fixedFileProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -390,6 +422,7 @@
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
 								<xs:group ref="addml:delimitedFileProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -416,6 +449,7 @@
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
 								<xs:group ref="addml:xmlFileProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -504,27 +538,34 @@
 
 	<xs:group name="fixedFileProperties">
 		<xs:sequence>
-			<xs:element name="numberOfOccurences" type="xs:nonNegativeInteger">
+			<xs:element name="numberOfOccurrences" type="xs:nonNegativeInteger">
 				<xs:annotation>
 					<xs:documentation>Total number of records in file</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="numberByGroup" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Number of occurences per group identified in file</xs:documentation>
+					<xs:documentation>Number of occurrences per group identified in file</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="numberOfOccurences" type="xs:nonNegativeInteger" maxOccurs="unbounded">
+						<xs:element name="numberOfOccurrences" maxOccurs="unbounded" >
 							<xs:annotation>
-								<xs:documentation>Number of occurences for specific group </xs:documentation>
+								<xs:documentation>Info regarding the number of occurrences for specific group </xs:documentation>
 							</xs:annotation>
 							<xs:complexType>
-								<xs:attribute name="reference" type="xs:string">
-									<xs:annotation>
-										<xs:documentation>Reference to group in file</xs:documentation>
-									</xs:annotation>
-								</xs:attribute>
+								<xs:sequence>
+									<xs:element name="value" type="xs:nonNegativeInteger">
+										<xs:annotation>
+											<xs:documentation>Number of occurrences for specific group</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="reference" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Reference to group in file</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
@@ -566,27 +607,34 @@
 
 	<xs:group name="delimitedFileProperties">
 		<xs:sequence>
-			<xs:element name="numberOfOccurences" type="xs:nonNegativeInteger">
+			<xs:element name="numberOfOccurrences" type="xs:nonNegativeInteger">
 				<xs:annotation>
 					<xs:documentation>Total number of records in file</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="numberByGroup" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Number of occurences per group identified in file</xs:documentation>
+					<xs:documentation>Number of occurrences per group identified in file</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="numberOfOccurences" type="xs:nonNegativeInteger" maxOccurs="unbounded">
+						<xs:element name="numberOfOccurrences" maxOccurs="unbounded" >
 							<xs:annotation>
-								<xs:documentation>Number of occurences for specific group </xs:documentation>
+								<xs:documentation>Info regarding the number of occurrences for specific group </xs:documentation>
 							</xs:annotation>
 							<xs:complexType>
-								<xs:attribute name="reference" type="xs:string">
-									<xs:annotation>
-										<xs:documentation>Reference to group in file</xs:documentation>
-									</xs:annotation>
-								</xs:attribute>
+								<xs:sequence>
+									<xs:element name="value" type="xs:nonNegativeInteger">
+										<xs:annotation>
+											<xs:documentation>Number of occurrences for specific group</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="reference" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Reference to group in file</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
@@ -628,7 +676,7 @@
 
 	<xs:group name="xmlFileProperties">
 		<xs:sequence>
-			<xs:element name="numberOfOccurences" type="xs:nonNegativeInteger">
+			<xs:element name="numberOfOccurrences" type="xs:nonNegativeInteger">
 				<xs:annotation>
 					<xs:documentation>Total number of records in file</xs:documentation>
 				</xs:annotation>
@@ -725,6 +773,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:fixedGroupProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -752,6 +801,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:delimitedGroupProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -779,6 +829,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:xmlGroupProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -995,7 +1046,6 @@
 	<xs:complexType name="record">
 		<xs:annotation>
 			<xs:documentation>Abstract specialization of group, of archival quality</xs:documentation>
-			<xs:documentation></xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="addml:group"/>
@@ -1014,6 +1064,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:fixedGroupProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1041,6 +1092,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:delimitedGroupProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1068,6 +1120,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:xmlGroupProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1100,6 +1153,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fieldProperties" />
 								<xs:group ref="addml:fixedFieldProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1124,6 +1178,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fieldProperties" />
 								<xs:group ref="addml:delimitedFieldProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1148,6 +1203,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fieldProperties" />
 								<xs:group ref="addml:xmlFieldProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1297,6 +1353,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:attributeProperties" />
 								<xs:group ref="addml:xmlAttributeProperties" />
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1348,6 +1405,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:folderProperties"></xs:group>
+								<xs:group ref="addml:additionalProperties" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1425,6 +1483,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:fileDefinitionProperties" />
+						<xs:group ref="addml:additionalProperties" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -1482,6 +1541,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:groupDefinitionProperties" />
+						<xs:group ref="addml:additionalProperties" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -1566,11 +1626,14 @@
 
 	<xs:complexType name="fieldDefinition">
 		<xs:complexContent>
-			<xs:extension base="_fieldDefinition">
+			<xs:extension base="addml:_fieldDefinition">
 				<xs:sequence>
 					<xs:element name="properties" minOccurs="0">
 						<xs:complexType>
+							<xs:sequence>
 							<xs:group ref="addml:fieldDefinitionProperties" />
+							<xs:group ref="addml:additionalProperties" />
+							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="objects" minOccurs="0">
@@ -1585,11 +1648,15 @@
 
 	<xs:complexType name="xmlFieldDefinition">
 		<xs:complexContent>
-			<xs:extension base="_fieldDefinition">
+			<xs:extension base="addml:_fieldDefinition">
 				<xs:sequence>
 					<xs:element name="properties" minOccurs="0">
 						<xs:complexType>
-							<xs:group ref="addml:fieldDefinitionProperties" />
+							<xs:sequence>
+								<xs:group ref="addml:fieldDefinitionProperties" />
+								<xs:group ref="addml:xmlFieldDefinitionProperties" />
+								<xs:group ref="addml:additionalProperties" />
+							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
 					<xs:element name="objects" minOccurs="0">
@@ -1619,6 +1686,11 @@
 		</xs:sequence>
 	</xs:group>
 
+	<xs:group name="xmlFieldDefinitionProperties">
+		<xs:sequence>
+		</xs:sequence>
+	</xs:group>
+
 	<xs:group name="xmlFieldDefinitionObjects">
 		<xs:sequence>
 			<xs:element name="codeDefinitionReference" type="xs:string" maxOccurs="unbounded">
@@ -1641,6 +1713,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:attributeDefinitionProperties" />
+						<xs:group ref="addml:additionalProperties" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -1676,6 +1749,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:codeDefinitionProperties" />
+						<xs:group ref="addml:additionalProperties" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
