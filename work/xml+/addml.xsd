@@ -29,6 +29,133 @@
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" />
 		</xs:complexType>
+
+		<!-- Logistics -->
+
+		<!-- File-keys -->
+		<xs:key name="fileKey">
+			<xs:selector xpath=".//addml:file"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+
+		<!-- Structure-keys -->
+		<xs:key name="groupKey">
+			<xs:selector xpath=".//addml:group"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="recordKey">
+			<xs:selector xpath=".//addml:record"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="fieldKey">
+			<xs:selector xpath=".//addml:field"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="attributeKey">
+			<xs:selector xpath=".//addml:attribute"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="codeKey">
+			<xs:selector xpath=".//addml:code"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+
+		<!-- Structure-references
+		<xs:keyref name="file2DefinitionReference" refer="addml:fileDefinitionKey">
+			<xs:selector xpath=".//addml:file" />
+			<xs:field xpath="objects/" />
+		</xs:keyref> -->
+
+		<!-- Definition-keys -->
+		<xs:key name="fileDefinitionKey">
+			<xs:selector xpath=".//addml:fileDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="groupDefinitionKey">
+			<xs:selector xpath=".//addml:groupDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="recordDefinitionKey">
+			<xs:selector xpath=".//addml:recordDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="fieldDefinitionKey">
+			<xs:selector xpath=".//addml:fieldDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="attributeDefinitionKey">
+			<xs:selector xpath=".//addml:attributeDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="codeDefinitionKey">
+			<xs:selector xpath=".//addml:codeDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+
+		<!-- Definition-references -->
+		<xs:keyref name="file2DefinitionReference" refer="addml:fileDefinitionKey">
+			<xs:selector xpath=".//addml:file" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="group2DefinitionReference" refer="addml:groupDefinitionKey">
+			<xs:selector xpath=".//addml:group" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="record2DefinitionReference" refer="addml:recordDefinitionKey">
+			<xs:selector xpath=".//addml:record" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="field2DefinitionReference" refer="addml:fieldDefinitionKey">
+			<xs:selector xpath=".//addml:field" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="attribute2DefinitionReference" refer="addml:attributeDefinitionKey">
+			<xs:selector xpath=".//addml:attribute" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="code2DefinitionReference" refer="addml:codeDefinitionKey">
+			<xs:selector xpath=".//addml:code" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+
+		<!-- Type-keys -->
+		<xs:key name="fileTypeKey">
+			<xs:selector xpath=".//addml:fileType"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="recordTypeKey">
+			<xs:selector xpath=".//addml:recordType"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="fieldTypeKey">
+			<xs:selector xpath=".//addml:fieldType"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="attributeTypeKey">
+			<xs:selector xpath=".//addml:attributeType"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+
+		<!-- Type-references -->
+		<xs:keyref name="fileTypeReference" refer="addml:fileTypeKey">
+			<xs:selector xpath=".//addml:file" />
+			<xs:field xpath="@typeReference" />
+		</xs:keyref>
+		<xs:keyref name="recordTypeReference" refer="addml:recordTypeKey">
+			<xs:selector xpath=".//addml:record" />
+			<xs:field xpath="@typeReference" />
+		</xs:keyref>
+		<xs:keyref name="fieldTypeReference" refer="addml:fieldTypeKey">
+			<xs:selector xpath=".//addml:field" />
+			<xs:field xpath="@typeReference" />
+		</xs:keyref>
+		<xs:keyref name="attributeTypeReference" refer="addml:attributeTypeKey">
+			<xs:selector xpath=".//addml:attribute" />
+			<xs:field xpath="@typeReference" />
+		</xs:keyref>
+
+		<!-- /Logistics -->
+
 	</xs:element>
 	<xs:element name="dataset">
 		<xs:complexType>
@@ -76,7 +203,13 @@
 	<xs:complexType name="additionalElement">
 		<xs:sequence>
 			<xs:element name="value" type="xs:string" minOccurs="0" />
-			<xs:element name="properties" type="addml:properties" minOccurs="0" />
+			<xs:element name="properties" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="property" type="addml:property" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="additionalElements" type="addml:additionalElements" minOccurs="0" />
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required" />
@@ -84,16 +217,10 @@
 		<xs:attribute name="format" type="xs:string" />
 	</xs:complexType>
 
-	<xs:complexType name="properties">
-		<xs:sequence>
-			<xs:element name="property" type="addml:property" maxOccurs="unbounded" />
-		</xs:sequence>
-	</xs:complexType>
-
 	<xs:complexType name="property">
 		<xs:sequence>
 			<xs:element name="value" type="xs:string" minOccurs="0" />
-			<xs:element name="properties" type="addml:properties" minOccurs="0" />
+			<xs:element name="property" type="addml:property" minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required" />
 		<xs:attribute name="dataType" type="xs:string" />
@@ -105,6 +232,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="container" type="addml:container" maxOccurs="unbounded" />
+				<xs:element name="structures" type="addml:structures" minOccurs="0" />
 				<xs:element name="definitions" type="addml:definitions" minOccurs="0" />
 				<xs:element name="types" type="addml:types" minOccurs="0" />
 				<xs:element name="processes" type="addml:processes" minOccurs="0" />
@@ -179,7 +307,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:containerProperties" />
 								<xs:group ref="addml:archiveProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -187,7 +315,10 @@
 					<xs:element name="objects">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:group ref="addml:archiveObjects" />
+								<xs:choice maxOccurs="unbounded">
+									<xs:group ref="addml:fileObjects" />
+									<xs:element name="folder" type="addml:_folder" />
+								</xs:choice>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -207,7 +338,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:containerProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -215,7 +346,10 @@
 					<xs:element name="objects">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:group ref="addml:filesObjects" />
+								<xs:choice maxOccurs="unbounded">
+									<xs:group ref="addml:fileObjects" />
+									<xs:element name="folder" type="addml:_folder" />
+								</xs:choice>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -245,10 +379,21 @@
 			<xs:element name="period">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="startDate" type="xs:date">
+						<xs:element name="startDate">
 							<xs:annotation>
 								<xs:documentation>Date when the archive or part of is put into active use</xs:documentation>
 							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="fieldformat" type="xs:string" default="YYYY-MM-DD" >
+											<xs:annotation>
+												<xs:documentation>By standard, dates is written as specified in NS-ISO 8601</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
 						</xs:element>
 						<xs:element name="inboundPeriod" minOccurs="0">
 							<xs:annotation>
@@ -262,10 +407,21 @@
 								</xs:restriction>
 							</xs:simpleType>
 						</xs:element>
-						<xs:element name="endDate" type="xs:date">
+						<xs:element name="endDate">
 							<xs:annotation>
 								<xs:documentation>Date when the archive or part of is taken out of active use</xs:documentation>
 							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="fieldformat" type="xs:string" default="YYYY-MM-DD" >
+											<xs:annotation>
+												<xs:documentation>By standard, dates is written as specified in NS-ISO 8601</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
 						</xs:element>
 						<xs:element name="outgoingPeriod" minOccurs="0">
 							<xs:annotation>
@@ -308,31 +464,30 @@
 			<xs:documentation>Any additional information</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="additionalInfo" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="properties" type="addml:properties" />
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element name="additionalInfo" type="addml:property"/>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="fileObjects">
+		<xs:sequence>
+			<xs:element name="file" type="addml:_file">
+				<xs:keyref name="file2GroupReference" refer="addml:groupKey">
+					<xs:selector xpath=".//addml:groupRef" />
+					<xs:field xpath="@reference" />
+				</xs:keyref>
+				<xs:keyref name="file2Record2DefinitionReference" refer="addml:recordKey">
+					<xs:selector xpath=".//addml:recordRef" />
+					<xs:field xpath="@reference" />
+				</xs:keyref>
+				<xs:keyref name="file2FieldReference" refer="addml:fieldKey">
+					<xs:selector xpath=".//addml:fieldRef" />
+					<xs:field xpath="@reference" />
+				</xs:keyref>
+				<xs:keyref name="file2AttributeReference" refer="addml:attributeKey">
+					<xs:selector xpath=".//addml:attributeRef" />
+					<xs:field xpath="@reference" />
+				</xs:keyref>
 			</xs:element>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="archiveObjects">
-		<xs:sequence>
-			<xs:choice maxOccurs="unbounded">
-				<xs:element name="file" type="addml:_file" />
-				<xs:element name="folder" type="addml:_folder" />
-			</xs:choice>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="filesObjects">
-		<xs:sequence>
-			<xs:choice maxOccurs="unbounded">
-				<xs:element name="file" type="addml:_file" />
-				<xs:element name="folder" type="addml:_folder" />
-			</xs:choice>
 		</xs:sequence>
 	</xs:group>
 
@@ -354,7 +509,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:fileProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -375,7 +530,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -395,7 +550,7 @@
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
 								<xs:group ref="addml:fixedFileProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -422,7 +577,7 @@
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
 								<xs:group ref="addml:delimitedFileProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -449,7 +604,7 @@
 								<xs:group ref="addml:fileProperties" />
 								<xs:group ref="addml:completionProperties" />
 								<xs:group ref="addml:xmlFileProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -514,7 +669,7 @@
 		</xs:annotation>
 		<xs:attribute name="definitionReference" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation>Reference to definitions-object which contains the description of the file.</xs:documentation>
+				<xs:documentation>Reference to definition-object which contains the description of the file.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="typeReference" type="xs:string" use="required">
@@ -591,15 +746,27 @@
 	<xs:group name="fixedFileObjects">
 		<xs:sequence>
 			<xs:choice maxOccurs="unbounded">
-				<xs:element name="group" type="addml:group">
+				<xs:element name="groupRef">
 					<xs:annotation>
-						<xs:documentation></xs:documentation>
+						<xs:documentation>Reference to group in structure-section</xs:documentation>
 					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+							<xs:annotation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
 				</xs:element>
-				<xs:element name="record" type="addml:record">
+				<xs:element name="recordRef">
 					<xs:annotation>
-						<xs:documentation></xs:documentation>
+						<xs:documentation>Reference to record in structure-section</xs:documentation>
 					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+							<xs:annotation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
 				</xs:element>
 			</xs:choice>
 		</xs:sequence>
@@ -660,15 +827,27 @@
 	<xs:group name="delimitedFileObjects">
 		<xs:sequence>
 			<xs:choice maxOccurs="unbounded">
-				<xs:element name="group" type="addml:group">
+				<xs:element name="groupRef">
 					<xs:annotation>
-						<xs:documentation></xs:documentation>
+						<xs:documentation>Reference to group in structure-section</xs:documentation>
 					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+							<xs:annotation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
 				</xs:element>
-				<xs:element name="record" type="addml:record">
+				<xs:element name="recordRef">
 					<xs:annotation>
-						<xs:documentation></xs:documentation>
+						<xs:documentation>Reference to record in structure-section</xs:documentation>
 					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+							<xs:annotation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
 				</xs:element>
 			</xs:choice>
 		</xs:sequence>
@@ -731,27 +910,66 @@
 
 	<xs:group name="xmlFileObjects">
 		<xs:sequence>
+			<xs:element name="attributeRef" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Root-attributes</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+						<xs:annotation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
 			<xs:choice>
 				<xs:choice maxOccurs="unbounded">
-					<xs:element name="group" type="addml:group">
+					<xs:element name="groupRef">
 						<xs:annotation>
-							<xs:documentation></xs:documentation>
+							<xs:documentation>Reference to group in structure-section</xs:documentation>
 						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+								<xs:annotation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
 					</xs:element>
-					<xs:element name="record" type="addml:record">
+					<xs:element name="recordRef">
 						<xs:annotation>
-							<xs:documentation></xs:documentation>
+							<xs:documentation>Reference to record in structure-section</xs:documentation>
 						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+								<xs:annotation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
 					</xs:element>
 				</xs:choice>
-				<xs:element name="field" type="addml:xmlField">
+				<xs:element name="fieldRef">
 					<xs:annotation>
 						<xs:documentation>Xml-file contains a single element</xs:documentation>
 					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
+							<xs:annotation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
 				</xs:element>
 			</xs:choice>
 		</xs:sequence>
 	</xs:group>
+
+	<xs:complexType name="structures">
+		<xs:sequence>
+			<xs:element name="group" type="addml:group" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="record" type="addml:group" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="field" type="addml:field" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="attribute" type="addml:attribute" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="code" type="addml:code" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
 
 	<xs:complexType name="group">
 		<xs:sequence>
@@ -773,7 +991,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:fixedGroupProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -801,7 +1019,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:delimitedGroupProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -829,7 +1047,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:xmlGroupProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1020,7 +1238,13 @@
 	</xs:group>
 
 	<xs:group name="xmlGroupProperties">
-		<xs:sequence></xs:sequence>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Element-name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 	</xs:group>
 
 	<xs:group name="xmlGroupObjects">
@@ -1064,7 +1288,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:fixedGroupProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1092,7 +1316,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:delimitedGroupProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1120,7 +1344,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:groupProperties" />
 								<xs:group ref="addml:xmlGroupProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1153,7 +1377,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fieldProperties" />
 								<xs:group ref="addml:fixedFieldProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1178,7 +1402,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fieldProperties" />
 								<xs:group ref="addml:delimitedFieldProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1203,7 +1427,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fieldProperties" />
 								<xs:group ref="addml:xmlFieldProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1291,9 +1515,14 @@
 
 	<xs:group name="xmlFieldProperties">
 		<xs:sequence>
-			<xs:element name="tag" type="xs:string">
+			<xs:element name="prefix" type="xs:string" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Local name of field</xs:documentation>
+					<xs:documentation>Namespace-shorthand in element-name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Element-name</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1315,22 +1544,7 @@
 			<xs:element name="codes">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="code">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="codeValue" type="xs:string">
-										<xs:annotation>
-											<xs:documentation>Field-value</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-								<xs:attribute name="definitionReference" type="xs:string" use="required">
-									<xs:annotation>
-										<xs:documentation>Reference to definitions-object which contains the description of the file.</xs:documentation>
-									</xs:annotation>
-								</xs:attribute>
-							</xs:complexType>
-						</xs:element>
+						<xs:element name="code" type="addml:code" maxOccurs="unbounded" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -1353,7 +1567,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:attributeProperties" />
 								<xs:group ref="addml:xmlAttributeProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1373,13 +1587,19 @@
 		<xs:sequence></xs:sequence>
 	</xs:group>
 
-	<xs:group name="xmlAttributeProperties">
-		<xs:sequence></xs:sequence>
-	</xs:group>
-
 	<xs:group name="attributeObjects">
 		<xs:sequence>
 			<xs:group ref="addml:codesGroup" />
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="xmlAttributeProperties">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Attribute-name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -1389,6 +1609,24 @@
 			<xs:group ref="addml:codesGroup" />
 		</xs:sequence>
 	</xs:group>
+
+	<xs:complexType name="code">
+		<xs:sequence>
+			<xs:group ref="addml:unitGroup" />
+			<xs:element name="codeValue" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Coded value in a field</xs:documentation>
+					<xs:documentation>EX. 0, 1 or A, B, C</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="addml:unitAttributeGroup" />
+		<xs:attribute name="definitionReference" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to definition-object which contains the description of the file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
 
 	<xs:complexType name="_folder">
 		<xs:sequence>
@@ -1405,7 +1643,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:folderProperties"></xs:group>
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1483,7 +1721,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:fileDefinitionProperties" />
-						<xs:group ref="addml:additionalProperties" />
+						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -1541,7 +1779,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:groupDefinitionProperties" />
-						<xs:group ref="addml:additionalProperties" />
+						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -1631,8 +1869,8 @@
 					<xs:element name="properties" minOccurs="0">
 						<xs:complexType>
 							<xs:sequence>
-							<xs:group ref="addml:fieldDefinitionProperties" />
-							<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:fieldDefinitionProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1655,7 +1893,7 @@
 							<xs:sequence>
 								<xs:group ref="addml:fieldDefinitionProperties" />
 								<xs:group ref="addml:xmlFieldDefinitionProperties" />
-								<xs:group ref="addml:additionalProperties" />
+								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -1713,7 +1951,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:attributeDefinitionProperties" />
-						<xs:group ref="addml:additionalProperties" />
+						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -1749,7 +1987,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:codeDefinitionProperties" />
-						<xs:group ref="addml:additionalProperties" />
+						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>

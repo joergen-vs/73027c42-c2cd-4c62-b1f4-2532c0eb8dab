@@ -7,14 +7,14 @@
 					<name>Noark 5</name>
 					<version>5.0</version>
 					<period>
+						<startDate fieldformat="DD-MM-YYYY">01-01-2022</startDate>
 						<inboundPeriod>soft</inboundPeriod>
+						<endDate fieldformat="DD-MM-YYYY">31-12-2022</endDate>
 						<outgoingPeriod>soft</outgoingPeriod>
 					</period>
 					<containsScreenedInformation>true</containsScreenedInformation>
 					<containsDocumentsWhichIsDisposed>false</containsDocumentsWhichIsDisposed>
 					<containsDocumentsScheduledForDisposal>false</containsDocumentsScheduledForDisposal>
-					<containsBusinessSpesificinformation>false</containsBusinessSpesificinformation>
-					<numberOfDocuments>0</numberOfDocuments>
 				</properties>
 				<objects>
 					<file name="arkivstruktur" label="arkivstruktur" xsi:type="xmlFile"
@@ -25,6 +25,7 @@
 								<algorithm>SHA-256</algorithm>
 								<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
 							</checksum>
+							<numberOfOccurrences>12345</numberOfOccurrences>
 							<targetNamespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</targetNamespace>
 							<schemas>
 								<schema>
@@ -37,11 +38,10 @@
 									<fileReference>metadatakatalog-schema</fileReference>
 								</schema>
 							</schemas>
-							<root>arkiv</root>
+							<root>noark5-arkiv</root>
 						</properties>
 						<objects>
-							<record name="noark5-arkiv"
-									definitionReference="" typeReference=""></record>
+							<recordRef reference="noark5-arkiv" />
 						</objects>
 					</file>
 					<file name="addml-schema" label="XML-skjema for addml" xsi:type="dataFile"
@@ -76,14 +76,38 @@
 					</file>
 				</objects>
 			</container>
+			<structures>
+				<record name="noark5-arkiv"
+						definitionReference="noark5-arkiv"
+						typeReference="xml-record" />
+				<record name="noark5-arkivdel"
+						definitionReference="noark5-arkivdel"
+						typeReference="xml-record" />
+				<record name="noark5-klassifikasjonssystem"
+						definitionReference="noark5-klassifikasjonssystem"
+						typeReference="xml-record" />
+				<record name="noark5-klasse"
+						definitionReference="noark5-klasse"
+						typeReference="xml-record" />
+				<record name="noark5-saksmappe"
+						definitionReference="noark5-saksmappe"
+						typeReference="xml-record" />
+				<record name="noark5-journalpost"
+						definitionReference="noark5-journalpost"
+						typeReference="xml-record"/>
+				<record name="noark5-dokumentbeskrivelse"
+						definitionReference="noark5-dokumentbeskrivelse"
+						typeReference="xml-record" />
+				<record name="noark5-dokumentobjekt"
+						definitionReference="noark5-dokumentobjekt"
+						typeReference="xml-record" />
+			</structures>
 			<definitions>
-				<fileDefinition name="xml-file-def">
-					<properties>
-						<incomplete/>
-					</properties>
-				</fileDefinition>
 				<fileDefinition name="addml-schema">
 					<description>XML-skjema for addml-filen</description>
+				</fileDefinition>
+				<fileDefinition name="arkivstrukturDefinition">
+					<description>Noark 5's 'arkivstruktur, med arkivobjekter</description>
 				</fileDefinition>
 				<fileDefinition name="arkivstruktur-schema">
 					<description>XML-skjema for arkivstruktur-filen</description>
@@ -91,6 +115,69 @@
 				<fileDefinition name="metadatakatalog-schema">
 					<description>XML-skjema for metadatakatalog-elementer</description>
 				</fileDefinition>
+				<recordDefinition name="noark5-arkiv">
+					<description>Arkiv-objektet 'arkiv'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-arkivdel">
+					<description>Arkiv-objektet 'arkivdel'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-klassifikasjonssystem">
+					<description>Arkiv-objektet 'klassifikasjonssystem'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-klasse">
+					<description>Arkiv-objektet 'klasse'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-mappe">
+					<description>Arkiv-objektet 'mappe'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-saksmappe">
+					<description>Arkiv-objektet 'saksmappe'</description>
+					<properties>
+						<version>5.0</version>
+						<subTypeOf>noark5-mappe</subTypeOf>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-registrering">
+					<description>Arkiv-objektet 'registrering'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-journalpost">
+					<description>Utvidelse av arkiv-objektet 'registrering'</description>
+					<properties>
+						<version>5.0</version>
+						<subTypeOf>noark5-registrering</subTypeOf>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-dokumentbeskrivelse">
+					<description>Arkiv-objektet 'registrering'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				<recordDefinition name="noark5-dokumentobjekt">
+					<description>Arkiv-objektet 'registrering'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</recordDefinition>
+				
 				<fieldDefinition name="n5mdk_m001">
 					<description></description>
 				</fieldDefinition>
@@ -105,6 +192,9 @@
 						<charset>UTF-8</charset>
 					</properties>
 				</fileType>
+				<recordType name="xml-record">
+					<description></description>
+				</recordType>
 				<fieldType name="string" label="Tekstfelt" xsi:type="xmlFieldType">
 					<description>Tekststreng</description>
 					<dataType>string</dataType>
