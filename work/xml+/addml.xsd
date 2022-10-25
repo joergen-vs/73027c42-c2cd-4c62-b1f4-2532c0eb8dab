@@ -37,8 +37,6 @@
 			<xs:selector xpath=".//addml:file"/>
 			<xs:field xpath="@name"/>
 		</xs:key>
-
-		<!-- Structure-keys -->
 		<xs:key name="groupKey">
 			<xs:selector xpath=".//addml:group"/>
 			<xs:field xpath="@name"/>
@@ -59,12 +57,6 @@
 			<xs:selector xpath=".//addml:code"/>
 			<xs:field xpath="@name"/>
 		</xs:key>
-
-		<!-- Structure-references
-		<xs:keyref name="file2DefinitionReference" refer="addml:fileDefinitionKey">
-			<xs:selector xpath=".//addml:file" />
-			<xs:field xpath="objects/" />
-		</xs:keyref> -->
 
 		<!-- Definition-keys -->
 		<xs:key name="fileDefinitionKey">
@@ -232,7 +224,6 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="container" type="addml:container" maxOccurs="unbounded" />
-				<xs:element name="structures" type="addml:structures" minOccurs="0" />
 				<xs:element name="definitions" type="addml:definitions" minOccurs="0" />
 				<xs:element name="types" type="addml:types" minOccurs="0" />
 				<xs:element name="processes" type="addml:processes" minOccurs="0" />
@@ -316,7 +307,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:choice maxOccurs="unbounded">
-									<xs:group ref="addml:fileObjects" />
+									<xs:element name="file" type="addml:_file" />
 									<xs:element name="folder" type="addml:_folder" />
 								</xs:choice>
 							</xs:sequence>
@@ -347,7 +338,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:choice maxOccurs="unbounded">
-									<xs:group ref="addml:fileObjects" />
+									<xs:element name="file" type="addml:_file" />
 									<xs:element name="folder" type="addml:_folder" />
 								</xs:choice>
 							</xs:sequence>
@@ -465,29 +456,6 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="additionalInfo" type="addml:property"/>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="fileObjects">
-		<xs:sequence>
-			<xs:element name="file" type="addml:_file">
-				<xs:keyref name="file2GroupReference" refer="addml:groupKey">
-					<xs:selector xpath=".//addml:groupRef" />
-					<xs:field xpath="@reference" />
-				</xs:keyref>
-				<xs:keyref name="file2Record2DefinitionReference" refer="addml:recordKey">
-					<xs:selector xpath=".//addml:recordRef" />
-					<xs:field xpath="@reference" />
-				</xs:keyref>
-				<xs:keyref name="file2FieldReference" refer="addml:fieldKey">
-					<xs:selector xpath=".//addml:fieldRef" />
-					<xs:field xpath="@reference" />
-				</xs:keyref>
-				<xs:keyref name="file2AttributeReference" refer="addml:attributeKey">
-					<xs:selector xpath=".//addml:attributeRef" />
-					<xs:field xpath="@reference" />
-				</xs:keyref>
-			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -746,27 +714,20 @@
 	<xs:group name="fixedFileObjects">
 		<xs:sequence>
 			<xs:choice maxOccurs="unbounded">
-				<xs:element name="groupRef">
+				<xs:element name="group" type="addml:group">
 					<xs:annotation>
-						<xs:documentation>Reference to group in structure-section</xs:documentation>
+						<xs:documentation></xs:documentation>
 					</xs:annotation>
-					<xs:complexType>
-						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-							<xs:annotation>
-							</xs:annotation>
-						</xs:attribute>
-					</xs:complexType>
 				</xs:element>
-				<xs:element name="recordRef">
+				<xs:element name="record" type="addml:record">
 					<xs:annotation>
-						<xs:documentation>Reference to record in structure-section</xs:documentation>
+						<xs:documentation></xs:documentation>
 					</xs:annotation>
-					<xs:complexType>
-						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-							<xs:annotation>
-							</xs:annotation>
-						</xs:attribute>
-					</xs:complexType>
+				</xs:element>
+				<xs:element name="field" type="addml:field">
+					<xs:annotation>
+						<xs:documentation></xs:documentation>
+					</xs:annotation>
 				</xs:element>
 			</xs:choice>
 		</xs:sequence>
@@ -827,27 +788,20 @@
 	<xs:group name="delimitedFileObjects">
 		<xs:sequence>
 			<xs:choice maxOccurs="unbounded">
-				<xs:element name="groupRef">
+				<xs:element name="group" type="addml:group">
 					<xs:annotation>
-						<xs:documentation>Reference to group in structure-section</xs:documentation>
+						<xs:documentation></xs:documentation>
 					</xs:annotation>
-					<xs:complexType>
-						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-							<xs:annotation>
-							</xs:annotation>
-						</xs:attribute>
-					</xs:complexType>
 				</xs:element>
-				<xs:element name="recordRef">
+				<xs:element name="record" type="addml:record">
 					<xs:annotation>
-						<xs:documentation>Reference to record in structure-section</xs:documentation>
+						<xs:documentation></xs:documentation>
 					</xs:annotation>
-					<xs:complexType>
-						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-							<xs:annotation>
-							</xs:annotation>
-						</xs:attribute>
-					</xs:complexType>
+				</xs:element>
+				<xs:element name="field" type="addml:field">
+					<xs:annotation>
+						<xs:documentation></xs:documentation>
+					</xs:annotation>
 				</xs:element>
 			</xs:choice>
 		</xs:sequence>
@@ -910,66 +864,25 @@
 
 	<xs:group name="xmlFileObjects">
 		<xs:sequence>
-			<xs:element name="attributeRef" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>Root-attributes</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-						<xs:annotation>
-						</xs:annotation>
-					</xs:attribute>
-				</xs:complexType>
-			</xs:element>
-			<xs:choice>
-				<xs:choice maxOccurs="unbounded">
-					<xs:element name="groupRef">
-						<xs:annotation>
-							<xs:documentation>Reference to group in structure-section</xs:documentation>
-						</xs:annotation>
-						<xs:complexType>
-							<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-								<xs:annotation>
-								</xs:annotation>
-							</xs:attribute>
-						</xs:complexType>
-					</xs:element>
-					<xs:element name="recordRef">
-						<xs:annotation>
-							<xs:documentation>Reference to record in structure-section</xs:documentation>
-						</xs:annotation>
-						<xs:complexType>
-							<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-								<xs:annotation>
-								</xs:annotation>
-							</xs:attribute>
-						</xs:complexType>
-					</xs:element>
-				</xs:choice>
-				<xs:element name="fieldRef">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="group" type="addml:group">
 					<xs:annotation>
-						<xs:documentation>Xml-file contains a single element</xs:documentation>
+						<xs:documentation></xs:documentation>
 					</xs:annotation>
-					<xs:complexType>
-						<xs:attribute name="reference" type="xs:string" default="YYYY-MM-DD" >
-							<xs:annotation>
-							</xs:annotation>
-						</xs:attribute>
-					</xs:complexType>
+				</xs:element>
+				<xs:element name="record" type="addml:record">
+					<xs:annotation>
+						<xs:documentation></xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="field" type="addml:field">
+					<xs:annotation>
+						<xs:documentation></xs:documentation>
+					</xs:annotation>
 				</xs:element>
 			</xs:choice>
 		</xs:sequence>
 	</xs:group>
-
-	<xs:complexType name="structures">
-		<xs:sequence>
-			<xs:element name="group" type="addml:group" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="record" type="addml:group" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="field" type="addml:field" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="attribute" type="addml:attribute" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="code" type="addml:code" minOccurs="0" maxOccurs="unbounded" />
-		</xs:sequence>
-	</xs:complexType>
 
 	<xs:complexType name="group">
 		<xs:sequence>
@@ -1764,6 +1677,10 @@
 					<xs:annotation>
 						<xs:documentation></xs:documentation>
 					</xs:annotation>
+					<xs:keyref name="fileDefinition2DefinitionReference" refer="addml:recordDefinitionKey">
+						<xs:selector xpath=".//addml:file" />
+						<xs:field xpath="@definitionReference" />
+					</xs:keyref>
 				</xs:element>
 			</xs:choice>
 		</xs:sequence>

@@ -41,7 +41,46 @@
 							<root>noark5-arkiv</root>
 						</properties>
 						<objects>
-							<recordRef reference="noark5-arkiv" />
+							<record name="noark5-arkiv"
+									definitionReference="noark5-arkiv"
+									typeReference="xml-group">
+								<description></description>
+							</record>
+							<record name="noark5-arkivdel"
+									definitionReference="noark5-arkivdel"
+									typeReference="xml-group">
+								<description></description>
+							</record>
+							<record name="noark5-klassifikasjonssystem"
+									definitionReference="noark5-klassifikasjonssystem"
+									typeReference="xml-group">
+								<description></description>
+							</record>
+							<record name="noark5-klasse"
+									definitionReference="noark5-klasse"
+									typeReference="xml-group">
+								<description></description>
+							</record>
+							<record name="noark5-saksmappe"
+									definitionReference="noark5-saksmappe"
+									typeReference="xml-group">
+								<description></description>
+							</record>
+							<record name="noark5-journalpost"
+									definitionReference="noark5-journalpost"
+									typeReference="xml-group">
+								<description></description>
+							</record>
+							<record name="noark5-dokumentbeskrivelse"
+									definitionReference="noark5-dokumentbeskrivelse"
+									typeReference="xml-group">
+								<description></description>
+							</record>
+							<record name="noark5-dokumentobjekt"
+									definitionReference="noark5-dokumentobjekt"
+									typeReference="xml-group">
+								<description></description>
+							</record>
 						</objects>
 					</file>
 					<file name="addml-schema" label="XML-skjema for addml" xsi:type="dataFile"
@@ -76,32 +115,6 @@
 					</file>
 				</objects>
 			</container>
-			<structures>
-				<record name="noark5-arkiv"
-						definitionReference="noark5-arkiv"
-						typeReference="xml-record" />
-				<record name="noark5-arkivdel"
-						definitionReference="noark5-arkivdel"
-						typeReference="xml-record" />
-				<record name="noark5-klassifikasjonssystem"
-						definitionReference="noark5-klassifikasjonssystem"
-						typeReference="xml-record" />
-				<record name="noark5-klasse"
-						definitionReference="noark5-klasse"
-						typeReference="xml-record" />
-				<record name="noark5-saksmappe"
-						definitionReference="noark5-saksmappe"
-						typeReference="xml-record" />
-				<record name="noark5-journalpost"
-						definitionReference="noark5-journalpost"
-						typeReference="xml-record"/>
-				<record name="noark5-dokumentbeskrivelse"
-						definitionReference="noark5-dokumentbeskrivelse"
-						typeReference="xml-record" />
-				<record name="noark5-dokumentobjekt"
-						definitionReference="noark5-dokumentobjekt"
-						typeReference="xml-record" />
-			</structures>
 			<definitions>
 				<fileDefinition name="addml-schema">
 					<description>XML-skjema for addml-filen</description>
@@ -177,7 +190,7 @@
 						<version>5.0</version>
 					</properties>
 				</recordDefinition>
-				
+
 				<fieldDefinition name="n5mdk_m001">
 					<description></description>
 				</fieldDefinition>
@@ -192,8 +205,9 @@
 						<charset>UTF-8</charset>
 					</properties>
 				</fileType>
-				<recordType name="xml-record">
+				<recordType name="xml-group" xsi:type="xmlRecordType">
 					<description></description>
+					<properties/>
 				</recordType>
 				<fieldType name="string" label="Tekstfelt" xsi:type="xmlFieldType">
 					<description>Tekststreng</description>
