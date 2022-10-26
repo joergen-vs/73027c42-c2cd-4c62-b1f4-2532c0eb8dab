@@ -37,26 +37,6 @@
 			<xs:selector xpath=".//addml:file"/>
 			<xs:field xpath="@name"/>
 		</xs:key>
-		<xs:key name="groupKey">
-			<xs:selector xpath=".//addml:group"/>
-			<xs:field xpath="@name"/>
-		</xs:key>
-		<xs:key name="recordKey">
-			<xs:selector xpath=".//addml:record"/>
-			<xs:field xpath="@name"/>
-		</xs:key>
-		<xs:key name="fieldKey">
-			<xs:selector xpath=".//addml:field"/>
-			<xs:field xpath="@name"/>
-		</xs:key>
-		<xs:key name="attributeKey">
-			<xs:selector xpath=".//addml:attribute"/>
-			<xs:field xpath="@name"/>
-		</xs:key>
-		<xs:key name="codeKey">
-			<xs:selector xpath=".//addml:code"/>
-			<xs:field xpath="@name"/>
-		</xs:key>
 
 		<!-- Definition-keys -->
 		<xs:key name="fileDefinitionKey">
@@ -83,6 +63,10 @@
 			<xs:selector xpath=".//addml:codeDefinition"/>
 			<xs:field xpath="@name"/>
 		</xs:key>
+		<xs:key name="typeDefinitionKey">
+			<xs:selector xpath=".//addml:typeDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
 
 		<!-- Definition-references -->
 		<xs:keyref name="file2DefinitionReference" refer="addml:fileDefinitionKey">
@@ -107,6 +91,10 @@
 		</xs:keyref>
 		<xs:keyref name="code2DefinitionReference" refer="addml:codeDefinitionKey">
 			<xs:selector xpath=".//addml:code" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="fileType2DefinitionReference" refer="addml:typeDefinitionKey">
+			<xs:selector xpath=".//addml:fileType" />
 			<xs:field xpath="@definitionReference" />
 		</xs:keyref>
 
@@ -336,12 +324,7 @@
 					<!-- Files & Folders -->
 					<xs:element name="objects">
 						<xs:complexType>
-							<xs:sequence>
-								<xs:choice maxOccurs="unbounded">
-									<xs:element name="file" type="addml:_file" />
-									<xs:element name="folder" type="addml:_folder" />
-								</xs:choice>
-							</xs:sequence>
+							<xs:group ref="addml:archivalObjects"/>
 						</xs:complexType>
 					</xs:element>
 				</xs:sequence>
@@ -447,6 +430,36 @@
 					<xs:documentation>Relevant for archives implementing disposal</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="archivalObjects">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="file" type="addml:_file">
+					<xs:key name="groupKey">
+						<xs:selector xpath=".//addml:group"/>
+						<xs:field xpath="@name"/>
+					</xs:key>
+					<xs:key name="recordKey">
+						<xs:selector xpath=".//addml:record"/>
+						<xs:field xpath="@name"/>
+					</xs:key>
+					<xs:key name="fieldKey">
+						<xs:selector xpath=".//addml:field"/>
+						<xs:field xpath="@name"/>
+					</xs:key>
+					<xs:key name="attributeKey">
+						<xs:selector xpath=".//addml:attribute"/>
+						<xs:field xpath="@name"/>
+					</xs:key>
+					<xs:key name="codeKey">
+						<xs:selector xpath=".//addml:code"/>
+						<xs:field xpath="@name"/>
+					</xs:key>
+				</xs:element>
+				<xs:element name="folder" type="addml:_folder" />
+			</xs:choice>
 		</xs:sequence>
 	</xs:group>
 
@@ -1936,7 +1949,7 @@
 	<xs:group name="typeDefinitionProperties">
 		<xs:sequence>
 			<xs:element name="specification" type="xs:string"/>
-			<xs:element name="reference" type="xs:anyURI">
+			<xs:element name="reference" type="xs:anyURI" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation></xs:documentation>
 				</xs:annotation>

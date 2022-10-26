@@ -144,15 +144,21 @@
 									<recordReference>noark5-arkivdel</recordReference>
 								</objects>
 							</record>
-							<group name="noark5-arkivskaper"
+							<group name="noark5-arkivskaper" xsi:type="xmlGroup"
 								   definitionReference="noark5-arkivskaper"
 								   typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>arkivskaper</name>
+								</properties>
 							</group>
 							<record name="noark5-arkivdel" xsi:type="xmlRecord"
 									definitionReference="noark5-arkivdel"
 									typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>arkivdel</name>
+								</properties>
 							</record>
 							<record name="noark5-klassifikasjonssystem"
 									 xsi:type="xmlRecord"
@@ -300,12 +306,33 @@
 				<fieldDefinition name="n5mdk_m001">
 					<description></description>
 				</fieldDefinition>
+
 				<!-- Internal  -->
+
 				<typeDefinition name ="xml-file">
 					<description>Extensible Markup Language, abbreviated XML, describes a class of data objects called XML documents and partially describes the behavior of computer programs which process them.</description>
 					<properties>
 						<specification>Extensible Markup Language (XML) 1.0 (Fifth Edition)</specification>
 						<reference>https://www.w3.org/TR/xml/</reference>
+					</properties>
+				</typeDefinition>
+				<typeDefinition name ="TSV-file">
+					<description>
+						tsv is a popular method of data interchange among databases and
+						spreadsheets and word processors with Mail-merge functions. It is the
+						lowest common denominator in many cases between two different
+						applications.
+
+						A tsv file encodes a number of records that may contain multiple
+						fields.  Each record is represented as a single line.  Each field
+						value is represented as text.  Fields in a record are separated from
+						each other by a tab character.
+					</description>
+					<properties>
+						<specification>Extensible Markup Language (XML) 1.0 (Fifth Edition)</specification>
+						<reference>https://www.iana.org/assignments/media-types/text/tab-separated-values</reference>
+						<reference>https://www.loc.gov/preservation/digital/formats/fdd/fdd000533.shtml</reference>
+						<reference>https://www.nationalarchives.gov.uk/PRONOM/x-fmt/13</reference>
 					</properties>
 				</typeDefinition>
 				<typeDefinition name ="xml-complex">
@@ -332,6 +359,17 @@
 							<version>1.0</version>
 						</format>
 						<charset>UTF-8</charset>
+					</properties>
+				</fileType>
+				<fileType name="TSV" xsi:type="delimitedFileType"
+						  definitionReference="xml-file">
+					<properties>
+						<format>
+							<name>TSV</name>
+						</format>
+						<charset>UTF-8</charset>
+						<recordSeparator>LF</recordSeparator>
+						<fieldSeparator>TAB</fieldSeparator>
 					</properties>
 				</fileType>
 				<recordType name="xml-group" xsi:type="xmlRecordType"
