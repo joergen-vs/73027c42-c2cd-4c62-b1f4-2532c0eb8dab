@@ -2,7 +2,8 @@
 <addml xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd" xmlns="http://www.arkivverket.no/standarder/addml/v9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<dataset>
 		<dataObjects>
-			<container name="arkivuttrekk" xsi:type="archivalExtraction">
+			<container name="arkivuttrekk" xsi:type="archivalExtraction"
+					   definitionReference="Noark-arkivuttrekk">
 				<properties>
 					<name>Noark 5</name>
 					<version>5.0</version>
@@ -377,6 +378,13 @@
 				</objects>
 			</container>
 			<definitions>
+				<containerDefinition name="Noark-arkivuttrekk">
+					<description>Arkivuttrekk fra sak-/arkivsystem</description>
+					<properties>
+						<specification>Noark 5-standarden</specification>
+						<source>https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden</source>
+					</properties>
+				</containerDefinition>
 				<fileDefinition name="addml-schema">
 					<description>XML-skjema for addml-filen</description>
 				</fileDefinition>
@@ -471,7 +479,7 @@
 					<description>Extensible Markup Language, abbreviated XML, describes a class of data objects called XML documents and partially describes the behavior of computer programs which process them.</description>
 					<properties>
 						<specification>Extensible Markup Language (XML) 1.0 (Fifth Edition)</specification>
-						<reference>https://www.w3.org/TR/xml/</reference>
+						<source>https://www.w3.org/TR/xml/</source>
 					</properties>
 				</typeDefinition>
 				<typeDefinition name ="TSV-file">
@@ -487,24 +495,24 @@
 						each other by a tab character.
 					</description>
 					<properties>
-						<specification>Extensible Markup Language (XML) 1.0 (Fifth Edition)</specification>
-						<reference>https://www.iana.org/assignments/media-types/text/tab-separated-values</reference>
-						<reference>https://www.loc.gov/preservation/digital/formats/fdd/fdd000533.shtml</reference>
-						<reference>https://www.nationalarchives.gov.uk/PRONOM/x-fmt/13</reference>
+						<specification>Tab-separated values</specification>
+						<source>https://www.iana.org/assignments/media-types/text/tab-separated-values</source>
+						<source>https://www.loc.gov/preservation/digital/formats/fdd/fdd000533.shtml</source>
+						<source>https://www.nationalarchives.gov.uk/PRONOM/x-fmt/13</source>
 					</properties>
 				</typeDefinition>
 				<typeDefinition name ="xml-complex">
 					<description>A complex type definition is a set of attribute declarations and a content type, applicable to the [attributes] and [children] of an element information item respectively. The content type may require the [children] to contain neither element nor character information items (that is, to be empty), to be a string which belongs to a particular simple type or to contain a sequence of element information items which conforms to a particular model group, with or without character information items as well.</description>
 					<properties>
 						<specification>XML Schema Part 1: Structures</specification>
-						<reference>https://www.w3.org/TR/xmlschema-1/#Complex_Type_Definitions</reference>
+						<source>https://www.w3.org/TR/xmlschema-1/#Complex_Type_Definitions</source>
 					</properties>
 				</typeDefinition>
 				<typeDefinition name ="xml-string">
 					<description>The string datatype represents character strings in XML. The ·value space· of string is the set of finite-length sequences of characters (as defined in [XML 1.0 (Second Edition)]) that ·match· the Char production from [XML 1.0 (Second Edition)]. A character is an atomic unit of communication; it is not further specified except to note that every character has a corresponding Universal Character Set code point, which is an integer.</description>
 					<properties>
 						<specification>XML Schema Part 2: Datatypes</specification>
-						<reference>https://www.w3.org/TR/xmlschema-2/#string</reference>
+						<source>https://www.w3.org/TR/xmlschema-2/#string</source>
 					</properties>
 				</typeDefinition>
 			</definitions>

@@ -39,6 +39,10 @@
 		</xs:key>
 
 		<!-- Definition-keys -->
+		<xs:key name="containerDefinitionKey">
+			<xs:selector xpath=".//addml:containerDefinition"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
 		<xs:key name="fileDefinitionKey">
 			<xs:selector xpath=".//addml:fileDefinition"/>
 			<xs:field xpath="@name"/>
@@ -71,6 +75,10 @@
 		<!-- Definition-references -->
 		<xs:keyref name="file2DefinitionReference" refer="addml:fileDefinitionKey">
 			<xs:selector xpath=".//addml:file" />
+			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="container2DefinitionReference" refer="addml:containerDefinitionKey">
+			<xs:selector xpath=".//addml:container" />
 			<xs:field xpath="@definitionReference" />
 		</xs:keyref>
 		<xs:keyref name="group2DefinitionReference" refer="addml:groupDefinitionKey">
@@ -272,6 +280,7 @@
 			<xs:group ref="addml:unitGroup" />
 		</xs:sequence>
 		<xs:attributeGroup ref="addml:unitAttributeGroup" />
+		<xs:attribute name="definitionReference" type="xs:string" use="required"/>
 	</xs:complexType>
 
 	<xs:complexType name="archivalExtraction">
@@ -1635,18 +1644,94 @@
 	</xs:group>
 
 	<xs:complexType name="definitions">
-		<xs:sequence>
-			<xs:choice maxOccurs="unbounded">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="containerDefinition" type="addml:containerDefinition" />
 			<xs:element name="fileDefinition" type="addml:fileDefinition"/>
-			<xs:element name="groupDefinition" type="addml:groupDefinition" minOccurs="0" />
-			<xs:element name="recordDefinition" type="addml:groupDefinition" minOccurs="0"/>
-			<xs:element name="fieldDefinition" type="addml:fieldDefinition" minOccurs="0" />
-			<xs:element name="attributeDefinition" type="addml:attributeDefinition" minOccurs="0"  />
-			<xs:element name="codeDefinition" type="addml:codeDefinition" minOccurs="0" />
-			<xs:element name="typeDefinition" type="addml:typeDefinition" minOccurs="0" />
+			<xs:element name="groupDefinition" type="addml:groupDefinition" />
+			<xs:element name="recordDefinition" type="addml:groupDefinition" />
+			<xs:element name="fieldDefinition" type="addml:fieldDefinition" />
+			<xs:element name="attributeDefinition" type="addml:attributeDefinition" />
+			<xs:element name="codeDefinition" type="addml:codeDefinition" />
+			<xs:element name="typeDefinition" type="addml:typeDefinition" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="containerDefinition">
+		<xs:sequence>
+			<xs:group ref="addml:unitGroup" />
+			<xs:element name="properties" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="addml:containerDefinitionProperties" />
+						<xs:group ref="addml:catalogDefinitionProperties" />
+						<xs:group ref="addml:additionalProperties" minOccurs="0" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="objects" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="addml:containerDefinitionObjects"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="addml:unitAttributeGroup" />
+	</xs:complexType>
+
+	<xs:group name="containerDefinitionProperties">
+		<xs:sequence>
+			<xs:element name="incomplete" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Shows if a object is described in full or partially</xs:documentation>
+				</xs:annotation>
+				<xs:complexType />
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="catalogDefinitionProperties">
+		<xs:sequence>
+			<xs:element name="specification" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Reference to specification in reference/content</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="source" type="xs:anyURI" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<!-- A place for referenced specifications in reference/content 
+	
+	specification*
+		@name = name used for referencing, like 'ISO-8859-1' or 'Noark 5'
+		description = Short description of specification
+		p:name: Full name
+		p:version? = Handling versioning of specification
+		p:source+ = Sources of specification. Either a url or filepath
+			
+	-->
+
+	<xs:group name="containerDefinitionObjects">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="fileDefinition" type="addml:fileDefinition" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation></xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="folderDefinition" type="addml:folderDefinition" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation></xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
 		</xs:sequence>
-	</xs:complexType>
+	</xs:group>
 
 	<xs:complexType name="fileDefinition">
 		<xs:sequence>
@@ -1655,6 +1740,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:fileDefinitionProperties" />
+						<xs:group ref="addml:catalogDefinitionProperties" />
 						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
@@ -1717,6 +1803,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:groupDefinitionProperties" />
+						<xs:group ref="addml:catalogDefinitionProperties" minOccurs="0"/>
 						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
@@ -1734,7 +1821,7 @@
 
 	<xs:group name="groupDefinitionProperties">
 		<xs:sequence>
-			<xs:element name="version">
+			<xs:element name="version" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>Connected to variantOf, displaying a specific iteration of a definition</xs:documentation>
 				</xs:annotation>
@@ -1808,6 +1895,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:fieldDefinitionProperties" />
+								<xs:group ref="addml:catalogDefinitionProperties" />
 								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
 						</xs:complexType>
@@ -1830,6 +1918,7 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:group ref="addml:fieldDefinitionProperties" />
+								<xs:group ref="addml:catalogDefinitionProperties" />
 								<xs:group ref="addml:xmlFieldDefinitionProperties" />
 								<xs:group ref="addml:additionalProperties" minOccurs="0" />
 							</xs:sequence>
@@ -1889,6 +1978,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:attributeDefinitionProperties" />
+						<xs:group ref="addml:catalogDefinitionProperties" />
 						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
@@ -1925,6 +2015,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:codeDefinitionProperties" />
+						<xs:group ref="addml:catalogDefinitionProperties" />
 						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
@@ -1938,6 +2029,45 @@
 		</xs:sequence>
 	</xs:group>
 
+	<xs:complexType name="folderDefinition">
+		<xs:sequence>
+			<xs:group ref="addml:unitGroup" />
+			<xs:element name="properties" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="addml:folderDefinitionProperties" />
+						<xs:group ref="addml:catalogDefinitionProperties" />
+						<xs:group ref="addml:additionalProperties" minOccurs="0" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="objects" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="addml:folderDefinitionObjects"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="addml:unitAttributeGroup" />
+	</xs:complexType>
+
+	<xs:group name="folderDefinitionProperties">
+		<xs:sequence>
+			<xs:element name="incomplete" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Shows if a object is described in full or partially</xs:documentation>
+				</xs:annotation>
+				<xs:complexType />
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="folderDefinitionObjects">
+		<xs:sequence>
+		</xs:sequence>
+	</xs:group>
+
 	<xs:complexType name="typeDefinition">
 		<xs:sequence>
 			<xs:group ref="addml:unitGroup" />
@@ -1945,6 +2075,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:typeDefinitionProperties" />
+						<xs:group ref="addml:catalogDefinitionProperties" />
 						<xs:group ref="addml:additionalProperties" minOccurs="0" />
 					</xs:sequence>
 				</xs:complexType>
@@ -1955,12 +2086,6 @@
 
 	<xs:group name="typeDefinitionProperties">
 		<xs:sequence>
-			<xs:element name="specification" type="xs:string"/>
-			<xs:element name="reference" type="xs:anyURI" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation></xs:documentation>
-				</xs:annotation>
-			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
