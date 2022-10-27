@@ -17,6 +17,135 @@
 					<containsDocumentsScheduledForDisposal>false</containsDocumentsScheduledForDisposal>
 				</properties>
 				<objects>
+					<file name="arkivstruktur2" label="arkivstruktur" xsi:type="xmlFile"
+							definitionReference="arkivstrukturDefinition" typeReference="XML">
+						<properties>
+							<path>arkivstruktur.xml</path>
+							<checksum>
+								<algorithm>SHA-256</algorithm>
+								<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
+							</checksum>
+							<numberOfOccurrences>12345</numberOfOccurrences>
+							<targetNamespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</targetNamespace>
+							<schemas>
+								<schema>
+									<namespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</namespace>
+									<fileReference>arkivstruktur-schema</fileReference>
+								</schema>
+								<schema>
+									<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
+									<prefix>n5mdk</prefix>
+									<fileReference>metadatakatalog-schema</fileReference>
+								</schema>
+							</schemas>
+							<root>noark5-arkiv</root>
+						</properties>
+						<objects>
+							<record name="noark5-arkiv" xsi:type="xmlRecord"
+									definitionReference="noark5-arkiv"
+									typeReference="xml-group">
+								<description></description>
+								<properties>
+									<name>arkiv</name>
+								</properties>
+								<objects>
+									<field name="noark5-systemID" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="noark5-ID">
+										<description></description>
+										<properties>
+											<name>systemID</name>
+										</properties>
+										<objects>
+											<attribute name="label" xsi:type="xmlAttribute"
+													   definitionReference="n5mdk:M001-label"
+													   typeReference="xml-attribute">
+												<description></description>
+												<properties>
+													<name>label</name>
+												</properties>
+											</attribute>
+										</objects>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<field name="noark5-tittel" xsi:type="xmlField"
+										   definitionReference="n5mdk:M001"
+										   typeReference="xml-string">
+										<description></description>
+										<properties>
+											<name>tittel</name>
+										</properties>
+									</field>
+									<groupReference>noark5-arkivskaper</groupReference>
+									<recordReference>noark5-arkiv</recordReference>
+									<recordReference>noark5-arkivdel</recordReference>
+								</objects>
+							</record>
+						</objects>
+					</file>
 					<file name="arkivstruktur" label="arkivstruktur" xsi:type="xmlFile"
 							definitionReference="arkivstrukturDefinition" typeReference="XML">
 						<properties>
@@ -58,7 +187,7 @@
 										</properties>
 										<objects>
 											<attribute name="label" xsi:type="xmlAttribute"
-													   definitionReference="noark5-systemID-label"
+													   definitionReference="n5mdk:M001-label"
 													   typeReference="xml-attribute">
 												<description></description>
 												<properties>
@@ -165,33 +294,53 @@
 									definitionReference="noark5-klassifikasjonssystem"
 									typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>klassifikasjonssystem</name>
+								</properties>
 							</record>
 							<record name="noark5-klasse" xsi:type="xmlRecord"
 									definitionReference="noark5-klasse"
 									typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>klasse</name>
+								</properties>
 							</record>
 							<record name="noark5-saksmappe" xsi:type="xmlRecord"
 									definitionReference="noark5-saksmappe"
 									typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>mappe</name>
+									<type>saksmappe</type>
+								</properties>
 							</record>
 							<record name="noark5-journalpost" xsi:type="xmlRecord"
 									definitionReference="noark5-journalpost"
 									typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>registrering</name>
+									<type>journalpost</type>
+								</properties>
 							</record>
 							<record name="noark5-dokumentbeskrivelse"
 									 xsi:type="xmlRecord"
 									definitionReference="noark5-dokumentbeskrivelse"
 									typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>dokumentbeskrivelse</name>
+								</properties>
 							</record>
 							<record name="noark5-dokumentobjekt"
 									 xsi:type="xmlRecord"
 									definitionReference="noark5-dokumentobjekt"
 									typeReference="xml-group">
 								<description></description>
+								<properties>
+									<name>dokumentobjekt</name>
+								</properties>
 							</record>
 						</objects>
 					</file>
@@ -246,6 +395,12 @@
 						<version>5.0</version>
 					</properties>
 				</recordDefinition>
+				<groupDefinition name="noark5-arkivskaper">
+					<description>Gruppering 'arkivskaper'</description>
+					<properties>
+						<version>5.0</version>
+					</properties>
+				</groupDefinition>
 				<recordDefinition name="noark5-arkivdel">
 					<description>Arkiv-objektet 'arkivdel'</description>
 					<properties>
@@ -303,9 +458,12 @@
 					</properties>
 				</recordDefinition>
 
-				<fieldDefinition name="n5mdk_m001">
-					<description></description>
+				<fieldDefinition name="n5mdk:M001">
+					<description>systemID</description>
 				</fieldDefinition>
+				<attributeDefinition name="n5mdk:M001-label">
+					<description>Se n5mdk:M001</description>
+				</attributeDefinition>
 
 				<!-- Internal  -->
 
@@ -382,7 +540,7 @@
 					<dataType>string</dataType>
 					<fieldFormat>[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}</fieldFormat>
 				</fieldType>
-				<fieldType name="string" label="Tekstfelt" xsi:type="xmlFieldType">
+				<fieldType name="xml-string" label="Tekstfelt" xsi:type="xmlFieldType">
 					<description>Tekststreng</description>
 					<dataType>string</dataType>
 				</fieldType>

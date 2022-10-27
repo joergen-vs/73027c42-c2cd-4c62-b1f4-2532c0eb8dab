@@ -1169,6 +1169,11 @@
 					<xs:documentation>Element-name</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="type" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group is defined in schema-instance type-attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -1631,13 +1636,15 @@
 
 	<xs:complexType name="definitions">
 		<xs:sequence>
-			<xs:element name="fileDefinition" type="addml:fileDefinition" maxOccurs="unbounded" />
-			<xs:element name="groupDefinition" type="addml:groupDefinition" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="recordDefinition" type="addml:groupDefinition" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="fieldDefinition" type="addml:fieldDefinition" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="attributeDefinition" type="addml:attributeDefinition" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="codeDefinition" type="addml:codeDefinition" minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="typeDefinition" type="addml:typeDefinition" minOccurs="0" maxOccurs="unbounded" />
+			<xs:choice maxOccurs="unbounded">
+			<xs:element name="fileDefinition" type="addml:fileDefinition"/>
+			<xs:element name="groupDefinition" type="addml:groupDefinition" minOccurs="0" />
+			<xs:element name="recordDefinition" type="addml:groupDefinition" minOccurs="0"/>
+			<xs:element name="fieldDefinition" type="addml:fieldDefinition" minOccurs="0" />
+			<xs:element name="attributeDefinition" type="addml:attributeDefinition" minOccurs="0"  />
+			<xs:element name="codeDefinition" type="addml:codeDefinition" minOccurs="0" />
+			<xs:element name="typeDefinition" type="addml:typeDefinition" minOccurs="0" />
+			</xs:choice>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -1878,7 +1885,7 @@
 	<xs:complexType name="attributeDefinition">
 		<xs:sequence>
 			<xs:group ref="addml:unitGroup" />
-			<xs:element name="properties">
+			<xs:element name="properties" minOccurs="0">
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:attributeDefinitionProperties" />
