@@ -3,7 +3,7 @@ skinparam linetype polyline
 skinparam linetype ortho
 
 interface container
-dataset <-- container
+dataset *-- container
 
 scale 1280 width
 scale 800 height
