@@ -166,6 +166,30 @@ Classes are not extensions of each other, they are rules.
 </dataObject>
 ```
 
+test 2
+
+```plantuml
+@startuml "addml"
+skinparam linetype polyline
+skinparam linetype ortho
+
+interface container
+dataset <-- container
+
+scale 1280 width
+scale 800 height
+
+!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml
+
+!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-database.puml
+
+!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-definition.puml
+
+!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml
+
+@enduml
+```
+
 <!--[uml-type Image Link](https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml)-->
 
 test
