@@ -166,34 +166,6 @@ Classes are not extensions of each other, they are rules.
 </dataObject>
 ```
 
-test 2
-
-```plantuml
-@startuml "addml"
-skinparam linetype polyline
-skinparam linetype ortho
-
-interface container
-dataset <-- container
-
-scale 1280 width
-scale 800 height
-
-!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-archival.puml
-
-!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-database.puml
-
-!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-definition.puml
-
-!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml
-
-@enduml
-```
-
-<!--[uml-type Image Link](https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/uml-type.puml)-->
-
-test
-
 ![Complete](http://www.plantuml.com/plantuml/png/pPAnRiCm34HtVOMQNP6Zf4rGTCYlq19ZiPKbWwGJvEzh5nawT6yMWdS740y7daM1THwBtK1AOzaO-Q8w0SDe2rNK-uHsQkM-Yh-onfgRCLGL-G8HRMnLOKdP950GLFlXt2_NI8I2TXTEdRrHqlmmJbrdCzAGrPWNgh7C2MSkDgjEykuzmsqxaEQvdmLvlOTLjx6D_hCX3rZTLVnntuLZF0GNGqpk4D-2wtUNWmkl-n0xx4y9UZ-2ABAV1GRq81CnABKgVgdXPpZWcEaAPJijwlznrY9x47mM7BnGfTLy4g3r4HyePwnfMRu1)
 
 ## <a id="container"/>[container](#container) : [dataObject](#dataObject)
