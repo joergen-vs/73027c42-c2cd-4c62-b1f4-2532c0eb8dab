@@ -1,562 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addml xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd" xmlns="http://www.arkivverket.no/standarder/addml/v9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<dataset>
-		<dataObjects>
-			<container name="arkivuttrekk" xsi:type="archivalExtraction"
-					   definitionReference="Noark-arkivuttrekk">
-				<properties>
-					<name>Noark 5</name>
+<addml name="Arkivbeskrivelse for Noark 5 v5.0" xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd" xmlns="http://www.arkivverket.no/standarder/addml/v9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<dataset name="41d4f9a2">
+		<reference>
+			<context>
+				<agents>
+					<agent name="Arkivverket" xsi:type="organization">
+						<role>PRESERVATION</role>
+					</agent>
+				</agents>
+			</context>
+			<content>
+				<standard name="Addml for AV">
+					<title>Archival Data Description Markup Language</title>
+					<version>9.0</version>
+					<source>http://www.arkivverket.no/standarder/addml</source>
+				</standard>
+				<standard name="Noark5">
+					<title>Noark 5-standarden</title>
 					<version>5.0</version>
-					<period>
-						<startDate fieldformat="DD-MM-YYYY">01-01-2022</startDate>
-						<inboundPeriod>soft</inboundPeriod>
-						<endDate fieldformat="DD-MM-YYYY">31-12-2022</endDate>
-						<outgoingPeriod>soft</outgoingPeriod>
-					</period>
-					<containsScreenedInformation>true</containsScreenedInformation>
-					<containsDocumentsWhichIsDisposed>false</containsDocumentsWhichIsDisposed>
-					<containsDocumentsScheduledForDisposal>false</containsDocumentsScheduledForDisposal>
-				</properties>
-				<objects>
-					<file name="arkivstruktur2" label="arkivstruktur" xsi:type="xmlFile"
-							definitionReference="arkivstrukturDefinition" typeReference="XML">
-						<properties>
-							<path>arkivstruktur.xml</path>
-							<checksum>
-								<algorithm>SHA-256</algorithm>
-								<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
-							</checksum>
-							<numberOfOccurrences>12345</numberOfOccurrences>
-							<targetNamespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</targetNamespace>
-							<schemas>
-								<schema>
-									<namespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</namespace>
-									<fileReference>arkivstruktur-schema</fileReference>
-								</schema>
-								<schema>
-									<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
-									<prefix>n5mdk</prefix>
-									<fileReference>metadatakatalog-schema</fileReference>
-								</schema>
-							</schemas>
-							<root>noark5-arkiv</root>
-						</properties>
-						<objects>
-							<record name="noark5-arkiv" xsi:type="xmlRecord"
-									definitionReference="noark5-arkiv"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>arkiv</name>
-								</properties>
-								<objects>
-									<field name="noark5-systemID" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="noark5-ID">
-										<description></description>
-										<properties>
-											<name>systemID</name>
-										</properties>
-										<objects>
-											<attribute name="label" xsi:type="xmlAttribute"
-													   definitionReference="n5mdk:M001-label"
-													   typeReference="xml-attribute">
-												<description></description>
-												<properties>
-													<name>label</name>
-												</properties>
-											</attribute>
-										</objects>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<groupReference>noark5-arkivskaper</groupReference>
-									<recordReference>noark5-arkiv</recordReference>
-									<recordReference>noark5-arkivdel</recordReference>
-								</objects>
-							</record>
-						</objects>
-					</file>
-					<file name="arkivstruktur" label="arkivstruktur" xsi:type="xmlFile"
-							definitionReference="arkivstrukturDefinition" typeReference="XML">
-						<properties>
-							<path>arkivstruktur.xml</path>
-							<checksum>
-								<algorithm>SHA-256</algorithm>
-								<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
-							</checksum>
-							<numberOfOccurrences>12345</numberOfOccurrences>
-							<targetNamespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</targetNamespace>
-							<schemas>
-								<schema>
-									<namespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</namespace>
-									<fileReference>arkivstruktur-schema</fileReference>
-								</schema>
-								<schema>
-									<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
-									<prefix>n5mdk</prefix>
-									<fileReference>metadatakatalog-schema</fileReference>
-								</schema>
-							</schemas>
-							<root>noark5-arkiv</root>
-						</properties>
-						<objects>
-							<record name="noark5-arkiv" xsi:type="xmlRecord"
-									definitionReference="noark5-arkiv"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>arkiv</name>
-								</properties>
-								<objects>
-									<field name="noark5-systemID" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="noark5-ID">
-										<description></description>
-										<properties>
-											<name>systemID</name>
-										</properties>
-										<objects>
-											<attribute name="label" xsi:type="xmlAttribute"
-													   definitionReference="n5mdk:M001-label"
-													   typeReference="xml-attribute">
-												<description></description>
-												<properties>
-													<name>label</name>
-												</properties>
-											</attribute>
-										</objects>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<field name="noark5-tittel" xsi:type="xmlField"
-										   definitionReference="n5mdk:M001"
-										   typeReference="xml-string">
-										<description></description>
-										<properties>
-											<name>tittel</name>
-										</properties>
-									</field>
-									<groupReference>noark5-arkivskaper</groupReference>
-									<recordReference>noark5-arkiv</recordReference>
-									<recordReference>noark5-arkivdel</recordReference>
-								</objects>
-							</record>
-							<group name="noark5-arkivskaper" xsi:type="xmlGroup"
-								   definitionReference="noark5-arkivskaper"
-								   typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>arkivskaper</name>
-								</properties>
-							</group>
-							<record name="noark5-arkivdel" xsi:type="xmlRecord"
-									definitionReference="noark5-arkivdel"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>arkivdel</name>
-								</properties>
-							</record>
-							<record name="noark5-klassifikasjonssystem"
-									 xsi:type="xmlRecord"
-									definitionReference="noark5-klassifikasjonssystem"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>klassifikasjonssystem</name>
-								</properties>
-							</record>
-							<record name="noark5-klasse" xsi:type="xmlRecord"
-									definitionReference="noark5-klasse"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>klasse</name>
-								</properties>
-							</record>
-							<record name="noark5-saksmappe" xsi:type="xmlRecord"
-									definitionReference="noark5-saksmappe"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>mappe</name>
-									<type>saksmappe</type>
-								</properties>
-							</record>
-							<record name="noark5-journalpost" xsi:type="xmlRecord"
-									definitionReference="noark5-journalpost"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>registrering</name>
-									<type>journalpost</type>
-								</properties>
-							</record>
-							<record name="noark5-dokumentbeskrivelse"
-									 xsi:type="xmlRecord"
-									definitionReference="noark5-dokumentbeskrivelse"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>dokumentbeskrivelse</name>
-								</properties>
-							</record>
-							<record name="noark5-dokumentobjekt"
-									 xsi:type="xmlRecord"
-									definitionReference="noark5-dokumentobjekt"
-									typeReference="xml-group">
-								<description></description>
-								<properties>
-									<name>dokumentobjekt</name>
-								</properties>
-							</record>
-						</objects>
-					</file>
-					<file name="addml-schema" label="XML-skjema for addml" xsi:type="dataFile"
-					definitionReference="addml-schema" typeReference="XML">
-						<properties>
-							<path>addml.xsd</path>
-							<checksum>
-								<algorithm>SHA-256</algorithm>
-								<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
-							</checksum>
-						</properties>
-					</file>
-					<file name="arkivstruktur-schema" label="XML-skjema for arkivstruktur" xsi:type="dataFile"
-							definitionReference="arkivstruktur-schema" typeReference="XML">
-						<properties>
-							<path>arkivstruktur.xsd</path>
-							<checksum>
-								<algorithm>SHA-256</algorithm>
-								<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
-							</checksum>
-						</properties>
-					</file>
-					<file name="metadatakatalog-schema" label="XML-skjema for metadatakatalog" xsi:type="dataFile"
-					definitionReference="metadatakatalog-schema" typeReference="XML">
-						<properties>
-							<path>metadatakatalog.xsd</path>
-							<checksum>
-								<algorithm>SHA-256</algorithm>
-								<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
-							</checksum>
-						</properties>
-					</file>
-				</objects>
-			</container>
-			<definitions>
-				<containerDefinition name="Noark-arkivuttrekk">
-					<description>Arkivuttrekk fra sak-/arkivsystem</description>
-					<properties>
-						<specification>Noark 5-standarden</specification>
-						<source>https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden</source>
-					</properties>
-				</containerDefinition>
-				<fileDefinition name="addml-schema">
-					<description>XML-skjema for addml-filen</description>
-				</fileDefinition>
-				<fileDefinition name="arkivstrukturDefinition">
-					<description>Noark 5's 'arkivstruktur, med arkivobjekter</description>
-				</fileDefinition>
-				<fileDefinition name="arkivstruktur-schema">
-					<description>XML-skjema for arkivstruktur-filen</description>
-				</fileDefinition>
-				<fileDefinition name="metadatakatalog-schema">
-					<description>XML-skjema for metadatakatalog-elementer</description>
-				</fileDefinition>
-				<recordDefinition name="noark5-arkiv">
-					<description>Arkiv-objektet 'arkiv'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-				<groupDefinition name="noark5-arkivskaper">
-					<description>Gruppering 'arkivskaper'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</groupDefinition>
-				<recordDefinition name="noark5-arkivdel">
-					<description>Arkiv-objektet 'arkivdel'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-klassifikasjonssystem">
-					<description>Arkiv-objektet 'klassifikasjonssystem'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-klasse">
-					<description>Arkiv-objektet 'klasse'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-mappe">
-					<description>Arkiv-objektet 'mappe'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-saksmappe">
-					<description>Arkiv-objektet 'saksmappe'</description>
-					<properties>
-						<version>5.0</version>
-						<subTypeOf>noark5-mappe</subTypeOf>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-registrering">
-					<description>Arkiv-objektet 'registrering'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-journalpost">
-					<description>Utvidelse av arkiv-objektet 'registrering'</description>
-					<properties>
-						<version>5.0</version>
-						<subTypeOf>noark5-registrering</subTypeOf>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-dokumentbeskrivelse">
-					<description>Arkiv-objektet 'registrering'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-				<recordDefinition name="noark5-dokumentobjekt">
-					<description>Arkiv-objektet 'registrering'</description>
-					<properties>
-						<version>5.0</version>
-					</properties>
-				</recordDefinition>
-
-				<fieldDefinition name="n5mdk:M001">
-					<description>systemID</description>
-				</fieldDefinition>
-				<attributeDefinition name="n5mdk:M001-label">
-					<description>Se n5mdk:M001</description>
-				</attributeDefinition>
-
-				<!-- Internal  -->
-
-				<typeDefinition name ="xml-file">
-					<description>Extensible Markup Language, abbreviated XML, describes a class of data objects called XML documents and partially describes the behavior of computer programs which process them.</description>
-					<properties>
-						<specification>Extensible Markup Language (XML) 1.0 (Fifth Edition)</specification>
-						<source>https://www.w3.org/TR/xml/</source>
-					</properties>
-				</typeDefinition>
-				<typeDefinition name ="TSV-file">
-					<description>
-						tsv is a popular method of data interchange among databases and
-						spreadsheets and word processors with Mail-merge functions. It is the
-						lowest common denominator in many cases between two different
-						applications.
-
-						A tsv file encodes a number of records that may contain multiple
-						fields.  Each record is represented as a single line.  Each field
-						value is represented as text.  Fields in a record are separated from
-						each other by a tab character.
-					</description>
-					<properties>
-						<specification>Tab-separated values</specification>
-						<source>https://www.iana.org/assignments/media-types/text/tab-separated-values</source>
-						<source>https://www.loc.gov/preservation/digital/formats/fdd/fdd000533.shtml</source>
-						<source>https://www.nationalarchives.gov.uk/PRONOM/x-fmt/13</source>
-					</properties>
-				</typeDefinition>
-				<typeDefinition name ="xml-complex">
-					<description>A complex type definition is a set of attribute declarations and a content type, applicable to the [attributes] and [children] of an element information item respectively. The content type may require the [children] to contain neither element nor character information items (that is, to be empty), to be a string which belongs to a particular simple type or to contain a sequence of element information items which conforms to a particular model group, with or without character information items as well.</description>
-					<properties>
-						<specification>XML Schema Part 1: Structures</specification>
-						<source>https://www.w3.org/TR/xmlschema-1/#Complex_Type_Definitions</source>
-					</properties>
-				</typeDefinition>
-				<typeDefinition name ="xml-string">
-					<description>The string datatype represents character strings in XML. The ·value space· of string is the set of finite-length sequences of characters (as defined in [XML 1.0 (Second Edition)]) that ·match· the Char production from [XML 1.0 (Second Edition)]. A character is an atomic unit of communication; it is not further specified except to note that every character has a corresponding Universal Character Set code point, which is an integer.</description>
-					<properties>
-						<specification>XML Schema Part 2: Datatypes</specification>
-						<source>https://www.w3.org/TR/xmlschema-2/#string</source>
-					</properties>
-				</typeDefinition>
-			</definitions>
-			<types>
-				<fileType name="XML" label="XML" xsi:type="xmlFileType"
-						  definitionReference="xml-file">
-					<properties>
-						<format>
-							<name>XML</name>
-							<version>1.0</version>
-						</format>
-						<charset>UTF-8</charset>
-					</properties>
-				</fileType>
-				<fileType name="TSV" xsi:type="delimitedFileType"
-						  definitionReference="xml-file">
-					<properties>
-						<format>
-							<name>TSV</name>
-						</format>
-						<charset>UTF-8</charset>
-						<recordSeparator>LF</recordSeparator>
-						<fieldSeparator>TAB</fieldSeparator>
-					</properties>
-				</fileType>
-				<recordType name="xml-group" xsi:type="xmlRecordType"
-							definitionReference="xml-complex">
+					<source>http://www.arkivverket.no/standarder/noark5</source>
+					<source>https://github.com/arkivverket/noark5-standard</source>
+				</standard>
+			</content>
+		</reference>
+		<container name="arkivuttrekk" xsi:type="archivalExtraction" definitionReference="Noark-arkivuttrekk">
+			<period>
+				<startDate fieldformat="DD-MM-YYYY">01-01-2022</startDate>
+				<inboundPeriod>soft</inboundPeriod>
+				<endDate fieldformat="DD-MM-YYYY">31-12-2022</endDate>
+				<outgoingPeriod>soft</outgoingPeriod>
+			</period>
+			<containsScreenedInformation>true</containsScreenedInformation>
+			<containsDocumentsWhichIsDisposed>false</containsDocumentsWhichIsDisposed>
+			<containsDocumentsScheduledForDisposal>false</containsDocumentsScheduledForDisposal>
+			<file name="Infotekst" xsi:type="dataFile" definitionReference="Infotekst" typeReference="textfile">
+				<description>Inneholder skjønnlitterær informasjon om arkivuttrekket</description>
+				<path>info.txt</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>885EFC507ABAC7B8202C3DA15ACCB3E39221BAF745E2735AD189A3C627D7384A</value>
+				</checksum>
+			</file>
+			<file name="Arkivstruktur" label="arkivstruktur" xsi:type="xmlFile" definitionReference="arkivstrukturDefinition" typeReference="XML">
+				<path>arkivstruktur.xml</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>12345</value>
+				</numberOfOccurrences>
+				<targetNamespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</targetNamespace>
+				<schemas>
+					<schema>
+						<namespace>http://www.arkivverket.no/standarder/noark5/arkivstruktur</namespace>
+						<fileReference>arkivstruktur-schema</fileReference>
+					</schema>
+					<schema>
+						<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
+						<prefix>n5mdk</prefix>
+						<fileReference>metadatakatalog-schema</fileReference>
+					</schema>
+				</schemas>
+				<root>noark5-arkiv</root>
+				<group name="noark5-arkiv" xsi:type="xmlGroup" definitionReference="noark5-arkiv" typeReference="xml-group">
 					<description></description>
-					<properties/>
-				</recordType>
-				<fieldType name="noark5-ID" label="Tekstfelt" xsi:type="xmlFieldType">
-					<description>Tekststreng</description>
-					<dataType>string</dataType>
-					<fieldFormat>[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}</fieldFormat>
-				</fieldType>
-				<fieldType name="xml-string" label="Tekstfelt" xsi:type="xmlFieldType">
-					<description>Tekststreng</description>
-					<dataType>string</dataType>
-				</fieldType>
-				<attributeType name="xml-attribute" xsi:type="xmlFieldType"
-							   definitionReference="xml-string">
-					<dataType>string</dataType>
-				</attributeType>
-			</types>
-		</dataObjects>
+					<name>arkiv</name>
+					<element>
+						<field name="noark5-systemID" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="noark5-ID">
+							<description></description>
+							<name>systemID</name>
+							<attribute name="label" xsi:type="xmlAttribute" definitionReference="n5mdk:M001-label" typeReference="xml-attribute">
+								<description></description>
+								<name>label</name>
+							</attribute>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-tittel" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
+							<description></description>
+							<name>tittel</name>
+						</field>
+					</element>
+					<element>
+						<minOccurs>0</minOccurs>
+						<field name="noark5-beskrivelse" xsi:type="xmlField" definitionReference="n5mdk:M021" typeReference="xml-string">
+							<description></description>
+							<name>beskrivelse</name>
+						</field>
+					</element>
+					<element>
+						<minOccurs>0</minOccurs>
+						<field name="noark5-arkivstatus" xsi:type="xmlField" definitionReference="n5mdk:M050" typeReference="xml-string">
+							<description></description>
+							<name>arkivstatus</name>
+						</field>
+					</element>
+					<element>
+						<minOccurs>0</minOccurs>
+						<field name="noark5-dokumentmedium" xsi:type="xmlField" definitionReference="n5mdk:M300" typeReference="xml-string">
+							<description></description>
+							<name>dokumentmedium</name>
+						</field>
+					</element>
+					<element>
+						<minOccurs>0</minOccurs>
+						<maxOccurs>unbounded</maxOccurs>
+						<field name="noark5-oppbevaringssted" xsi:type="xmlField" definitionReference="n5mdk:M301" typeReference="xml-string">
+							<description></description>
+							<name>oppbevaringssted</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-opprettetDato" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
+							<description></description>
+							<name>opprettetDato</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-opprettetAv" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
+							<description></description>
+							<name>opprettetAv</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-avsluttetDato" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
+							<description></description>
+							<name>avsluttetDato</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-avsluttetAv" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
+							<description></description>
+							<name>avsluttetAv</name>
+						</field>
+					</element>
+					<element>
+						<maxOccurs>unbounded</maxOccurs>
+						<groupReference>noark5-arkivskaper</groupReference>
+					</element>
+					<element>
+						<groupReference>noark5-arkiv-subObjects</groupReference>
+					</element>
+				</group>
+				<group name="noark5-arkiv-subObjects" xsi:type="xmlGroup" definitionReference="xml-subgrouping" typeReference="xml-group">
+					<description></description>
+					<type>choice</type>
+					<element>
+						<maxOccurs>unbounded</maxOccurs>
+						<groupReference>noark5-arkiv</groupReference>
+					</element>
+					<element>
+						<maxOccurs>unbounded</maxOccurs>
+						<groupReference>noark5-arkivdel</groupReference>
+					</element>
+				</group>
+			</file>
+			<file name="endringslogg" label="endringslogg" xsi:type="xmlFile" definitionReference="endringsloggDefinition" typeReference="XML">
+				<path>endringslogg.xml</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>12345</value>
+				</numberOfOccurrences>
+				<targetNamespace>http://www.arkivverket.no/standarder/noark5/endringslogg</targetNamespace>
+				<schemas>
+					<schema>
+						<namespace>http://www.arkivverket.no/standarder/noark5/endringslogg</namespace>
+						<fileReference>endringslogg-schema</fileReference>
+					</schema>
+					<schema>
+						<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
+						<prefix>n5mdk</prefix>
+						<fileReference>metadatakatalog-schema</fileReference>
+					</schema>
+				</schemas>
+				<root>noark5-endringslogg</root>
+				<group name="noark5-endringslogg" label="noark5-endringslogg" definitionReference="noark5-endringslogg" typeReference="xml-group" xsi:type="xmlGroup">
+					<description></description>
+					<name>endringslogg</name>
+					<element>
+						<maxOccurs>unbounded</maxOccurs>
+						<groupReference>noark5-endring</groupReference>
+					</element>
+				</group>
+				<group name="noark5-endring" xsi:type="xmlGroup" definitionReference="noark5-endring" typeReference="xml-record">
+					<description></description>
+					<name>arkiv</name>
+					<element>
+						<field name="noark5-referanseArkivenhet" definitionReference="n5mdk:M680" typeReference="xml-string">
+							<name>referanseArkivenhet</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-referanseMetadata" definitionReference="n5mdk:M681" typeReference="xml-string">
+							<name>referanseMetadata</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-endretDato" definitionReference="n5mdk:M682" typeReference="xml-string">
+							<name>endretDato</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-endretAv" definitionReference="n5mdk:M683" typeReference="xml-string">
+							<name>endretAv</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-tidligereVerdi" definitionReference="n5mdk:M684" typeReference="xml-string">
+							<name>tidligereVerdi</name>
+						</field>
+					</element>
+					<element>
+						<field name="noark5-nyVerdi" definitionReference="n5mdk:M685" typeReference="xml-string">
+							<name>nyVerdi</name>
+						</field>
+					</element>
+				</group>
+			</file>
+			<file name="addml-schema" label="XML-skjema for addml" xsi:type="dataFile" definitionReference="addml-schema" typeReference="XML">
+				<path>addml.xsd</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
+				</checksum>
+			</file>
+			<file name="arkivstruktur-schema" label="XML-skjema for arkivstruktur" xsi:type="dataFile" definitionReference="arkivstruktur-schema" typeReference="XML">
+				<path>arkivstruktur.xsd</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
+				</checksum>
+			</file>
+			<file name="metadatakatalog-schema" label="XML-skjema for metadatakatalog" xsi:type="dataFile" definitionReference="metadatakatalog-schema" typeReference="XML">
+				<path>metadatakatalog.xsd</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>A7FE4E3B1C352767CF31DF28291B99585DAD7CCBD3B16A36205F34A9783F7DB1</value>
+				</checksum>
+			</file>
+		</container>
+		<definitions>
+			<definition xsi:type="containerDefinition" name="Noark-arkivuttrekk">
+				<description>Arkivuttrekk fra sak-/arkivsystem</description>
+				<specification>Noark5</specification>
+				<source>https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden</source>
+			</definition>
+			<definition xsi:type="fileDefinition" name="Infotekst">
+				<description>Infofil, inneholder skjønnlitterær tekst med informasjon om arkivuttrekket</description>
+			</definition>
+			<definition xsi:type="fileDefinition" name="addml-schema">
+				<description>XML-skjema for addml-filen</description>
+				<specification>Addml for AV</specification>
+				<source>https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden</source>
+			</definition>
+			<definition xsi:type="fileDefinition" name="arkivstrukturDefinition">
+				<description>Noark 5's 'arkivstruktur, med arkivobjekter</description>
+				<specification>Noark5-arkivstruktur</specification>
+				<source>http://www.arkivverket.no/standarder/noark5/arkivstruktur</source>
+			</definition>
+			<definition xsi:type="fileDefinition" name="arkivstruktur-schema">
+				<description>XML-skjema for arkivstruktur-filen</description>
+				<specification>Noark5-arkivstruktur</specification>
+				<source>http://www.arkivverket.no/standarder/noark5/arkivstruktur</source>
+			</definition>
+			<definition xsi:type="fileDefinition" name="metadatakatalog-schema">
+				<description>XML-skjema for metadatakatalog-elementer</description>
+				<specification>Noark5</specification>
+				<source>http://www.arkivverket.no/standarder/noark5/metadatakatalog</source>
+			</definition>
+			<definition xsi:type="fileDefinition" name="endringsloggDefinition">
+				<description>Noark 5's 'endringslogg, med arkivobjekter</description>
+				<specification>Noark5</specification>
+				<source>http://www.arkivverket.no/standarder/noark5/endringslogg</source>
+			</definition>
+			<definition xsi:type="fileDefinition" name="endringslogg-schema">
+				<description>XML-skjema for endringslogg-elementer</description>
+				<specification>Noark5</specification>
+				<source>http://www.arkivverket.no/standarder/noark5/endringslogg</source>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-arkiv">
+				<description>Arkiv-objektet 'arkiv'</description>
+				<incomplete/>
+				<fieldDefinitionReference>noark5-systemID</fieldDefinitionReference>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-arkivskaper">
+				<description>Gruppering 'arkivskaper'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="xml-subgrouping">
+				<description>Gruppering uten element-navn</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-arkivdel">
+				<description>Arkiv-objektet 'arkivdel'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-klassifikasjonssystem">
+				<description>Arkiv-objektet 'klassifikasjonssystem'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-klasse">
+				<description>Arkiv-objektet 'klasse'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-mappe">
+				<description>Arkiv-objektet 'mappe'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-saksmappe">
+				<description>Arkiv-objektet 'saksmappe'</description>
+				<subTypeOf>noark5-mappe</subTypeOf>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-registrering">
+				<description>Arkiv-objektet 'registrering'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-journalpost">
+				<description>Utvidelse av arkiv-objektet 'registrering'</description>
+				<subTypeOf>noark5-registrering</subTypeOf>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-dokumentbeskrivelse">
+				<description>Arkiv-objektet 'registrering'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-dokumentobjekt">
+				<description>Arkiv-objektet 'registrering'</description>
+				<incomplete/>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M001">
+				<description>systemID</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M021">
+				<description>beskrivelse</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M050">
+				<description>arkivstatus</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M300">
+				<description>dokumentmedium</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M301">
+				<description>oppbevaringssted</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="attributeDefinition" name="n5mdk:M001-label">
+				<description>Se n5mdk:M001</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-endringslogg">
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="groupDefinition" name="noark5-endring">
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M680">
+				<description>referanseArkivenhet</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M681">
+				<description>referanseMetadata</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M682">
+				<description>endretDato</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M683">
+				<description>endretAv</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M684">
+				<description>tidligereVerdi</description>
+				<specification>Noark5</specification>
+			</definition>
+			<definition xsi:type="fieldDefinition" name="n5mdk:M685">
+				<description>nyVerdi</description>
+				<specification>Noark5</specification>
+			</definition>
+			<!-- Internal -->
+			<definition xsi:type="typeDefinition" name ="xml-file">
+				<description>Extensible Markup Language, abbreviated XML, describes a class of data objects called XML documents and partially describes the behavior of computer programs which process them.</description>
+				<specification>Extensible Markup Language (XML) 1.0 (Fifth Edition)</specification>
+				<source>https://www.w3.org/TR/xml/</source>
+			</definition>
+			<definition xsi:type="typeDefinition" name ="xml-complex">
+				<description>A complex type definition is a set of attribute declarations and a content type, applicable to the [attributes] and [children] of an element information item respectively. The content type may require the [children] to contain neither element nor character information items (that is, to be empty), to be a string which belongs to a particular simple type or to contain a sequence of element information items which conforms to a particular model group, with or without character information items as well.</description>
+				<specification>XML Schema Part 1: Structures</specification>
+				<source>https://www.w3.org/TR/xmlschema-1/#Complex_Type_Definitions</source>
+			</definition>
+			<definition xsi:type="typeDefinition" name ="xml-string">
+				<description>The string datatype represents character strings in XML. The ·value space· of string is the set of finite-length sequences of characters (as defined in [XML 1.0 (Second Edition)]) that ·match· the Char production from [XML 1.0 (Second Edition)]. A character is an atomic unit of communication; it is not further specified except to note that every character has a corresponding Universal Character Set code point, which is an integer.</description>
+				<specification>XML Schema Part 2: Datatypes</specification>
+				<source>https://www.w3.org/TR/xmlschema-2/#string</source>
+			</definition>
+		</definitions>
+		<types>
+			<fileType name="textfile" label="Tekstfil" definitionReference="Infotekst" xsi:type="dataFileType">
+				<description>Enkel tekstfil med UTF-8 tegnsett</description>
+				<charset>UTF-8</charset>
+			</fileType>
+			<fileType name="XML" label="XML" xsi:type="xmlFileType" definitionReference="xml-file">
+				<format>
+					<name>XML</name>
+					<version>1.0</version>
+				</format>
+				<charset>UTF-8</charset>
+			</fileType>
+			<groupType name="xml-group" xsi:type="xmlGroupType" definitionReference="xml-complex">
+				<description></description>
+			</groupType>
+			<groupType name="xml-record" xsi:type="xmlGroupType" definitionReference="xml-complex">
+				<description></description>
+			</groupType>
+			<fieldType name="noark5-ID" label="Tekstfelt" xsi:type="xmlFieldType">
+				<description>Tekststreng</description>
+				<dataType>string</dataType>
+				<fieldFormat>[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}</fieldFormat>
+			</fieldType>
+			<fieldType name="xml-string" label="Tekstfelt" xsi:type="xmlFieldType">
+				<description>Tekststreng</description>
+				<dataType>string</dataType>
+			</fieldType>
+			<attributeType name="xml-attribute" xsi:type="xmlFieldType" definitionReference="xml-string">
+				<dataType>string</dataType>
+			</attributeType>
+		</types>
 	</dataset>
 </addml>
