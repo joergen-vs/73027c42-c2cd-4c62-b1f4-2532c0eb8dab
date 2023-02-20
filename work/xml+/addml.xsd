@@ -77,13 +77,17 @@
 			<xs:selector xpath=".//addml:attribute" />
 			<xs:field xpath="@definitionReference" />
 		</xs:keyref>
-		<xs:keyref name="code2DefinitionReference" refer="addml:definitionKey">
-			<xs:selector xpath=".//addml:code" />
+		<xs:keyref name="codes2DefinitionReference" refer="addml:definitionKey">
+			<xs:selector xpath=".//addml:codes" />
 			<xs:field xpath="@definitionReference" />
 		</xs:keyref>
 		<xs:keyref name="fileType2DefinitionReference" refer="addml:definitionKey">
 			<xs:selector xpath=".//addml:fileType" />
 			<xs:field xpath="@definitionReference" />
+		</xs:keyref>
+		<xs:keyref name="definition2DefinitionReference" refer="addml:definitionKey">
+			<xs:selector xpath=".//addml:definition/addml:definitionReference" />
+			<xs:field xpath="value" />
 		</xs:keyref>
 
 		<!-- Type-keys -->
@@ -173,7 +177,7 @@
 	<xs:complexType name="agents">
 		<xs:sequence>
 			<xs:group ref="addml:unitGroup"/>
-			<xs:element name="agent" type="addml:_agent"/>
+			<xs:element name="agent" type="addml:_agent" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -192,7 +196,7 @@
 					</xs:element>
 					<xs:element name="otherrole" type="xs:string" minOccurs="0"></xs:element>
 					<xs:element name="orgnr" type="xs:string" minOccurs="0"></xs:element>
-
+					<xs:element name="operationalPeriod" type="addml:StartAndEndDates" />
 					<xs:element name="contact" type="addml:individual" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="software" type="addml:software" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="system" type="addml:system" minOccurs="0" maxOccurs="unbounded"/>
@@ -279,29 +283,32 @@
 			<xs:extension base="addml:_agent">
 				<xs:sequence>
 					<xs:element name="role" type="xs:string"/>
-					<xs:element name="name" type="xs:string"/>
-					<xs:element name="version" type="addml:version"/>
+					<xs:element name="title" type="xs:string"/>
+					<xs:element name="version" type="addml:version" minOccurs="0"/>
 					<xs:element name="type" type="xs:string"/>
-					<xs:element name="operationalPeriod">
-						<xs:complexType>
-							<xs:sequence>
-								<xs:element name="startDate" type="xs:date">
-									<xs:annotation>
-										<xs:documentation>Indicates when system is initially taken into use.</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-								<xs:element name="endDate" type="xs:date">
-									<xs:annotation>
-										<xs:documentation>Indicates when system is taken out of use.</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-							</xs:sequence>
-						</xs:complexType>
-					</xs:element>
-					<xs:element name="subjects" type="xs:string" maxOccurs="unbounded"/>
+					<xs:element name="operationalPeriod" type="addml:StartAndEndDates" />
+					<xs:element name="subjects" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="StartAndEndDates">
+		<xs:sequence>
+			<xs:element name="startDate">
+				<xs:simpleType>
+					<xs:union>
+						<xs:simpleType>
+							<xs:restriction base="xs:date"/>
+						</xs:simpleType>
+						<xs:simpleType>
+							<xs:restriction base="xs:nonNegativeInteger"/>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="endDate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="content">
@@ -620,6 +627,10 @@
 		<xs:sequence>
 			<xs:choice maxOccurs="unbounded">
 				<xs:element name="file" type="addml:_file">
+					<xs:unique name="a">
+						<xs:selector xpath=".//addml:group"/>
+						<xs:field xpath="@name"/>
+					</xs:unique>
 					<xs:key name="groupKey">
 						<xs:selector xpath=".//addml:group"/>
 						<xs:field xpath="@name"/>
@@ -633,7 +644,7 @@
 						<xs:field xpath="@name"/>
 					</xs:key>
 					<xs:key name="codeKey">
-						<xs:selector xpath=".//addml:code"/>
+						<xs:selector xpath=".//addml:codes"/>
 						<xs:field xpath="@name"/>
 					</xs:key>
 				</xs:element>
@@ -688,7 +699,8 @@
 					<xs:annotation>
 						<xs:documentation>Reference to types-object which contains how the file is read.</xs:documentation>
 					</xs:annotation>
-				</xs:attribute>			</xs:extension>
+				</xs:attribute>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
@@ -818,11 +830,11 @@
 
 	<xs:group name="fixedFileObjects">
 		<xs:sequence>
-				<xs:element name="group" type="addml:_group" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
+			<xs:element name="group" type="addml:_group" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -874,11 +886,11 @@
 
 	<xs:group name="delimitedFileObjects">
 		<xs:sequence>
-				<xs:element name="group" type="addml:_group" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
+			<xs:element name="group" type="addml:_group" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -936,11 +948,11 @@
 	<xs:group name="xmlFileObjects">
 		<xs:sequence>
 			<xs:choice>
-					<xs:element name="group" type="addml:_group" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation></xs:documentation>
-						</xs:annotation>
-					</xs:element>
+				<xs:element name="group" type="addml:_group" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation></xs:documentation>
+					</xs:annotation>
+				</xs:element>
 				<xs:element name="field" type="addml:_field">
 					<xs:annotation>
 						<xs:documentation>Single-element xml-file</xs:documentation>
@@ -967,7 +979,8 @@
 			<xs:annotation>
 				<xs:documentation>Reference to types-object which contains how the file is read.</xs:documentation>
 			</xs:annotation>
-		</xs:attribute>	</xs:complexType>
+		</xs:attribute>
+	</xs:complexType>
 
 	<xs:complexType name="fixedGroup">
 		<xs:annotation>
@@ -1032,66 +1045,73 @@
 			<xs:documentation>Defining relations between groups</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:choice>
-				<xs:element name="primaryKey">
-					<xs:complexType/>
-				</xs:element>
-				<xs:element name="alternateKey">
-					<xs:complexType/>
-				</xs:element>
-				<xs:element name="foreignKey">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="fileReference" type="xs:string"/>
-							<xs:element name="groupReference" type="xs:string"/>
-							<xs:element name="fieldReferences">
+			<xs:element name="key">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="primaryKey">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="alternateKey">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="foreignKey">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
+										<xs:element name="fileReference" type="xs:string"/>
+										<xs:element name="groupReference" type="xs:string"/>
+										<xs:element name="fieldReferences">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
+														<xs:annotation>
+															<xs:documentation>Field-reference</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="relationType">
 											<xs:annotation>
-												<xs:documentation>Field-reference</xs:documentation>
+												<xs:documentation>Relationship between groups</xs:documentation>
 											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="1:1">
+														<xs:annotation>
+															<xs:documentation>One-to-one</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="1:N">
+														<xs:annotation>
+															<xs:documentation>One-to-many</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="N:M">
+														<xs:annotation>
+															<xs:documentation>Many-to-many</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
 										</xs:element>
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="relationType">
-								<xs:annotation>
-									<xs:documentation>Relationship between groups</xs:documentation>
-								</xs:annotation>
-								<xs:simpleType>
-									<xs:restriction base="xs:string">
-										<xs:enumeration value="1:1">
-											<xs:annotation>
-												<xs:documentation>One-to-one</xs:documentation>
-											</xs:annotation>
-										</xs:enumeration>
-										<xs:enumeration value="1:N">
-											<xs:annotation>
-												<xs:documentation>One-to-many</xs:documentation>
-											</xs:annotation>
-										</xs:enumeration>
-										<xs:enumeration value="N:M">
-											<xs:annotation>
-												<xs:documentation>Many-to-many</xs:documentation>
-											</xs:annotation>
-										</xs:enumeration>
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:element>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-			</xs:choice>
-			<xs:element name="fieldReferences">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
-							<xs:annotation>
-								<xs:documentation>Field-reference</xs:documentation>
-							</xs:annotation>
+						</xs:choice>
+						<xs:element name="fieldReferences">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Field-reference</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
+					<xs:attribute name="name" use="required"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
@@ -1284,7 +1304,8 @@
 			<xs:annotation>
 				<xs:documentation>Reference to types-object which contains how the file is read.</xs:documentation>
 			</xs:annotation>
-		</xs:attribute>	</xs:complexType>
+		</xs:attribute>
+	</xs:complexType>
 
 	<xs:complexType name="fixedField">
 		<xs:complexContent>
@@ -1349,17 +1370,18 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:choice>
-			<xs:element name="notNull" type="xs:nonNegativeInteger">
+			<xs:element name="notNull" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation></xs:documentation>
 				</xs:annotation>
+				<xs:complexType/>
 			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
 	<xs:group name="fixedFieldObjects">
 		<xs:sequence>
-			<xs:group ref="addml:codesGroup"/>
+			<xs:group ref="addml:codesGroup" minOccurs="0"/>
 		</xs:sequence>
 	</xs:group>
 
@@ -1421,12 +1443,30 @@
 			<xs:element name="codes">
 				<xs:complexType>
 					<xs:sequence>
+						<xs:group ref="addml:unitGroup" />
 						<xs:element name="code" type="addml:code" maxOccurs="unbounded" />
 					</xs:sequence>
+					<xs:attributeGroup ref="addml:unitAttributeGroup" />
+					<xs:attribute name="definitionReference" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Reference to definition-object which contains the description of the file.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
 	</xs:group>
+
+	<xs:complexType name="code">
+		<xs:sequence>
+			<xs:element name="codeValue" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Coded value in a field</xs:documentation>
+					<xs:documentation>EX. 0, 1 or A, B, C</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 
 	<xs:complexType name="attribute">
 		<xs:sequence>
@@ -1445,7 +1485,8 @@
 			<xs:annotation>
 				<xs:documentation>Reference to types-object which contains how the file is read.</xs:documentation>
 			</xs:annotation>
-		</xs:attribute>	</xs:complexType>
+		</xs:attribute>
+	</xs:complexType>
 
 	<xs:complexType name="xmlAttribute">
 		<xs:complexContent>
@@ -1485,24 +1526,6 @@
 		</xs:sequence>
 	</xs:group>
 
-	<xs:complexType name="code">
-		<xs:sequence>
-			<xs:group ref="addml:unitGroup" />
-			<xs:element name="codeValue" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Coded value in a field</xs:documentation>
-					<xs:documentation>EX. 0, 1 or A, B, C</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-		<xs:attributeGroup ref="addml:unitAttributeGroup" />
-		<xs:attribute name="definitionReference" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation>Reference to definition-object which contains the description of the file.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:complexType>
-
 	<xs:complexType name="_folder">
 		<xs:sequence>
 			<xs:group ref="addml:unitGroup"/>
@@ -1523,48 +1546,36 @@
 
 	<xs:group name="folderProperties">
 		<xs:sequence>
-			<xs:element name="folder">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="name" type="addml:name">
-							<xs:annotation>
-								<xs:documentation>Path to folder relative to this file.</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="content">
-							<xs:annotation>
-								<xs:documentation>Type of content in folder.</xs:documentation>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="DATAFILES" />
-									<xs:enumeration value="DOCUMENTATION" />
-									<xs:enumeration value="DOCUMENTS" />
-									<xs:enumeration value="REPORTS" />
-									<xs:enumeration value="OTHER" />
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element name="name" type="addml:name">
+				<xs:annotation>
+					<xs:documentation>Path to folder relative to this file.</xs:documentation>
+				</xs:annotation>
 			</xs:element>
-			<xs:element name="info">
+			<xs:element name="content">
+				<xs:annotation>
+					<xs:documentation>Type of content in folder.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="DATAFILES" />
+						<xs:enumeration value="DOCUMENTATION" />
+						<xs:enumeration value="DOCUMENTS" />
+						<xs:enumeration value="REPORTS" />
+						<xs:enumeration value="OTHER" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="numberOfOccurrences">
+				<xs:annotation>
+					<xs:documentation>Number of files recursively in folder, based on extension. All files available with filepath equal to '.*'.</xs:documentation>
+				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="numberOfOccurrences">
+						<xs:element name="filepath" type="xs:string" />
+						<xs:element name="value" type="addml:value">
 							<xs:annotation>
-								<xs:documentation>Number of files recursively in folder, based on extension. All files available with filepath equal to '.*'.</xs:documentation>
+								<xs:documentation></xs:documentation>
 							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="filepath" type="xs:string" />
-									<xs:element name="value" type="addml:value">
-										<xs:annotation>
-											<xs:documentation></xs:documentation>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
 						</xs:element>
 					</xs:sequence>
 				</xs:complexType>
@@ -1588,110 +1599,6 @@
 			<xs:group ref="addml:additionalProperties" minOccurs="0" />
 		</xs:sequence>
 		<xs:attributeGroup ref="addml:unitAttributeGroup" />
-	</xs:complexType>
-
-	<xs:complexType name="containerDefinition">
-		<xs:complexContent>
-			<xs:extension base="addml:_definition">
-				<xs:sequence>
-					<xs:group ref="addml:containerDefinitionProperties" />
-					<xs:group ref="addml:containerDefinitionObjects"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:group name="containerDefinitionProperties">
-		<xs:sequence>
-			<xs:element name="incomplete" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Shows if a object is described in full or partially</xs:documentation>
-				</xs:annotation>
-				<xs:complexType />
-			</xs:element>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="catalogDefinitionProperties">
-		<xs:sequence>
-			<xs:element name="specification" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Reference to specification in reference/content</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="source" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation></xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="containerDefinitionObjects">
-		<xs:sequence>
-			<xs:choice>
-				<xs:element name="fileDefinition" type="addml:fileDefinition" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="folderDefinition" type="addml:folderDefinition" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
-			</xs:choice>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:complexType name="fileDefinition">
-		<xs:complexContent>
-			<xs:extension base="addml:_definition">
-				<xs:sequence>
-					<xs:group ref="addml:fileDefinitionProperties" />
-					<xs:group ref="addml:fileDefinitionObjects"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:group name="fileDefinitionProperties">
-		<xs:sequence>
-			<xs:element name="incomplete" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Shows if a object is described in full or partially</xs:documentation>
-				</xs:annotation>
-				<xs:complexType />
-			</xs:element>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="fileDefinitionObjects">
-		<xs:sequence>
-			<xs:choice minOccurs="0" maxOccurs="unbounded">
-				<xs:element name="fieldDefinitionReference" type="addml:fieldDefinition">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="groupDefinition" type="addml:groupDefinition">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
-			</xs:choice>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:complexType name="groupDefinition">
-		<xs:complexContent>
-			<xs:extension base="addml:_definition">
-				<xs:sequence>
-					<xs:group ref="addml:groupDefinitionProperties" />
-					<xs:group ref="addml:groupDefinitionObjects"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
 	</xs:complexType>
 
 	<xs:group name="versioningProperties">
@@ -1727,6 +1634,106 @@
 		</xs:sequence>
 	</xs:group>
 
+	<xs:group name="catalogDefinitionProperties">
+		<xs:sequence>
+			<xs:element name="specification" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Reference to specification in reference/content</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="source" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="containerDefinition">
+		<xs:complexContent>
+			<xs:extension base="addml:_definition">
+				<xs:sequence>
+					<xs:group ref="addml:containerDefinitionProperties" />
+					<xs:group ref="addml:containerDefinitionObjects"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:group name="containerDefinitionProperties">
+		<xs:sequence>
+			<xs:element name="incomplete" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Shows if a object is described in full or partially</xs:documentation>
+				</xs:annotation>
+				<xs:complexType />
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="containerDefinitionObjects">
+		<xs:sequence>
+			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="definitionReferenceGroup">
+		<xs:sequence>
+			<xs:element name="definitionReference" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="value" type="xs:string"/>
+						<xs:element name="notNull" minOccurs="0">
+							<xs:complexType/>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="fileDefinition">
+		<xs:complexContent>
+			<xs:extension base="addml:_definition">
+				<xs:sequence>
+					<xs:group ref="addml:fileDefinitionProperties" />
+					<xs:group ref="addml:fileDefinitionObjects"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:group name="fileDefinitionProperties">
+		<xs:sequence>
+			<xs:element name="incomplete" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Shows if a object is described in full or partially</xs:documentation>
+				</xs:annotation>
+				<xs:complexType />
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="fileDefinitionObjects">
+		<xs:sequence>
+			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="groupDefinition">
+		<xs:complexContent>
+			<xs:extension base="addml:_definition">
+				<xs:sequence>
+					<xs:group ref="addml:groupDefinitionProperties" />
+					<xs:group ref="addml:groupDefinitionObjects"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
 	<xs:group name="groupDefinitionProperties">
 		<xs:sequence>
 			<xs:element name="incomplete" minOccurs="0">
@@ -1746,18 +1753,7 @@
 
 	<xs:group name="groupDefinitionObjects">
 		<xs:sequence>
-			<xs:choice minOccurs="0" maxOccurs="unbounded">
-				<xs:element name="fieldDefinitionReference" type="xs:string">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="groupDefinitionReference" type="xs:string">
-					<xs:annotation>
-						<xs:documentation></xs:documentation>
-					</xs:annotation>
-				</xs:element>
-			</xs:choice>
+			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
@@ -1779,11 +1775,7 @@
 
 	<xs:group name="fieldDefinitionObjects">
 		<xs:sequence>
-			<xs:element name="codeDefinitionReference" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation></xs:documentation>
-				</xs:annotation>
-			</xs:element>
+			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
@@ -1804,11 +1796,7 @@
 
 	<xs:group name="attributeDefinitionObjects">
 		<xs:sequence>
-			<xs:element name="codeDefinitionReference" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation></xs:documentation>
-				</xs:annotation>
-			</xs:element>
+			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
@@ -1817,6 +1805,7 @@
 			<xs:extension base="addml:_definition">
 				<xs:sequence>
 					<xs:group ref="addml:codeDefinitionProperties" />
+					<xs:group ref="addml:codeDefinitionObjects" />
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -1824,6 +1813,19 @@
 
 	<xs:group name="codeDefinitionProperties">
 		<xs:sequence>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="codeDefinitionObjects">
+		<xs:sequence>
+			<xs:element name="code" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="value" type="xs:string"/>
+						<xs:element name="explanation" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
 

@@ -21,6 +21,11 @@
 					<source>http://www.arkivverket.no/standarder/noark5</source>
 					<source>https://github.com/arkivverket/noark5-standard</source>
 				</standard>
+				<standard name="XML 1.0">
+					<title>Extensible Markup Language (XML) 1.0 (Fifth Edition)</title>
+					<version>5</version>
+					<source>http://www.w3.org/TR/2008/REC-xml-20081126/</source>
+				</standard>
 			</content>
 		</reference>
 		<container name="arkivuttrekk" xsi:type="archivalExtraction" definitionReference="Noark-arkivuttrekk">
@@ -186,7 +191,7 @@
 						<groupReference>noark5-endring</groupReference>
 					</element>
 				</group>
-				<group name="noark5-endring" xsi:type="xmlGroup" definitionReference="noark5-endring" typeReference="xml-record">
+				<group name="noark5-endring" xsi:type="xmlGroup" definitionReference="noark5-endring" typeReference="xml-group">
 					<description></description>
 					<name>arkiv</name>
 					<element>
@@ -285,6 +290,7 @@
 			<definition xsi:type="groupDefinition" name="noark5-arkiv">
 				<description>Arkiv-objektet 'arkiv'</description>
 				<incomplete/>
+				<isRecord/>
 				<fieldDefinitionReference>noark5-systemID</fieldDefinitionReference>
 			</definition>
 			<definition xsi:type="groupDefinition" name="noark5-arkivskaper">
@@ -417,9 +423,6 @@
 				<charset>UTF-8</charset>
 			</fileType>
 			<groupType name="xml-group" xsi:type="xmlGroupType" definitionReference="xml-complex">
-				<description></description>
-			</groupType>
-			<groupType name="xml-record" xsi:type="xmlGroupType" definitionReference="xml-complex">
 				<description></description>
 			</groupType>
 			<fieldType name="noark5-ID" label="Tekstfelt" xsi:type="xmlFieldType">
