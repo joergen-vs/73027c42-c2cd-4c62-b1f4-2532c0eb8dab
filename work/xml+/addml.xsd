@@ -635,10 +635,6 @@
 						<xs:selector xpath=".//addml:group"/>
 						<xs:field xpath="@name"/>
 					</xs:key>
-					<xs:key name="fieldKey">
-						<xs:selector xpath=".//addml:field"/>
-						<xs:field xpath="@name"/>
-					</xs:key>
 					<xs:key name="attributeKey">
 						<xs:selector xpath=".//addml:attribute"/>
 						<xs:field xpath="@name"/>
@@ -834,6 +830,10 @@
 				<xs:annotation>
 					<xs:documentation></xs:documentation>
 				</xs:annotation>
+				<xs:key name="fixed_fieldKey">
+					<xs:selector xpath=".//addml:field"/>
+					<xs:field xpath="@name"/>
+				</xs:key>
 			</xs:element>
 		</xs:sequence>
 	</xs:group>
@@ -890,6 +890,10 @@
 				<xs:annotation>
 					<xs:documentation></xs:documentation>
 				</xs:annotation>
+				<xs:key name="delimited_fieldKey">
+					<xs:selector xpath=".//addml:field"/>
+					<xs:field xpath="@name"/>
+				</xs:key>
 			</xs:element>
 		</xs:sequence>
 	</xs:group>
@@ -952,6 +956,10 @@
 					<xs:annotation>
 						<xs:documentation></xs:documentation>
 					</xs:annotation>
+					<xs:key name="xml_fieldKey">
+						<xs:selector xpath=".//addml:field"/>
+						<xs:field xpath="@name"/>
+					</xs:key>
 				</xs:element>
 				<xs:element name="field" type="addml:_field">
 					<xs:annotation>
@@ -1027,93 +1035,6 @@
 	<xs:group name="groupProperties">
 		<xs:sequence>
 			<xs:group ref="addml:completionProperties"/>
-			<xs:element name="keys" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>Primary-, candidate- and foreign-keys associated with groups in file</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:sequence>
-						<xs:group ref="addml:keyGroup" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:group>
-
-	<xs:group name="keyGroup">
-		<xs:annotation>
-			<xs:documentation>Defining relations between groups</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="key">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:choice>
-							<xs:element name="primaryKey">
-								<xs:complexType/>
-							</xs:element>
-							<xs:element name="alternateKey">
-								<xs:complexType/>
-							</xs:element>
-							<xs:element name="foreignKey">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="fileReference" type="xs:string"/>
-										<xs:element name="groupReference" type="xs:string"/>
-										<xs:element name="fieldReferences">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
-														<xs:annotation>
-															<xs:documentation>Field-reference</xs:documentation>
-														</xs:annotation>
-													</xs:element>
-												</xs:sequence>
-											</xs:complexType>
-										</xs:element>
-										<xs:element name="relationType">
-											<xs:annotation>
-												<xs:documentation>Relationship between groups</xs:documentation>
-											</xs:annotation>
-											<xs:simpleType>
-												<xs:restriction base="xs:string">
-													<xs:enumeration value="1:1">
-														<xs:annotation>
-															<xs:documentation>One-to-one</xs:documentation>
-														</xs:annotation>
-													</xs:enumeration>
-													<xs:enumeration value="1:N">
-														<xs:annotation>
-															<xs:documentation>One-to-many</xs:documentation>
-														</xs:annotation>
-													</xs:enumeration>
-													<xs:enumeration value="N:M">
-														<xs:annotation>
-															<xs:documentation>Many-to-many</xs:documentation>
-														</xs:annotation>
-													</xs:enumeration>
-												</xs:restriction>
-											</xs:simpleType>
-										</xs:element>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-						</xs:choice>
-						<xs:element name="fieldReferences">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
-										<xs:annotation>
-											<xs:documentation>Field-reference</xs:documentation>
-										</xs:annotation>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-					</xs:sequence>
-					<xs:attribute name="name" use="required"/>
-				</xs:complexType>
-			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -1243,36 +1164,12 @@
 			<xs:element name="element" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="minOccurs" minOccurs="0" type="xs:integer">
-							<xs:annotation>
-								<xs:documentation>Minimum count of occurrences of element</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="maxOccurs" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>Maximum count of occurrences of element</xs:documentation>
-							</xs:annotation>
-							<xs:simpleType>
-								<xs:union>
-									<xs:simpleType>
-										<xs:annotation>
-											<xs:documentation>'unbounded' for no upper limit</xs:documentation>
-										</xs:annotation>
-										<xs:restriction base="xs:string">
-											<xs:enumeration value="unbounded"/>
-										</xs:restriction>
-									</xs:simpleType>
-									<xs:simpleType>
-										<xs:annotation>
-											<xs:documentation>1 or higher integer</xs:documentation>
-										</xs:annotation>
-										<xs:restriction base="xs:integer"/>
-									</xs:simpleType>
-								</xs:union>
-							</xs:simpleType>
-						</xs:element>
 						<xs:choice>
-
+							<xs:element name="attribute" type="addml:xmlAttribute">
+								<xs:annotation>
+									<xs:documentation></xs:documentation>
+								</xs:annotation>
+							</xs:element>
 							<xs:element name="field" type="addml:xmlField" />
 							<xs:element name="groupReference" type="xs:string">
 								<xs:annotation>
@@ -1282,6 +1179,45 @@
 							</xs:element>
 						</xs:choice>
 					</xs:sequence>
+					<xs:attribute name="tag">
+						<xs:annotation>
+							<xs:documentation>Minimum, from 0 up</xs:documentation>
+							<xs:documentation>0 = null-able</xs:documentation>
+							<xs:documentation>1 = Default</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string"/>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="min" use="required">
+						<xs:annotation>
+							<xs:documentation>Minimum, from 0 up</xs:documentation>
+							<xs:documentation>0 = null-able</xs:documentation>
+							<xs:documentation>1 = Default</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:nonNegativeInteger"/>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="max" use="required">
+						<xs:annotation>
+							<xs:documentation>Maximum, from 1 up, included 'unbounded'</xs:documentation>
+							<xs:documentation>1 = Default</xs:documentation>
+							<xs:documentation>'unbounded' = No specific limit / '1 or more'</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:union>
+								<xs:simpleType>
+									<xs:restriction base="xs:nonNegativeInteger"/>
+								</xs:simpleType>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="unbounded"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:union>
+						</xs:simpleType>
+					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
@@ -1419,11 +1355,6 @@
 					<xs:documentation>Namespace-shorthand in element-name</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="name" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Element-name</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -1444,7 +1375,12 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:group ref="addml:unitGroup" />
-						<xs:element name="code" type="addml:code" maxOccurs="unbounded" />
+						<xs:element name="codeValue" type="xs:string" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Coded value in a field</xs:documentation>
+								<xs:documentation>EX. 0, 1 or A, B, C</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 					</xs:sequence>
 					<xs:attributeGroup ref="addml:unitAttributeGroup" />
 					<xs:attribute name="definitionReference" type="xs:string" use="required">
@@ -1459,12 +1395,6 @@
 
 	<xs:complexType name="code">
 		<xs:sequence>
-			<xs:element name="codeValue" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Coded value in a field</xs:documentation>
-					<xs:documentation>EX. 0, 1 or A, B, C</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -1511,11 +1441,6 @@
 
 	<xs:group name="xmlAttributeProperties">
 		<xs:sequence>
-			<xs:element name="name" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Attribute-name</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
@@ -1673,23 +1598,47 @@
 
 	<xs:group name="containerDefinitionObjects">
 		<xs:sequence>
-			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
+			<xs:group ref="addml:referenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
-	<xs:group name="definitionReferenceGroup">
+	<xs:group name="referenceGroup">
 		<xs:sequence>
-			<xs:element name="definitionReference" maxOccurs="unbounded">
+			<xs:element name="reference" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation></xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="value" type="xs:string"/>
-						<xs:element name="notNull" minOccurs="0">
-							<xs:complexType/>
-						</xs:element>
-					</xs:sequence>
+					<xs:attribute name="value" type="xs:string"/>
+					<xs:attribute name="min" use="required">
+						<xs:annotation>
+							<xs:documentation>Minimum, from 0 up</xs:documentation>
+							<xs:documentation>0 = null-able</xs:documentation>
+							<xs:documentation>1 = Default</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:nonNegativeInteger"/>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="max" use="required">
+						<xs:annotation>
+							<xs:documentation>Maximum, from 1 up, included 'unbounded'</xs:documentation>
+							<xs:documentation>1 = Default</xs:documentation>
+							<xs:documentation>'unbounded' = No specific limit / '1 or more'</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:union>
+								<xs:simpleType>
+									<xs:restriction base="xs:nonNegativeInteger"/>
+								</xs:simpleType>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="unbounded"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:union>
+						</xs:simpleType>
+					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
@@ -1719,7 +1668,7 @@
 
 	<xs:group name="fileDefinitionObjects">
 		<xs:sequence>
-			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
+			<xs:group ref="addml:referenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
@@ -1748,12 +1697,92 @@
 				</xs:annotation>
 				<xs:complexType/>
 			</xs:element>
+			<xs:element name="keys" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Primary-, candidate- and foreign-keys associated with groups in file</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="addml:keyGroup" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:group name="keyGroup">
+		<xs:annotation>
+			<xs:documentation>Defining relations between groups</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="key">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="primaryKey">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="alternateKey">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="foreignKey">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="fileReference" type="xs:string" minOccurs="0"/>
+										<xs:element name="groupReference" type="xs:string"/>
+										<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Field-reference</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="relationType">
+											<xs:annotation>
+												<xs:documentation>Relationship between groups</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="1:1">
+														<xs:annotation>
+															<xs:documentation>One-to-one</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="1:N">
+														<xs:annotation>
+															<xs:documentation>One-to-many</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="N:1">
+														<xs:annotation>
+															<xs:documentation>Many-to-one</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+													<xs:enumeration value="N:M">
+														<xs:annotation>
+															<xs:documentation>Many-to-many</xs:documentation>
+														</xs:annotation>
+													</xs:enumeration>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:element name="fieldReference" type="xs:string" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Field-reference</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="name" use="required"/>
+				</xs:complexType>
+			</xs:element>
 		</xs:sequence>
 	</xs:group>
 
 	<xs:group name="groupDefinitionObjects">
 		<xs:sequence>
-			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
+			<xs:group ref="addml:referenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
@@ -1775,7 +1804,7 @@
 
 	<xs:group name="fieldDefinitionObjects">
 		<xs:sequence>
-			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
+			<xs:group ref="addml:referenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
@@ -1796,7 +1825,7 @@
 
 	<xs:group name="attributeDefinitionObjects">
 		<xs:sequence>
-			<xs:group ref="addml:definitionReferenceGroup" minOccurs="0" />
+			<xs:group ref="addml:referenceGroup" minOccurs="0" />
 		</xs:sequence>
 	</xs:group>
 
@@ -1822,7 +1851,7 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="value" type="xs:string"/>
-						<xs:element name="explanation" type="xs:string"/>
+						<xs:element name="explanation" type="xs:string" minOccurs="0"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -2324,10 +2353,18 @@
 					<xs:documentation></xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="alignment" type="xs:string" minOccurs="0">
+			<xs:element name="alignment" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation></xs:documentation>
+					<xs:documentation>Aligns content to left, center or right</xs:documentation>
+					<xs:documentation>TODO: Should it be defined here, or not?</xs:documentation>
 				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="right" />
+						<xs:enumeration value="left" />
+						<xs:enumeration value="center" />
+					</xs:restriction>
+				</xs:simpleType>
 			</xs:element>
 			<xs:element name="padChar" type="xs:string" minOccurs="0">
 				<xs:annotation>

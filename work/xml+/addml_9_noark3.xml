@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<addml xmlns="http://www.arkivverket.no/standarder/addml/v9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd"
+    name="Test">
+	<dataset name="Test">
+		<reference>
+			<context>
+			</context>
+			<content>
+			</content>
+		</reference>
+		<container name="Test" xsi:type="archivalExtraction" definitionReference="N3-fagsystem">
+			<description></description>
+			<period>
+				<startDate></startDate>
+				<endDate></endDate>
+			</period>
+			<file name="Saksregister" xsi:type="fixedFile"
+				  definitionReference="Saksregister-def" typeReference="Fastlengde">
+				<path>SAK.DAT</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>BABDBAEDA44EB7350ADB639DC6DE49F6550B1F02FF842E09009A1DED9DF5A83D</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>123</value>
+				</numberOfOccurrences>
+				<group name="Saksregisterpost" xsi:type="fixedGroup"
+					   definitionReference="Saksregisterpost-def">
+					<length>280</length>
+					<field name="Posttype" xsi:type="fixedField"
+						   definitionReference="Posttype_S-def" typeReference="string-1">
+						<description topic="Bruk">Fast verdi S</description>
+						<startPos>1</startPos>
+						<fixedLength>1</fixedLength>
+						<codes name="Posttype-sak" definitionReference="Posttype_S-def">
+							<codeValue>S</codeValue>
+						</codes>
+					</field>
+					<field name="Grad" xsi:type="fixedField"
+						   definitionReference="Grad-def" typeReference="string-1">
+						<startPos>2</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Saksnr" xsi:type="fixedField"
+						   definitionReference="Saksnr-def" typeReference="string-1">
+						<startPos>5</startPos>
+						<fixedLength>10</fixedLength>
+					</field>
+					<field name="Dato" xsi:type="fixedField"
+						   definitionReference="Dato-def" typeReference="string-1">
+						<startPos>15</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Arkiv_1_delfelt" xsi:type="fixedField"
+						   definitionReference="Delarkiv-def" typeReference="string-1">
+						<startPos>5</startPos>
+						<fixedLength>10</fixedLength>
+					</field>
+					<field name="Arkiv_2_delfelt" xsi:type="fixedField"
+						   definitionReference="Arkivkode-def" typeReference="string-1">
+						<startPos>25</startPos>
+						<fixedLength>16</fixedLength>
+					</field>
+					<field name="Blankt_felt_1" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>41</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Saksansv_1_delfelt" xsi:type="fixedField"
+						   definitionReference="Saksansv_1-def"
+						   typeReference="string-1">
+						<startPos>49</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Saksansv_2_delfelt" xsi:type="fixedField"
+						   definitionReference="Saksansv_2-def"
+						   typeReference="string-1">
+						<startPos>53</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Presedens" xsi:type="fixedField"
+						   definitionReference="Presedens-def"
+						   typeReference="string-1">
+						<startPos>57</startPos>
+						<fixedLength>16</fixedLength>
+					</field>
+					<field name="Kassasjon" xsi:type="fixedField"
+						   definitionReference="Kassasjon-def"
+						   typeReference="integer-2">
+						<startPos>73</startPos>
+						<fixedLength>2</fixedLength>
+					</field>
+					<field name="Kryssreferanse" xsi:type="fixedField"
+						   definitionReference="Kryssreferanse-def"
+						   typeReference="string-1">
+						<startPos>75</startPos>
+						<fixedLength>16</fixedLength>
+					</field>
+					<field name="Sakstittel" xsi:type="fixedField"
+						   definitionReference="Sakstittel-def"
+						   typeReference="string-1">
+						<startPos>91</startPos>
+						<fixedLength>140</fixedLength>
+					</field>
+					<field name="Antall_dok" xsi:type="fixedField"
+						   definitionReference="Antall_dok-def"
+						   typeReference="integer-2">
+						<startPos>231</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Siste_dok" xsi:type="fixedField"
+						   definitionReference="Siste_dok-def"
+						   typeReference="string-1">
+						<startPos>234</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Sak_avsluttet" xsi:type="fixedField"
+						   definitionReference="Sak_avsluttet-def"
+						   typeReference="string-1">
+						<startPos>242</startPos>
+						<fixedLength>1</fixedLength>
+					</field>
+					<field name="Sekundaerkode" xsi:type="fixedField"
+						   definitionReference="Sekundaerkode-def"
+						   typeReference="string-1">
+						<startPos>243</startPos>
+						<fixedLength>30</fixedLength>
+					</field>
+					<field name="Blankt_felt_2" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def"
+						   typeReference="string-1">
+						<startPos>273</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+				</group>
+			</file>
+			<file name="Dokumentregister" xsi:type="fixedFile"
+				  definitionReference="Dokumentregister-def" typeReference="Fastlengde">
+				<path>DOK.DAT</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>BABDBAEDA44EB7350ADB639DC6DE49F6550B1F02FF842E09009A1DED9DF5A83D</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>123</value>
+				</numberOfOccurrences>
+				<group name="Eksterne_dokumenter" xsi:type="fixedGroup"
+					   definitionReference="Eksterne_dokumenter-def">
+					<IdentifyingFieldValues>
+						<fieldValue>B</fieldValue>
+					</IdentifyingFieldValues>
+					<length>580</length>
+					<field name="Posttype" xsi:type="fixedField"
+						   definitionReference="Posttype-def" typeReference="string-1">
+						<description topic="Bruk">Fast verdi B</description>
+						<startPos>1</startPos>
+						<fixedLength>1</fixedLength>
+						<codes name="Posttype-Eksterne_dokumenter" definitionReference="Posttype_B-def">
+							<codeValue>B</codeValue>
+						</codes>
+					</field>
+					<field name="Grad" xsi:type="fixedField"
+						   definitionReference="Grad-def" typeReference="string-1">
+						<startPos>2</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Saksnr" xsi:type="fixedField"
+						   definitionReference="Saksnr-def" typeReference="string-1">
+						<startPos>5</startPos>
+						<fixedLength>10</fixedLength>
+					</field>
+					<field name="Doknr" xsi:type="fixedField"
+						   definitionReference="Doknr-def" typeReference="integer-1">
+						<startPos>15</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Journaldato" xsi:type="fixedField"
+						   definitionReference="Journaldato-def" typeReference="date-1">
+						<startPos>18</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Doktype" xsi:type="fixedField"
+						   definitionReference="Doktype-def" typeReference="string-1">
+						<startPos>26</startPos>
+						<fixedLength>1</fixedLength>
+						<codes name="Doktype_kode" definitionReference="Doktype_kode-def">
+							<codeValue>I</codeValue>
+							<codeValue>U</codeValue>
+						</codes>
+					</field>
+					<field name="Uoff" xsi:type="fixedField"
+						   definitionReference="Uoff-def" typeReference="string-1">
+						<startPos>27</startPos>
+						<fixedLength>16</fixedLength>
+					</field>
+					<field name="Bdato" xsi:type="fixedField"
+						   definitionReference="Bdato-def" typeReference="date-1">
+						<startPos>43</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Vedlegg" xsi:type="fixedField"
+						   definitionReference="Vedlegg-def" typeReference="integer-1">
+						<startPos>51</startPos>
+						<fixedLength>2</fixedLength>
+					</field>
+					<field name="Avgradering" xsi:type="fixedField"
+						   definitionReference="Avgradering-def" typeReference="string-1">
+						<startPos>53</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Saksbeh_for_dok_1_delfelt" xsi:type="fixedField"
+						   definitionReference="Saksbeh_for_dok_1-def" typeReference="string-1">
+						<startPos>56</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Saksbeh_for_dok_2_delfelt" xsi:type="fixedField"
+						   definitionReference="Saksbeh_for_dok_2-def" typeReference="string-1">
+						<startPos>60</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Blankt_felt_1" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>64</startPos>
+						<fixedLength>7</fixedLength>
+					</field>
+					<field name="Avs_mot_forkortelse" xsi:type="fixedField"
+						   definitionReference="Avs_mot_forkortelse-def" typeReference="string-1">
+						<startPos>71</startPos>
+						<fixedLength>10</fixedLength>
+					</field>
+					<field name="Avs_mot" xsi:type="fixedField"
+						   definitionReference="Avs_mot-def" typeReference="string-1">
+						<startPos>81</startPos>
+						<fixedLength>70</fixedLength>
+					</field>
+					<field name="Dokumentbeskrivelse" xsi:type="fixedField"
+						   definitionReference="Dokumentbeskrivelse-def" typeReference="string-1">
+						<startPos>151</startPos>
+						<fixedLength>140</fixedLength>
+					</field>
+					<field name="Tillegg" xsi:type="fixedField"
+						   definitionReference="Tillegg-def" typeReference="string-1">
+						<startPos>291</startPos>
+						<fixedLength>210</fixedLength>
+					</field>
+					<field name="Avskrivning_doknr" xsi:type="fixedField"
+						   definitionReference="Avskrivning_doknr-def" typeReference="integer-1">
+						<startPos>501</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Avskrivning_dato" xsi:type="fixedField"
+						   definitionReference="Avskrivning_dato-def" typeReference="date-1">
+						<startPos>504</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Avskrivning_maate" xsi:type="fixedField"
+						   definitionReference="Avskrivning_maate-def" typeReference="string-1">
+						<startPos>512</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Loepenr" xsi:type="fixedField"
+						   definitionReference="Loepenr-def" typeReference="string-1">
+						<startPos>516</startPos>
+						<fixedLength>11</fixedLength>
+					</field>
+					<field name="Journalenhet" xsi:type="fixedField"
+						   definitionReference="Journalenhet-def" typeReference="string-1">
+						<startPos>527</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Blankt_felt_2" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>530</startPos>
+						<fixedLength>11</fixedLength>
+					</field>
+					<field name="Filreferanse" xsi:type="fixedField"
+						   definitionReference="Filreferanse-def" typeReference="string-1">
+						<startPos>541</startPos>
+						<fixedLength>40</fixedLength>
+					</field>
+				</group>
+				<group name="Interne_dokumenter" xsi:type="fixedGroup"
+					   definitionReference="Interne_dokumenter-def">
+					<IdentifyingFieldValues>
+						<fieldValue>N</fieldValue>
+					</IdentifyingFieldValues>
+					<length>580</length>
+					<field name="Posttype" xsi:type="fixedField"
+						   definitionReference="Posttype-def" typeReference="string-1">
+						<description topic="Bruk">Fast verdi N</description>
+						<startPos>1</startPos>
+						<fixedLength>1</fixedLength>
+						<codes name="Posttype-Interne_dokumenter" definitionReference="Posttype_N-def">
+							<codeValue>N</codeValue>
+						</codes>
+					</field>
+					<field name="Grad" xsi:type="fixedField"
+						   definitionReference="Grad-def" typeReference="string-1">
+						<startPos>2</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Saksnr" xsi:type="fixedField"
+						   definitionReference="Saksnr-def" typeReference="string-1">
+						<startPos>5</startPos>
+						<fixedLength>10</fixedLength>
+					</field>
+					<field name="Doknr" xsi:type="fixedField"
+						   definitionReference="Doknr-def" typeReference="integer-1">
+						<startPos>15</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Journaldato" xsi:type="fixedField"
+						   definitionReference="Journaldato-def" typeReference="date-1">
+						<startPos>18</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Doktype" xsi:type="fixedField"
+						   definitionReference="Doktype-def" typeReference="string-1">
+						<startPos>26</startPos>
+						<fixedLength>1</fixedLength>
+						<codes name="Doktype2_kode" definitionReference="Doktype2_kode-def">
+							<codeValue>I</codeValue>
+							<codeValue>U</codeValue>
+							<codeValue>X</codeValue>
+							<codeValue>N</codeValue>
+						</codes>
+					</field>
+					<field name="Uoff" xsi:type="fixedField"
+						   definitionReference="Uoff-def" typeReference="string-1">
+						<startPos>27</startPos>
+						<fixedLength>16</fixedLength>
+					</field>
+					<field name="Bdato" xsi:type="fixedField"
+						   definitionReference="Bdato-def" typeReference="date-1">
+						<startPos>43</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Vedlegg" xsi:type="fixedField"
+						   definitionReference="Vedlegg-def" typeReference="string-1">
+						<startPos>51</startPos>
+						<fixedLength>2</fixedLength>
+					</field>
+					<field name="Avgradering" xsi:type="fixedField"
+						   definitionReference="Avgradering-def" typeReference="string-1">
+						<startPos>53</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Saksbeh_for_dok_1_delfelt" xsi:type="fixedField"
+						   definitionReference="Saksbeh_for_dok_1-def" typeReference="string-1">
+						<startPos>56</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Saksbeh_for_dok_2_delfelt" xsi:type="fixedField"
+						   definitionReference="Saksbeh_for_dok_2-def" typeReference="string-1">
+						<startPos>60</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Blankt_felt_1" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>64</startPos>
+						<fixedLength>7</fixedLength>
+					</field>
+					<field name="Internt_dok_fra" xsi:type="fixedField"
+						   definitionReference="Internt_dok_fra-def" typeReference="string-1">
+						<startPos>71</startPos>
+						<fixedLength>30</fixedLength>
+					</field>
+					<field name="Blankt_felt_2" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>101</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Internt_dok_til" xsi:type="fixedField"
+						   definitionReference="Internt_dok_til-def" typeReference="string-1">
+						<startPos>109</startPos>
+						<fixedLength>29</fixedLength>
+					</field>
+					<field name="Journalenhet_1" xsi:type="fixedField"
+						   definitionReference="Journalenhet_1-def" typeReference="string-1">
+						<startPos>138</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Behandler_1_delfelt" xsi:type="fixedField"
+						   definitionReference="Behandler_1-def" typeReference="string-1">
+						<startPos>141</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Behandler_2_delfelt" xsi:type="fixedField"
+						   definitionReference="Behandler_2-def" typeReference="string-1">
+						<startPos>145</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Blankt_felt_3" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>149</startPos>
+						<fixedLength>2</fixedLength>
+					</field>
+					<field name="Dokumentbeskrivelse" xsi:type="fixedField"
+						   definitionReference="Dokumentbeskrivelse-def" typeReference="string-1">
+						<startPos>151</startPos>
+						<fixedLength>140</fixedLength>
+					</field>
+					<field name="Tillegg" xsi:type="fixedField"
+						   definitionReference="Tillegg-def" typeReference="string-1">
+						<startPos>291</startPos>
+						<fixedLength>210</fixedLength>
+					</field>
+					<field name="Blankt_felt_4" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>501</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Avskrivning_dato" xsi:type="fixedField"
+						   definitionReference="Avskrivning_dato-def" typeReference="date-1">
+						<startPos>504</startPos>
+						<fixedLength>8</fixedLength>
+					</field>
+					<field name="Avskrivning_maate" xsi:type="fixedField"
+						   definitionReference="Avskrivning_maate-def" typeReference="string-1">
+						<startPos>512</startPos>
+						<fixedLength>4</fixedLength>
+					</field>
+					<field name="Loepenr" xsi:type="fixedField"
+						   definitionReference="Loepenr-def" typeReference="string-1">
+						<startPos>516</startPos>
+						<fixedLength>11</fixedLength>
+					</field>
+					<field name="Journalenhet_2" xsi:type="fixedField"
+						   definitionReference="Journalenhet_2-def" typeReference="string-1">
+						<startPos>527</startPos>
+						<fixedLength>3</fixedLength>
+					</field>
+					<field name="Blankt_felt_5" xsi:type="fixedField"
+						   definitionReference="Blankt_felt-def" typeReference="string-1">
+						<startPos>530</startPos>
+						<fixedLength>11</fixedLength>
+					</field>
+					<field name="Filreferanse" xsi:type="fixedField"
+						   definitionReference="Filreferanse-def" typeReference="string-1">
+						<startPos>541</startPos>
+						<fixedLength>40</fixedLength>
+					</field>
+				</group>
+			</file>
+			<file name="Arkivnoekkelregister" xsi:type="fixedFile"
+				  definitionReference="Arkivnoekkelregister-def" typeReference="Fastlengde">
+				<path>ARKIV.DAT</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>BABDBAEDA44EB7350ADB639DC6DE49F6550B1F02FF842E09009A1DED9DF5A83D</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>123</value>
+				</numberOfOccurrences>
+				<group name="Arkivnoekkelregisterpost" xsi:type="fixedGroup"
+					   definitionReference="Arkivnoekkelregisterpost-def">
+					<length>271</length>
+					<field name="Arkivkode" xsi:type="fixedField"
+						   definitionReference="Arkivkode-def"
+						   typeReference="string-1">
+						<startPos>1</startPos>
+						<fixedLength>16</fixedLength>
+					</field>
+					<field name="Gruppetekst" xsi:type="fixedField"
+						   definitionReference="Gruppetekst-def"
+						   typeReference="string-1">
+						<startPos>17</startPos>
+						<fixedLength>255</fixedLength>
+					</field>
+				</group>
+			</file>
+		</container>
+		<definitions>
+			<definition name="N3-fagsystem" xsi:type="containerDefinition">
+				<description></description>
+				<reference value="Saksregister-def" min="1" max="1" />
+				<reference value="Dokumentregister-def" min="1" max="1" />
+				<reference value="Arkivnoekkelregister-def" min="1" max="1" />
+				<reference value="Saksregisterpost-def" min="1" max="unbounded" />
+				<reference value="Eksterne_dokumenter-def" min="1" max="unbounded" />
+				<reference value="Interne_dokumenter-def" min="1" max="unbounded" />
+				<reference value="Arkivnoekkelregisterpost-def" min="1" max="unbounded" />
+			</definition>
+			<definition name="Saksregister-def" xsi:type="fileDefinition">
+				<description></description>
+			</definition>
+			<definition name="Dokumentregister-def" xsi:type="fileDefinition">
+				<description></description>
+			</definition>
+			<definition name="Arkivnoekkelregister-def" xsi:type="fileDefinition">
+				<description></description>
+			</definition>
+			<definition name="Saksregisterpost-def" xsi:type="groupDefinition">
+				<description></description>
+				<keys>
+					<key name="PKsak">
+						<primaryKey/>
+						<fieldReference>Saksnr</fieldReference>
+					</key>
+					<key name="FK1sak">
+						<foreignKey>
+							<fileReference>Arkivnoekkelregister</fileReference>
+							<groupReference>Arkivnoekkelregisterpost</groupReference>
+							<fieldReference>Arkivkode</fieldReference>
+							<relationType>1:N</relationType>
+						</foreignKey>
+						<fieldReference>Arkiv_2_delfelt</fieldReference>
+					</key>
+				</keys>
+				<reference value="Posttype-def" min="1" max="1" />
+				<reference value="Grad-def" min="0" max="1" />
+			</definition>
+			<definition name="Eksterne_dokumenter-def" xsi:type="groupDefinition">
+				<description></description>
+				<keys>
+					<key name="PKdok">
+						<primaryKey/>
+						<fieldReference>Saksnr</fieldReference>
+						<fieldReference>Doknr</fieldReference>
+					</key>
+					<key name="FK1dok">
+						<foreignKey>
+							<fileReference>Saksregister</fileReference>
+							<groupReference>Saksregisterpost</groupReference>
+							<fieldReference>Saksnr</fieldReference>
+							<relationType>1:N</relationType>
+						</foreignKey>
+						<fieldReference>Saksnr</fieldReference>
+					</key>
+				</keys>
+				<reference value="Posttype-def" min="1" max="1" />
+				<reference value="Saksnr-def" min="0" max="1" />
+				<reference value="Doknr-def" min="0" max="1" />
+				<reference value="Journaldato-def" min="0" max="1" />
+				<reference value="Doktype-def" min="0" max="1" />
+				<reference value="Uoff-def" min="0" max="1" />
+				<reference value="Bdato-def" min="0" max="1" />
+				<reference value="Vedlegg-def" min="0" max="1" />
+				<reference value="Avgradering-def" min="0" max="1" />
+				<reference value="Saksbeh_for_dok_1-def" min="0" max="1" />
+				<reference value="Saksbeh_for_dok_2-def" min="0" max="1" />
+				<reference value="Avs_mot_forkortelse-def" min="0" max="1" />
+				<reference value="Avs_mot-def" min="0" max="1" />
+				<reference value="Dokumentbeskrivelse-def" min="0" max="1" />
+				<reference value="Tillegg-def" min="0" max="1" />
+				<reference value="Avskrivning_doknr-def" min="0" max="1" />
+				<reference value="Avskrivning_dato-def" min="0" max="1" />
+				<reference value="Avskrivning_maate-def" min="0" max="1" />
+				<reference value="Loepenr-def" min="0" max="1" />
+				<reference value="Journalenhet-def" min="0" max="1" />
+				<reference value="Filreferanse-def" min="0" max="1" />
+			</definition>
+			<definition name="Interne_dokumenter-def" xsi:type="groupDefinition">
+				<description></description>
+			</definition>
+			<definition name="Arkivnoekkelregisterpost-def" xsi:type="groupDefinition">
+				<description></description>
+				<keys>
+					<key name="PKark">
+						<primaryKey/>
+						<fieldReference>Arkivkode-def</fieldReference>
+					</key>
+				</keys>
+				<reference value="Arkivkode-def" min="1" max="1" />
+				<reference value="Gruppetekst-def" min="1" max="1" />
+			</definition>
+			<definition name="Posttype-def" xsi:type="fieldDefinition">
+				<reference value="Posttype_kode-def" min="1" max="1" />
+			</definition>
+			<definition name="Grad-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Saksnr-def" xsi:type="fieldDefinition">
+				<description>Består av Årstall, Skråstrek og Fortløpende nr.</description>
+			</definition>
+			<definition name="Sakstittel-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Sak_avsluttet-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Doknr-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Doktype-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Siste_dok-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Antall_dok-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Dato-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Delarkiv-def" xsi:type="fieldDefinition">
+				<description>Angir delarkiv</description>
+			</definition>
+			<definition name="Arkivkode-def" xsi:type="fieldDefinition">
+				<description>Arkivkode/Arkivbetegnelse</description>
+			</definition>
+			<definition name="Blankt_felt-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Journaldato-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Internt_dok_fra-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Internt_dok_til-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Journalenhet_1-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Journalenhet_2-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Behandler_1-def" xsi:type="fieldDefinition">
+				<description>Mottakers kontor</description>
+			</definition>
+			<definition name="Behandler_2-def" xsi:type="fieldDefinition">
+				<description>Mottakers initialer</description>
+			</definition>
+			<definition name="Saksbeh_for_dok_1-def" xsi:type="fieldDefinition">
+				<description>Mottakers initialer</description>
+			</definition>
+			<definition name="Saksbeh_for_dok_2-def" xsi:type="fieldDefinition">
+				<description>Mottakers initialer</description>
+			</definition>
+			<definition name="Dokumentbeskrivelse-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Kryssreferanse-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Bdato-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Vedlegg-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Tillegg-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Avskrivning_doknr-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Avskrivning_dato-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Avskrivning_maate-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Loepenr-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Filreferanse-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Saksansv_1-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Saksansv_2-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Sekundaerkode-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Avs_mot-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Avs_mot_forkortelse-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Uoff-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Avgradering-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Journalenhet-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Presedens-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Kassasjon-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Gruppetekst-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="Posttype_S-def" xsi:type="codeDefinition">
+				<description>Posttype for Sak</description>
+				<code>
+					<value>S</value>
+					<explanation>Sak</explanation>
+				</code>
+			</definition>
+			<definition name="Doktype_kode-def" xsi:type="codeDefinition">
+				<description>Verdi I eller U</description>
+				<code>
+					<value>I</value>
+					<explanation>Inngående</explanation>
+				</code>
+				<code>
+					<value>U</value>
+					<explanation>Utgående</explanation>
+				</code>
+			</definition>
+			<definition name="Doktype2_kode-def" xsi:type="codeDefinition">
+				<description>Doktype for Sak</description>
+				<code>
+					<value>I</value>
+					<explanation>Inngående</explanation>
+				</code>
+				<code>
+					<value>U</value>
+					<explanation>Utgående</explanation>
+				</code>
+				<code>
+					<value>X</value>
+				</code>
+				<code>
+					<value>N</value>
+				</code>
+			</definition>
+			<definition name="Posttype_B-def" xsi:type="codeDefinition">
+				<description>Posttype for eksterne dokumenter</description>
+				<code>
+					<value>B</value>
+					<explanation>Brev</explanation>
+				</code>
+			</definition>
+			<definition name="Posttype_N-def" xsi:type="codeDefinition">
+				<description>Posttype for interne dokumenter</description>
+				<code>
+					<value>N</value>
+					<explanation>Notat</explanation>
+				</code>
+			</definition>
+		</definitions>
+		<types>
+			<fileType name="Fastlengde" xsi:type="fixedFileType">
+				<format>
+					<name>FLAT</name>
+				</format>
+				<charset>ISO-8859-1</charset>
+			</fileType>
+			<fieldType name="string-1" xsi:type="fixedFieldType">
+				<dataType>string</dataType>
+				<padChar> </padChar>
+			</fieldType>
+			<fieldType name="integer-1" xsi:type="fixedFieldType">
+				<dataType>integer</dataType>
+				<padChar> </padChar>
+			</fieldType>
+			<fieldType name="integer-2" xsi:type="fixedFieldType">
+				<dataType>integer</dataType>
+				<alignment>right</alignment>
+				<padChar> </padChar>
+			</fieldType>
+			<fieldType name="date-1" xsi:type="fixedFieldType">
+				<dataType>date</dataType>
+				<fieldFormat>YYYYMMDD</fieldFormat>
+			</fieldType>
+		</types>
+	</dataset>
+</addml>

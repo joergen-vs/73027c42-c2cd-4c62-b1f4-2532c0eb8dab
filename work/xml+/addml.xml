@@ -3,11 +3,6 @@
 	<dataset name="41d4f9a2">
 		<reference>
 			<context>
-				<agents>
-					<agent name="Arkivverket" xsi:type="organization">
-						<role>PRESERVATION</role>
-					</agent>
-				</agents>
 			</context>
 			<content>
 				<standard name="Addml for AV">

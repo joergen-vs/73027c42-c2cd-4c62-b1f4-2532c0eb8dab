@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<addml xmlns="http://www.arkivverket.no/standarder/addml/v9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd"
+    name="Test">
+	<dataset name="Test">
+		<reference>
+			<context>
+			</context>
+			<content>
+			</content>
+		</reference>
+		<container name="Test" xsi:type="archivalExtraction" definitionReference="Noark-4">
+			<description></description>
+			<period>
+				<startDate></startDate>
+				<endDate></endDate>
+			</period>
+			<file name="JOURNPST" xsi:type="xmlFile"
+				  definitionReference="JOURNPOST-def"
+				  typeReference="XML">
+				<path>DATA/JOURNPST.XML</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>02C2DB230A358D6DC6B1E896FAA1929EE1DFF7BF1F3DB2BA414485BCC1BB17C7</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>1234</value>
+				</numberOfOccurrences>
+				<targetNamespace></targetNamespace>
+				<schemas>
+					<schema >
+						<namespace></namespace>
+						<fileReference>DATA/JOURNPST.XSD</fileReference>
+					</schema>
+				</schemas>
+				<root>JOURNPOST.TAB</root>
+				<group name="JOURNPOST.TAB" xsi:type="xmlGroup"
+					   definitionReference="JP.TAB-def">
+					<name>JOURNPOST.TAB</name>
+					<type>sequence</type>
+					<element min="1" max="1">
+						<attribute name="VERSION" xsi:type="xmlAttribute"
+								   definitionReference="V-def" typeReference="tekst">
+							<description></description>
+						</attribute>
+					</element>
+				</group>
+				<group name="JOURNPOST" xsi:type="xmlGroup"
+					   definitionReference="JP-def">
+					<name>JOURNPOST</name>
+					<type>sequence</type>
+					<element tag="JP.ID" min="1" max="1">
+						<field name="JP.ID" xsi:type="xmlField" definitionReference="JPID-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.JAAR" min="1" max="1">
+						<field name="JP.JAAR" xsi:type="xmlField" definitionReference="JAAR-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.SEKNR" min="1" max="1">
+						<field name="JP.SEKNR" xsi:type="xmlField" definitionReference="SEKNR-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.SAID" min="1" max="1">
+						<field name="JP.SAID" xsi:type="xmlField" definitionReference="SAID-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.JPOSTNR" min="1" max="1">
+						<field name="JP.JPOSTNR" xsi:type="xmlField" definitionReference="JPOSTNR-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.JDATO" min="1" max="1">
+						<field name="JP.JDATO" xsi:type="xmlField" definitionReference="JDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.NDOKTYPE" min="1" max="1">
+						<field name="JP.NDOKTYPE" xsi:type="xmlField" definitionReference="NDOKTYPE-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.DOKDATO" min="0" max="1">
+						<field name="JP.DOKDATO" xsi:type="xmlField" definitionReference="DOKDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.UDATERT" min="1" max="1">
+						<field name="JP.UDATERT" xsi:type="xmlField" definitionReference="UDATERT-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.STATUS" min="1" max="1">
+						<field name="JP.STATUS" xsi:type="xmlField" definitionReference="STATUS-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.INNHOLD" min="1" max="1">
+						<field name="JP.INNHOLD" xsi:type="xmlField" definitionReference="INNHOLD-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.U1" min="1" max="1">
+						<field name="JP.U1" xsi:type="xmlField" definitionReference="U1-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.AVSKDATO" min="0" max="1">
+						<field name="JP.AVSKDATO" xsi:type="xmlField" definitionReference="AVSKDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.EKSPDATO" min="0" max="1">
+						<field name="JP.EKSPDATO" xsi:type="xmlField" definitionReference="EKSPDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.FORFDATO" min="0" max="1">
+						<field name="JP.FORFDATO" xsi:type="xmlField" definitionReference="FORFDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.TGKODE" min="0" max="1">
+						<field name="JP.TGKODE" xsi:type="xmlField" definitionReference="TGKODE-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.UOFF" min="0" max="1">
+						<field name="JP.UOFF" xsi:type="xmlField" definitionReference="UOFF-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.OVDATO" min="0" max="1">
+						<field name="JP.OVDATO" xsi:type="xmlField" definitionReference="OVDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.AGDATO" min="0" max="1">
+						<field name="JP.AGDATO" xsi:type="xmlField" definitionReference="AGDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.AGKODE" min="0" max="1">
+						<field name="JP.AGKODE" xsi:type="xmlField" definitionReference="AGKODE-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.TGGRUPPE" min="0" max="1">
+						<field name="JP.TGGRUPPE" xsi:type="xmlField" definitionReference="TGGRUPPE-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.SAKSDEL" min="0" max="1">
+						<field name="JP.SAKSDEL" xsi:type="xmlField" definitionReference="SAKSDEL-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.U2" min="0" max="1">
+						<field name="JP.U2" xsi:type="xmlField" definitionReference="U2-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.ARKDEL" min="0" max="1">
+						<field name="JP.ARKDEL" xsi:type="xmlField" definitionReference="ARKDEL-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.PAPIR" min="0" max="1">
+						<field name="JP.PAPIR" xsi:type="xmlField" definitionReference="PAPIR-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.TLKODE" min="0" max="1">
+						<field name="JP.TLKODE" xsi:type="xmlField" definitionReference="TLKODE-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.ANTVED" min="0" max="1">
+						<field name="JP.ANTVED" xsi:type="xmlField" definitionReference="ANTVED-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.UTLDATO" min="0" max="1">
+						<field name="JP.UTLDATO" xsi:type="xmlField" definitionReference="UTLDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="JP.UTLTIL" min="0" max="1">
+						<field name="JP.UTLTIL" xsi:type="xmlField" definitionReference="UTLTIL-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+				</group>
+			</file>
+			<file name="DOKLINK" xsi:type="xmlFile"
+				  definitionReference="DOKLINK-def"
+				  typeReference="XML">
+				<path>DOKLINK.XML</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>8AB40429176FFA7B4C725540EB2927C7DEAFAF945E5FEB8E805C4F58BD6F9880</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>123</value>
+				</numberOfOccurrences>
+				<targetNamespace></targetNamespace>
+				<schemas>
+					<schema>
+						<namespace></namespace>
+						<fileReference>DATA/DOKLINK.XSD</fileReference>
+					</schema>
+				</schemas>
+				<root>DOKLINK.TAB</root>
+				<group name="DOKLINK.TAB" xsi:type="xmlGroup"
+					   definitionReference="DL.TAB-def">
+					<name>DOKLINK.TAB</name>
+					<type>sequence</type>
+					<element min="1" max="1">
+						<attribute name="VERSION" xsi:type="xmlAttribute"
+								   definitionReference="V-def" typeReference="tekst">
+							<description></description>
+						</attribute>
+					</element>
+					<element tag="DOKLINK" min="1" max="unbounded">
+						<groupReference>DOKLINK</groupReference>
+					</element>
+				</group>
+				<group name="DOKLINK" xsi:type="xmlGroup"
+					   definitionReference="DL-def">
+					<type>sequence</type>
+					<element tag="DL.JPID" min="1" max="1">
+						<field name="DL.JPID" xsi:type="xmlField" definitionReference="JPID-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="DL.RNR" min="1" max="1">
+						<field name="DL.RNR" xsi:type="xmlField" definitionReference="RNR-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="DL.DOKID" min="1" max="1">
+						<field name="DL.DOKID" xsi:type="xmlField" definitionReference="DOKID-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="DL.TYPE" min="1" max="1">
+						<field name="DL.TYPE" xsi:type="xmlField" definitionReference="TYPE-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="DL.TKDATO" min="1" max="1">
+						<field name="DL.TKDATO" xsi:type="xmlField" definitionReference="TKDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="DL.TKAV" min="1" max="1">
+						<field name="DL.TKAV" xsi:type="xmlField" definitionReference="TKAV-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+				</group>
+			</file>
+			<file name="DOKVERSJON" xsi:type="xmlFile"
+				  definitionReference="DOKVERSJON-def"
+				  typeReference="XML">
+				<path>DATA/DOKVERSJON.XML</path>
+				<checksum>
+					<algorithm>SHA-256</algorithm>
+					<value>10ACFC63B19ACA73AD8F0195924401C6520EBA34164C0F404C818B8A91F75BF4</value>
+				</checksum>
+				<numberOfOccurrences>
+					<value>123</value>
+				</numberOfOccurrences>
+				<targetNamespace></targetNamespace>
+				<schemas>
+					<schema>
+						<namespace></namespace>
+						<fileReference>DATA/DOKVERSJON.XSD</fileReference>
+					</schema>
+				</schemas>
+				<root>DOKVERSJON.TAB</root>
+				<group name="DOKVERSJON.TAB" xsi:type="xmlGroup"
+					   definitionReference="VE.TAB-def">
+					<element min="1" max="1">
+						<attribute name="VERSION" xsi:type="xmlAttribute"
+								   definitionReference="V-def" typeReference="tekst">
+							<description></description>
+						</attribute>
+					</element>
+					<element tag="DOKVERSJON" min="1" max="unbounded">
+						<groupReference>DOKVERSJON</groupReference>
+					</element>
+				</group>
+				<group name="DOKVERSJON" xsi:type="xmlGroup"
+					   definitionReference="VE-def">
+					<element tag="VE.DOKID" min="1" max="1">
+						<field name="VE.DOKID" xsi:type="xmlField" definitionReference="DOKID-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.VERSJON" min="1" max="1">
+						<field name="VE.VERSJON" xsi:type="xmlField" definitionReference="VERSJON-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.VARIANT" min="1" max="1">
+						<field name="VE.VARIANT" xsi:type="xmlField" definitionReference="VARIANT-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.AKTIV" min="1" max="1">
+						<field name="VE.AKTIV" xsi:type="xmlField" definitionReference="AKTIV-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.DOKFORMAT" min="1" max="1">
+						<field name="VE.DOKFORMAT" xsi:type="xmlField" definitionReference="DOKFORMAT-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.REGAV" min="0" max="1">
+						<field name="VE.REGAV" xsi:type="xmlField" definitionReference="REGAV-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.OPPBEDATO" min="0" max="1">
+						<field name="VE.OPPBEDATO" xsi:type="xmlField" definitionReference="OPPBEDATO-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.TGKODE" min="0" max="1">
+						<field name="VE.TGKODE" xsi:type="xmlField" definitionReference="TGKODE-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.ARKMERK" min="0" max="1">
+						<field name="VE.ARKMERK" xsi:type="xmlField" definitionReference="ARKMERK-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.LAGRENH" min="0" max="1">
+						<field name="VE.LAGRENH" xsi:type="xmlField" definitionReference="LAGRENH-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+					<element tag="VE.FILREF" min="0" max="1">
+						<field name="VE.FILREF" xsi:type="xmlField" definitionReference="FILREF-def" typeReference="tekst">
+							<description></description>
+						</field>
+					</element>
+				</group>
+			</file>
+		</container>
+		<definitions>
+			<definition name="Noark-4" xsi:type="containerDefinition">
+				<description>Noark-4 er en kravspesifikasjon for elektroniske arkivsystemer i offentlig forvaltning. Spesifikasjonen angir krav til systemenes informasjonsinnhold (hvilke opplysninger som skal kunne registreres og gjenfinnes), datastruktur (utformingen av de enkelte dataelementer og forholdet mellom dem) og funksjonalitet (hvilke funksjoner systemene skal ivareta). Unntaksvis stilles det også krav til brukergrensesnitt (hvordan systemene skal kommunisere med brukerne), men dette er i all hovedsak overlatt til den enkelte systemutvikler/leverandør. Spesifikasjonen stiller heller ikke krav til hvordan datastrukturen skal implementeres eller til den tekniske systemutforming for eksempel. Dette overlates til dem som skal utvikle systemene.</description>
+				<reference value="JP" min="1" max="unbounded"/>
+				<reference value="DL" min="1" max="unbounded"/>
+				<reference value="VE" min="1" max="unbounded"/>
+			</definition>
+			<definition name="JOURNPOST-def" xsi:type="fileDefinition">
+				<description></description>
+			</definition>
+			<definition name="DOKLINK-def" xsi:type="fileDefinition">
+				<description></description>
+			</definition>
+			<definition name="DOKVERSJON-def" xsi:type="fileDefinition">
+				<description></description>
+			</definition>
+			<definition name="JP-def" xsi:type="groupDefinition">
+				<description></description>
+				<isRecord/>
+				<keys>
+					<key name="PK_JP">
+						<primaryKey/>
+							<fieldReference>JPID-def</fieldReference>
+					</key>
+				</keys>
+				<reference value="JPID-def" min="1" max="1" />
+				<reference value="JAAR-def" min="1" max="1" />
+				<reference value="SEKNR-def" min="1" max="1" />
+				<reference value="SAID-def" min="1" max="1" />
+				<reference value="JPOSTNR-def" min="1" max="1" />
+				<reference value="JDATO-def" min="1" max="1" />
+				<reference value="NDOKTYPE-def" min="1" max="1" />
+				<reference value="DOKDATO-def" min="0" max="1" />
+				<reference value="UDATERT-def" min="1" max="1" />
+				<reference value="STATUS-def" min="1" max="1" />
+				<reference value="INNHOLD-def" min="1" max="1" />
+				<reference value="U1-def" min="1" max="1" />
+				<reference value="AVSKDATO-def" min="0" max="1" />
+				<reference value="EKSPDATO-def" min="0" max="1" />
+				<reference value="FORFDATO-def" min="0" max="1" />
+				<reference value="TGKODE-def" min="0" max="1" />
+				<reference value="UOFF-def" min="0" max="1" />
+				<reference value="OVDATO-def" min="0" max="1" />
+				<reference value="AGDATO-def" min="0" max="1" />
+				<reference value="AGKODE-def" min="0" max="1" />
+				<reference value="TGGRUPPE-def" min="0" max="1" />
+				<reference value="SAKSDEL-def" min="0" max="1" />
+				<reference value="U2-def" min="0" max="1" />
+				<reference value="ARKDEL-def" min="0" max="1" />
+				<reference value="PAPIR-def" min="0" max="1" />
+				<reference value="TLKODE-def" min="0" max="1" />
+				<reference value="ANTVED-def" min="0" max="1" />
+				<reference value="UTLDATO-def" min="0" max="1" />
+				<reference value="UTLTIL-def" min="0" max="1" />
+			</definition>
+			<definition name="JP.TAB-def" xsi:type="groupDefinition">
+				<description></description>
+				<reference value="JP-def" min="1" max="unbounded"/>
+				<reference value="V-DEF" min="1" max="1"/>
+			</definition>
+			<definition name="DL.TAB-def" xsi:type="groupDefinition">
+				<description></description>
+				<reference value="DL" min="1" max="unbounded"/>
+				<reference value="V-DEF" min="1" max="1"/>
+			</definition>
+			<definition name="VE.TAB-def" xsi:type="groupDefinition">
+				<description></description>
+				<reference value="VE" min="1" max="unbounded"/>
+				<reference value="V-DEF" min="1" max="1"/>
+			</definition>
+			<definition name="V-def" xsi:type="attributeDefinition">
+				<description topic="Bruk">Fast '1.0'</description>
+			</definition>
+			<definition name="ID-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="JAAR-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="SEKNR-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="SAID-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="JPOSTNR-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="JDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="NDOKTYPE-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="DOKDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="UDATERT-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="STATUS-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="INNHOLD-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="U1-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="AVSKDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="EKSPDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="FORFDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="TGKODE-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="UOFF-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="OVDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="AGDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="AGKODE-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="TGGRUPPE-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="SAKSDEL-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="U2-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="ARKDEL-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="PAPIR-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="TLKODE-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="ANTVED-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="UTLDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="UTLTIL-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="DL-def" xsi:type="groupDefinition">
+				<description></description>
+				<isRecord/>
+				<keys>
+					<key name="PK_DL">
+						<primaryKey/>
+						<fieldReference>JPID-def</fieldReference>
+						<fieldReference>RNR-def</fieldReference>
+					</key>
+					<key name="FK_DL_JP">
+						<foreignKey>
+							<groupReference>JP</groupReference>
+							<fieldReference>ID</fieldReference>
+							<relationType>N:1</relationType>
+						</foreignKey>
+						<fieldReference>JPID</fieldReference>
+					</key>
+					<key name="FK_DL_VE">
+						<foreignKey>
+							<groupReference>VE</groupReference>
+							<fieldReference>DOKID</fieldReference>
+							<relationType>N:M</relationType>
+						</foreignKey>
+						<fieldReference>DOKID</fieldReference>
+					</key>
+				</keys>
+				<reference value="JPID-def" min="1" max="1" />
+				<reference value="RNR-def" min="1" max="1" />
+				<reference value="DOKID-def" min="1" max="1" />
+				<reference value="TYPE-def" min="1" max="1" />
+				<reference value="TKDATO-def" min="1" max="1" />
+				<reference value="TKAV-def" min="1" max="1" />
+			</definition>
+			<definition name="JPID-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="RNR-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="DOKID-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="TYPE-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="TKDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="TKAV-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="VE-def" xsi:type="groupDefinition">
+				<description></description>
+				<isRecord/>
+				<keys>
+					<key name="PK_VE">
+						<primaryKey/>
+						<fieldReference>DOKID-def</fieldReference>
+						<fieldReference>VERSJON-def</fieldReference>
+						<fieldReference>VARIANT-def</fieldReference>
+					</key>
+				</keys>
+				<reference value="DOKID-def" min="1" max="1" />
+				<reference value="VERSJON-def" min="1" max="1" />
+				<reference value="VARIANT-def" min="1" max="1" />
+				<reference value="AKTIV-def" min="1" max="1" />
+				<reference value="DOKFORMAT-def" min="1" max="1" />
+				<reference value="REGAV-def" min="0" max="1" />
+				<reference value="OPPBEDATO-def" min="0" max="1" />
+				<reference value="TGKODE-def" min="0" max="1" />
+				<reference value="ARKMERK-def" min="0" max="1" />
+				<reference value="LAGRENH-def" min="0" max="1" />
+				<reference value="FILREF-def" min="0" max="1" />
+			</definition>
+			<definition name="VERSJON-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="VARIANT-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="AKTIV-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="DOKFORMAT-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="REGAV-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="OPPBEDATO-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="ARKMERK-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="LAGRENH-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+			<definition name="FILREF-def" xsi:type="fieldDefinition">
+				<description></description>
+			</definition>
+		</definitions>
+		<types>
+			<fileType name="XML" xsi:type="xmlFileType">
+				<format>
+					<name>XML</name>
+					<version scheme="Semantic">1.0</version>
+				</format>
+				<charset>UTF-8</charset>
+			</fileType>
+			<fieldType name="tekst" xsi:type="xmlFieldType">
+				<dataType>string</dataType>
+			</fieldType>
+			<attributeType name="tekst" xsi:type="xmlFieldType">
+				<dataType>string</dataType>
+			</attributeType>
+		</types>
+	</dataset>
+</addml>
