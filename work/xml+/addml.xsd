@@ -525,9 +525,9 @@
 
 	<xs:group name="containerProperties">
 		<xs:annotation>
-			<xs:documentation>Abstract type for all 'packages' of information</xs:documentation>
-			<xs:documentation>Archival extraction</xs:documentation>
-			<xs:documentation>File structure</xs:documentation>
+			<xs:documentation>Abstract type for all 'packages' of information.</xs:documentation>
+			<xs:documentation>Archival extraction,</xs:documentation>
+			<xs:documentation>File structure,</xs:documentation>
 			<xs:documentation>etc..</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
@@ -561,8 +561,8 @@
 						</xs:element>
 						<xs:element name="inboundPeriod" minOccurs="0">
 							<xs:annotation>
-								<xs:documentation>Indicate whether information created before start-date is included</xs:documentation>
-								<xs:documentation>Not relevant for new implementation of systems</xs:documentation>
+								<xs:documentation>Indicate whether information created before start-date is included.</xs:documentation>
+								<xs:documentation>Not relevant for new implementation of systems.</xs:documentation>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -589,8 +589,8 @@
 						</xs:element>
 						<xs:element name="outgoingPeriod" minOccurs="0">
 							<xs:annotation>
-								<xs:documentation>Indicate whether information created after end-date is included</xs:documentation>
-								<xs:documentation>Not relevant for end-of-life systems</xs:documentation>
+								<xs:documentation>Indicate whether information created after end-date is included.</xs:documentation>
+								<xs:documentation>Not relevant for end-of-life systems.</xs:documentation>
 							</xs:annotation>
 							<xs:simpleType>
 								<xs:restriction base="xs:string">
@@ -605,19 +605,19 @@
 			<xs:element name="containsScreenedInformation" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>True or false: Are there metadata in the archive which is screened?</xs:documentation>
-					<xs:documentation>Relevant for archives implementing screening</xs:documentation>
+					<xs:documentation>Relevant for archives implementing screening.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="containsDocumentsWhichIsDisposed" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>True or False: Are there documents in the archive which is disposed?</xs:documentation>
-					<xs:documentation>Relevant for archives implementing disposal</xs:documentation>
+					<xs:documentation>Relevant for archives implementing disposal.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="containsDocumentsScheduledForDisposal" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>True or False: Are there documents in the archive which is scheduled for disposal?</xs:documentation>
-					<xs:documentation>Relevant for archives implementing disposal</xs:documentation>
+					<xs:documentation>Relevant for archives implementing disposal.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -808,8 +808,8 @@
 			<xs:group ref="addml:fileGroupStatsProperties"/>
 			<xs:element name="IdentifyingFields" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Field-index or indices identifying type of group</xs:documentation>
-					<xs:documentation>Obligatory when file contains multiple groups</xs:documentation>
+					<xs:documentation>Field-index or indices identifying type of group.</xs:documentation>
+					<xs:documentation>Obligatory when file contains multiple groups.</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
@@ -853,8 +853,8 @@
 						</xs:element>
 						<xs:element name="reference" type="xs:string" minOccurs="0">
 							<xs:annotation>
-								<xs:documentation>Reference to group in file</xs:documentation>
-								<xs:documentation>When reference is not used, the value defines the total number of groups in file</xs:documentation>
+								<xs:documentation>Reference to group in file.</xs:documentation>
+								<xs:documentation>When reference is not used, the value defines the total number of groups in file.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 					</xs:sequence>
@@ -868,8 +868,8 @@
 			<xs:group ref="addml:fileGroupStatsProperties"/>
 			<xs:element name="IdentifyingFields" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Field-index or indices identifying type of group</xs:documentation>
-					<xs:documentation>Obligatory when file contains multiple groups</xs:documentation>
+					<xs:documentation>Field-index or indices identifying type of group.</xs:documentation>
+					<xs:documentation>Obligatory when file contains multiple groups.</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
@@ -942,7 +942,7 @@
 			</xs:element>
 			<xs:element name="root" type="xs:string">
 				<xs:annotation>
-					<xs:documentation>Reference to root-element of xml-file</xs:documentation>
+					<xs:documentation>Reference to root-element of xml-file,</xs:documentation>
 					<xs:documentation>Either a group or single element</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -1043,7 +1043,7 @@
 			<xs:element name="IdentifyingFieldValues" minOccurs="0"
 						>
 				<xs:annotation>
-					<xs:documentation>Values identifying type of group</xs:documentation>
+					<xs:documentation>Values identifying type of group.</xs:documentation>
 					<xs:documentation>Obligatory when file contains multiple groups</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
@@ -1070,8 +1070,8 @@
 				<xs:element name="field" type="addml:fixedField" />
 				<xs:element name="groupReference" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Reference to a group located inside current object</xs:documentation>
-						<xs:documentation>May use different group-type</xs:documentation>
+						<xs:documentation>Reference to a group located inside current object.</xs:documentation>
+						<xs:documentation>May use different group-type.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 			</xs:choice>
@@ -1082,8 +1082,8 @@
 		<xs:sequence>
 			<xs:element name="IdentifyingFieldValues" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Values identifying type of group</xs:documentation>
-					<xs:documentation>Obligatory when file contains multiple groups</xs:documentation>
+					<xs:documentation>Values identifying type of group.</xs:documentation>
+					<xs:documentation>Obligatory when file contains multiple groups.</xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
@@ -1109,8 +1109,8 @@
 				<xs:element name="field" type="addml:delimitedField" />
 				<xs:element name="group">
 					<xs:annotation>
-						<xs:documentation>Reference to a group located inside current object</xs:documentation>
-						<xs:documentation>May use different group-type</xs:documentation>
+						<xs:documentation>Reference to a group located inside current object.</xs:documentation>
+						<xs:documentation>May use different group-type.</xs:documentation>
 					</xs:annotation>
 					<xs:complexType>
 						<xs:attribute name="reference" type="xs:string">
@@ -1128,8 +1128,8 @@
 		<xs:sequence>
 			<xs:element name="name" type="xs:string" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Element-name</xs:documentation>
-					<xs:documentation>No name if grouping of elements</xs:documentation>
+					<xs:documentation>Element-name.</xs:documentation>
+					<xs:documentation>No name if grouping of elements.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="type" minOccurs="0">
@@ -1173,55 +1173,59 @@
 							<xs:element name="field" type="addml:xmlField" />
 							<xs:element name="groupReference" type="xs:string">
 								<xs:annotation>
-									<xs:documentation>Reference to a group located inside a current object</xs:documentation>
-									<xs:documentation>May use different group-type</xs:documentation>
+									<xs:documentation>Reference to a group located inside a current object.</xs:documentation>
+									<xs:documentation>May use different group-type.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 						</xs:choice>
 					</xs:sequence>
 					<xs:attribute name="tag">
 						<xs:annotation>
-							<xs:documentation>Minimum, from 0 up</xs:documentation>
-							<xs:documentation>0 = null-able</xs:documentation>
+							<xs:documentation>Minimum, from 0 up.</xs:documentation>
+							<xs:documentation>0 = null-able,</xs:documentation>
 							<xs:documentation>1 = Default</xs:documentation>
 						</xs:annotation>
 						<xs:simpleType>
 							<xs:restriction base="xs:string"/>
 						</xs:simpleType>
 					</xs:attribute>
-					<xs:attribute name="min" use="required">
-						<xs:annotation>
-							<xs:documentation>Minimum, from 0 up</xs:documentation>
-							<xs:documentation>0 = null-able</xs:documentation>
-							<xs:documentation>1 = Default</xs:documentation>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:nonNegativeInteger"/>
-						</xs:simpleType>
-					</xs:attribute>
-					<xs:attribute name="max" use="required">
-						<xs:annotation>
-							<xs:documentation>Maximum, from 1 up, included 'unbounded'</xs:documentation>
-							<xs:documentation>1 = Default</xs:documentation>
-							<xs:documentation>'unbounded' = No specific limit / '1 or more'</xs:documentation>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:union>
-								<xs:simpleType>
-									<xs:restriction base="xs:nonNegativeInteger"/>
-								</xs:simpleType>
-								<xs:simpleType>
-									<xs:restriction base="xs:string">
-										<xs:enumeration value="unbounded"/>
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:union>
-						</xs:simpleType>
-					</xs:attribute>
+					<xs:attributeGroup ref="addml:MinMaxAttributes"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
 	</xs:group>
+
+	<xs:attributeGroup name="MinMaxAttributes">
+		<xs:attribute name="min" use="required">
+			<xs:annotation>
+				<xs:documentation>Minimum, from 0 up.</xs:documentation>
+				<xs:documentation>0 = null-able,</xs:documentation>
+				<xs:documentation>1 = Default</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:nonNegativeInteger"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="max" use="required">
+			<xs:annotation>
+				<xs:documentation>Maximum, from 1 up, included 'unbounded'.</xs:documentation>
+				<xs:documentation>1 = Default,</xs:documentation>
+				<xs:documentation>'unbounded' = No specific limit / '1 or more'</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:union>
+					<xs:simpleType>
+						<xs:restriction base="xs:nonNegativeInteger"/>
+					</xs:simpleType>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="unbounded"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:union>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
 
 	<xs:complexType name="_field">
 		<xs:sequence>
@@ -1377,7 +1381,7 @@
 						<xs:group ref="addml:unitGroup" />
 						<xs:element name="codeValue" type="xs:string" maxOccurs="unbounded">
 							<xs:annotation>
-								<xs:documentation>Coded value in a field</xs:documentation>
+								<xs:documentation>Coded value in a field.</xs:documentation>
 								<xs:documentation>EX. 0, 1 or A, B, C</xs:documentation>
 							</xs:annotation>
 						</xs:element>
@@ -1539,19 +1543,19 @@
 				</xs:annotation>
 				<xs:element name="subTypeOf" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Reference to supertype of definition</xs:documentation>
+						<xs:documentation>Reference to supertype of definition.</xs:documentation>
 						<xs:documentation>Ex: (a, b) is supertype of (a, b, c) [Extra field/group]</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="superTypeOf" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Reference to subtype of definition</xs:documentation>
+						<xs:documentation>Reference to subtype of definition.</xs:documentation>
 						<xs:documentation>Ex: (a, b) is subtype of (a, b, c*)  [Missing field/group]</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 				<xs:element name="variantOf" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Reference to variant of definition</xs:documentation>
+						<xs:documentation>Reference to variant of definition.</xs:documentation>
 						<xs:documentation>Ex: (a, b, c) is variant of (a, b, c*) [Different restraints on same field/group]</xs:documentation>
 					</xs:annotation>
 				</xs:element>
@@ -1610,35 +1614,7 @@
 				</xs:annotation>
 				<xs:complexType>
 					<xs:attribute name="value" type="xs:string"/>
-					<xs:attribute name="min" use="required">
-						<xs:annotation>
-							<xs:documentation>Minimum, from 0 up</xs:documentation>
-							<xs:documentation>0 = null-able</xs:documentation>
-							<xs:documentation>1 = Default</xs:documentation>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:restriction base="xs:nonNegativeInteger"/>
-						</xs:simpleType>
-					</xs:attribute>
-					<xs:attribute name="max" use="required">
-						<xs:annotation>
-							<xs:documentation>Maximum, from 1 up, included 'unbounded'</xs:documentation>
-							<xs:documentation>1 = Default</xs:documentation>
-							<xs:documentation>'unbounded' = No specific limit / '1 or more'</xs:documentation>
-						</xs:annotation>
-						<xs:simpleType>
-							<xs:union>
-								<xs:simpleType>
-									<xs:restriction base="xs:nonNegativeInteger"/>
-								</xs:simpleType>
-								<xs:simpleType>
-									<xs:restriction base="xs:string">
-										<xs:enumeration value="unbounded"/>
-									</xs:restriction>
-								</xs:simpleType>
-							</xs:union>
-						</xs:simpleType>
-					</xs:attribute>
+					<xs:attributeGroup ref="addml:MinMaxAttributes"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
@@ -2355,7 +2331,7 @@
 			</xs:element>
 			<xs:element name="alignment" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Aligns content to left, center or right</xs:documentation>
+					<xs:documentation>Aligns content to left, center or right.</xs:documentation>
 					<xs:documentation>TODO: Should it be defined here, or not?</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
