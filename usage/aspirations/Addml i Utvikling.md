@@ -30,4 +30,8 @@
 
 * TODO
 
-![Version 9](https://www.plantuml.com/plantuml/png/5SvDje8m343X-Ll5Sm4bM53K4Jlnf6c4Ulh3QLBSlZYwm_lDebYrfVXt2fbYyzng_5zLDta0LFnqIz2rkIPSgMJbh1sL1E_2TU5iTe5fwEr4epLaoPkHhjQuysiqzZ9OwjdTF3f8ACeLck32WBA5YXfA5ZZM0kXzYi_ztcq_oSpP7_q2)
+```plantuml
+@startuml
+!includeurl https://raw.githubusercontent.com/joergen-vs/73027c42-c2cd-4c62-b1f4-2532c0eb8dab/master/usage/aspirations/umls/addml_v9.puml
+@enduml
+```
