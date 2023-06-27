@@ -1,0 +1,67 @@
+@startuml
+node addml
+
+node dataset{
+    node reference {
+        node context
+        node content
+
+        node additionalElements [
+            {{
+            node additionalElement
+            node property as pp
+            node processes
+            additionalElement -> additionalElement
+        additionalElement --> pp
+        pp -> pp
+            }}
+        ]
+
+        content --> additionalElements
+        context --> additionalElements
+    }
+    node flatFiles{
+        node property as pp2
+        node flatFile
+        node flatFileDefinition
+        node recordDefinition
+        node keys
+        node fieldDefinition
+        node code
+        node structureTypes {
+            node flatFileType
+            node recordType
+            node fieldType
+        }
+        node queries
+        
+        node processes {
+            node "Dataset tests"
+            node "File tests"
+            node "Record tests"
+            node "Field tests"
+        }
+
+        pp2 <- flatFile
+        pp2 -u-> pp2
+        flatFile -u-> flatFileDefinition
+        flatFileDefinition -> recordDefinition
+        recordDefinition -> fieldDefinition
+        recordDefinition --> keys
+        fieldDefinition --> code
+    }
+    node dataObjects{
+        node dataObject
+        node property as pp
+        node processes as p2
+        dataObject -> dataObject
+        dataObject --> pp
+        pp -> pp
+    }
+    reference -[hidden]--> flatFiles
+    reference -[hidden] dataObjects
+}
+
+addml --> dataset
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+node addmml
+
+addmml -- processes
+addmml - reference
+
+node reference{
+    node archives
+    node series
+}
+
+node structure {
+    node dataset
+    node file
+    node rectype
+    node keys
+    node fieldtype
+    node code
+    dataset - file
+    file - rectype
+    rectype -- keys
+    rectype - fieldtype
+    fieldtype -- code
+}
+
+addmml -- structure
+
+node processes {
+    node "Dataset tests"
+    node "File tests"
+    node "Record tests"
+    node "Field tests"
+}
+
+@enduml
