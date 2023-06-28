@@ -16,14 +16,14 @@ node structure {
     node keys
     node fieldtype
     node code
-    dataset - file
-    file - rectype
-    rectype -- keys
-    rectype - fieldtype
-    fieldtype -- code
+    file <-- dataset
+    file -> rectype
+    rectype --> keys
+    rectype -> fieldtype
+    fieldtype --> code
 }
 
-addmml -- structure
+addmml --> structure
 
 node processes {
     node "Dataset tests"
