@@ -42,9 +42,9 @@ node dataset{
             node "Field tests"
         }
 
-        pp2 <- flatFile
+        flatFile -> pp2
         pp2 -u-> pp2
-        flatFile -u-> flatFileDefinition
+        flatFile -d-> flatFileDefinition
         flatFileDefinition -> recordDefinition
         recordDefinition -> fieldDefinition
         recordDefinition --> keys
@@ -55,6 +55,7 @@ node dataset{
         node property as pp
         node processes as p2
         dataObject -> dataObject
+        dataObject  -[hidden]> p2
         dataObject --> pp
         pp -> pp
     }
