@@ -18,7 +18,7 @@
 * Documentation of code:
     * Value in field and explanation of value
 
-![Version 7](https://www.plantuml.com/plantuml/png/5SvD4e8m343XlQVG0vHWGN5SSHCdJIFKwG_Jf7XzSVMMxvj5iMfByNG9cMBpt6eyhwgRF04gVhibwDfS4wvKidBMZag2J-6wS3Qxm3JqTgBH6hBapKXtQzprFHfx6oprx1uU7IGKvGfDS650sK953IKB76i1z3wb-DgdRljJPix-w0y0?)
+![Version 7](https://www.plantuml.com/plantuml/png/5SvD4e8m343XlQVG0vHWGN5SSHCdJIFKwG_Jf7XzSVMMxvj5iMfByNG9cMBpt6eyhwgRF04gVhibwDfS4wvKidBMZag2J-6wS3Qxm3JqTgBH6hBapKXtQzprFHfx6oprx1uU7IGKvGfDS650sK953IKB76i1z3wb-DgdRljJPix-w0y0?cache=no)
 
 ## ADDML v.8
 
@@ -33,10 +33,10 @@
     * No defined dataObject-structure, guidelines gives examples limited to location, statistics and verification.
 
 
-![Version 8](https://www.plantuml.com/plantuml/png/5SvFie8m383n_Jl5ym0bM50OLzp4ITC8TVg7QLAylhZwbjzl4SMgBSM_IyWKc-TMu_-ckii3eEAdMuDkpJNXIYKhP-se97WNhYjdSmXCGsyd6gqXIzwCTBV6NL-ZiRV1KizkzkWWeIXNQ88h0yeUAceeMU1S2w3tAJwFkTj_aeMpF_i5?)
+![Version 8](https://www.plantuml.com/plantuml/png/5SvFie8m383n_Jl5ym0bM50OLzp4ITC8TVg7QLAylhZwbjzl4SMgBSM_IyWKc-TMu_-ckii3eEAdMuDkpJNXIYKhP-se97WNhYjdSmXCGsyd6gqXIzwCTBV6NL-ZiRV1KizkzkWWeIXNQ88h0yeUAceeMU1S2w3tAJwFkTj_aeMpF_i5?cache=no)
 
 ## ADDML v.9
 
 * TODO
 
-![Version 9](https://www.plantuml.com/plantuml/png/5SvDje8m343X-Ll5Sm4bM53K4Jlnf6c4Ulh3QLBSlZYwm_lDebYrfVXt2fbYyzng_5zLDta0LFnqIz2rkIPSgMJbh1sL1E_2TU5iTe5fwEr4epLaoPkHhjQuysiqzZ9OwjdTF3f8ACeLck32WBA5YXfA5ZZM0kXzYi_ztcq_oSpP7_q2?)
+![Version 9](https://www.plantuml.com/plantuml/png/5SvDje8m343X-Ll5Sm4bM53K4Jlnf6c4Ulh3QLBSlZYwm_lDebYrfVXt2fbYyzng_5zLDta0LFnqIz2rkIPSgMJbh1sL1E_2TU5iTe5fwEr4epLaoPkHhjQuysiqzZ9OwjdTF3f8ACeLck32WBA5YXfA5ZZM0kXzYi_ztcq_oSpP7_q2?cache=no)
