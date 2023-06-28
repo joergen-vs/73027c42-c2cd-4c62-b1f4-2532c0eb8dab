@@ -1,6 +1,7 @@
 @startuml
 node addmml
 
+addmml --> processes
 addmml -> reference
 
 node reference{
@@ -8,8 +9,7 @@ node reference{
     node series
 }
 
-node structure [
-{{
+node structure {
     node dataset
     node file
     node rectype
@@ -21,20 +21,15 @@ node structure [
     rectype --> keys
     rectype -> fieldtype
     fieldtype --> code
-}}
-]
+}
 
 addmml --> structure
 
-node processes [
-{{
+node processes {
     node "Dataset tests"
     node "File tests"
     node "Record tests"
     node "Field tests"
-}}
-]
-
-addmml --> processes
+}
 
 @enduml
