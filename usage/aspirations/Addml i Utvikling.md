@@ -22,7 +22,16 @@
 
 ## ADDML v.8
 
-* TODO
+* No defined reference-structure, only guidelines. Like mets's agent; agent(name, role, contact(name, email))
+* No defined tests, any implementation depends on the tool used for verification
+    * Re-structured to resemble the structure
+* Added queries, to document usage and the extraction process.
+* "How to read" is moved to structureTypes, for files, records and fields.
+* Separated file-info from file-definition, to separate information regarding the file (location, checksum) from definition-information (description, identifiers)
+    * Record- and field-definitions still contain both location-information along with definition-information.
+* Added dataObject to document structures outside of flat-files (like xml).
+    * No defined dataObject-structure, guidelines gives examples limited to location, statistics and verification.
+
 
 ![Version 8](https://www.plantuml.com/plantuml/png/5SvFie8m383n_Jl5ym0bM50OLzp4ITC8TVg7QLAylhZwbjzl4SMgBSM_IyWKc-TMu_-ckii3eEAdMuDkpJNXIYKhP-se97WNhYjdSmXCGsyd6gqXIzwCTBV6NL-ZiRV1KizkzkWWeIXNQ88h0yeUAceeMU1S2w3tAJwFkTj_aeMpF_i5)
 

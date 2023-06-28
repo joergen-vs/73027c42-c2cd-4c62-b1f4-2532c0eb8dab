@@ -46,9 +46,12 @@ node dataset{
         pp2 -u-> pp2
         flatFile -d-> flatFileDefinition
         flatFileDefinition -> recordDefinition
+        flatFileDefinition -u-> pp2
         recordDefinition -> fieldDefinition
+        recordDefinition -u-> pp2
         recordDefinition --> keys
         fieldDefinition --> code
+        fieldDefinition -u-> pp2
     }
     node dataObjects{
         node dataObject
