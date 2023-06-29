@@ -1,3 +1,63 @@
 @startuml
 node addml
+
+node dataset
+addml -> dataset
+
+node reference {
+    node content
+    node context
+    content -[hidden] context
+}
+
+dataset -> reference
+
+package container
+package file
+package folder
+package group
+package field
+package code
+
+dataset --> container
+container --> folder
+container --> file
+file --> group
+group --> field
+field --> code
+
+package definitions{
+    node containerDefinition
+    node fileDefinition
+    node folderDefinition
+    node groupDefinition
+    node fieldDefinition
+    node codeDefinition
+    node typeDefinition
+}
+
+dataset --> definitions
+
+package types {
+    package fileType{
+        node fixedFileType
+        node DelimitedFileType
+        node XmlFileType
+    }
+    package groupType
+    package fieldType
+    package attributeType
+
+    fileType -[hidden]-- groupType
+    fileType -[hidden]-- fieldType
+    fileType -[hidden]-- attributeType
+}
+
+dataset --> types
+
+package processes {
+
+}
+
+dataset --> processes
 @enduml

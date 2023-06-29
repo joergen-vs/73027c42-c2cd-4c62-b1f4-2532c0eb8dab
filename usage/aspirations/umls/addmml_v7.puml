@@ -1,8 +1,8 @@
 @startuml
 node addmml
 
-addmml --> processes
-addmml -> reference
+addmml -- processes
+addmml - reference
 
 node reference{
     node archives
@@ -16,14 +16,14 @@ node structure {
     node keys
     node fieldtype
     node code
-    file <-- dataset
-    file -> rectype
-    rectype --> keys
-    rectype -> fieldtype
-    fieldtype --> code
+    dataset - file
+    file - rectype
+    rectype -- keys
+    rectype - fieldtype
+    fieldtype -- code
 }
 
-addmml --> structure
+addmml -- structure
 
 node processes {
     node "Dataset tests"
