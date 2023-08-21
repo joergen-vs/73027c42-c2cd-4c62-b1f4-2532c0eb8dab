@@ -28,6 +28,8 @@
 
 ## ADDML v.9
 
-* TODO
+* Changed all elements to complex- or simpletype, except root-element
+* Added xsd-keys to validate references
+* 
 
 ![Version 9](https://www.plantuml.com/plantuml/png/5SvDje8m343X-Ll5Sm4bM53K4Jlnf6c4Ulh3QLBSlZYwm_lDebYrfVXt2fbYyzng_5zLDta0LFnqIz2rkIPSgMJbh1sL1E_2TU5iTe5fwEr4epLaoPkHhjQuysiqzZ9OwjdTF3f8ACeLck32WBA5YXfA5ZZM0kXzYi_ztcq_oSpP7_q2)

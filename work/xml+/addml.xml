@@ -21,6 +21,11 @@
 					<version>5</version>
 					<source>http://www.w3.org/TR/2008/REC-xml-20081126/</source>
 				</standard>
+				<standard name="XML 1.0">
+					<title>Extensible Markup Language (XML) 1.0 (Fifth Edition)</title>
+					<version>5</version>
+					<source>http://www.w3.org/TR/2008/REC-xml-20081126/</source>
+				</standard>
 			</content>
 		</reference>
 		<container name="arkivuttrekk" xsi:type="archivalExtraction" definitionReference="Noark-arkivuttrekk">
@@ -64,42 +69,42 @@
 				</schemas>
 				<root>noark5-arkiv</root>
 				<group name="noark5-arkiv" xsi:type="xmlGroup" definitionReference="noark5-arkiv" typeReference="xml-group">
-					<description></description>
+					<description/>
 					<name>arkiv</name>
 					<element>
 						<field name="noark5-systemID" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="noark5-ID">
-							<description></description>
+							<description/>
 							<name>systemID</name>
 							<attribute name="label" xsi:type="xmlAttribute" definitionReference="n5mdk:M001-label" typeReference="xml-attribute">
-								<description></description>
+								<description/>
 								<name>label</name>
 							</attribute>
 						</field>
 					</element>
 					<element>
 						<field name="noark5-tittel" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>tittel</name>
 						</field>
 					</element>
 					<element>
 						<minOccurs>0</minOccurs>
 						<field name="noark5-beskrivelse" xsi:type="xmlField" definitionReference="n5mdk:M021" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>beskrivelse</name>
 						</field>
 					</element>
 					<element>
 						<minOccurs>0</minOccurs>
 						<field name="noark5-arkivstatus" xsi:type="xmlField" definitionReference="n5mdk:M050" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>arkivstatus</name>
 						</field>
 					</element>
 					<element>
 						<minOccurs>0</minOccurs>
 						<field name="noark5-dokumentmedium" xsi:type="xmlField" definitionReference="n5mdk:M300" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>dokumentmedium</name>
 						</field>
 					</element>
@@ -107,31 +112,31 @@
 						<minOccurs>0</minOccurs>
 						<maxOccurs>unbounded</maxOccurs>
 						<field name="noark5-oppbevaringssted" xsi:type="xmlField" definitionReference="n5mdk:M301" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>oppbevaringssted</name>
 						</field>
 					</element>
 					<element>
 						<field name="noark5-opprettetDato" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>opprettetDato</name>
 						</field>
 					</element>
 					<element>
 						<field name="noark5-opprettetAv" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>opprettetAv</name>
 						</field>
 					</element>
 					<element>
 						<field name="noark5-avsluttetDato" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>avsluttetDato</name>
 						</field>
 					</element>
 					<element>
 						<field name="noark5-avsluttetAv" xsi:type="xmlField" definitionReference="n5mdk:M001" typeReference="xml-string">
-							<description></description>
+							<description/>
 							<name>avsluttetAv</name>
 						</field>
 					</element>
@@ -144,7 +149,7 @@
 					</element>
 				</group>
 				<group name="noark5-arkiv-subObjects" xsi:type="xmlGroup" definitionReference="xml-subgrouping" typeReference="xml-group">
-					<description></description>
+					<description/>
 					<type>choice</type>
 					<element>
 						<maxOccurs>unbounded</maxOccurs>
@@ -179,7 +184,7 @@
 				</schemas>
 				<root>noark5-endringslogg</root>
 				<group name="noark5-endringslogg" label="noark5-endringslogg" definitionReference="noark5-endringslogg" typeReference="xml-group" xsi:type="xmlGroup">
-					<description></description>
+					<description/>
 					<name>endringslogg</name>
 					<element>
 						<maxOccurs>unbounded</maxOccurs>
@@ -187,7 +192,7 @@
 					</element>
 				</group>
 				<group name="noark5-endring" xsi:type="xmlGroup" definitionReference="noark5-endring" typeReference="xml-group">
-					<description></description>
+					<description/>
 					<name>arkiv</name>
 					<element>
 						<field name="noark5-referanseArkivenhet" definitionReference="n5mdk:M680" typeReference="xml-string">
@@ -389,17 +394,17 @@
 				<specification>Noark5</specification>
 			</definition>
 			<!-- Internal -->
-			<definition xsi:type="typeDefinition" name ="xml-file">
+			<definition xsi:type="typeDefinition" name="xml-file">
 				<description>Extensible Markup Language, abbreviated XML, describes a class of data objects called XML documents and partially describes the behavior of computer programs which process them.</description>
 				<specification>Extensible Markup Language (XML) 1.0 (Fifth Edition)</specification>
 				<source>https://www.w3.org/TR/xml/</source>
 			</definition>
-			<definition xsi:type="typeDefinition" name ="xml-complex">
+			<definition xsi:type="typeDefinition" name="xml-complex">
 				<description>A complex type definition is a set of attribute declarations and a content type, applicable to the [attributes] and [children] of an element information item respectively. The content type may require the [children] to contain neither element nor character information items (that is, to be empty), to be a string which belongs to a particular simple type or to contain a sequence of element information items which conforms to a particular model group, with or without character information items as well.</description>
 				<specification>XML Schema Part 1: Structures</specification>
 				<source>https://www.w3.org/TR/xmlschema-1/#Complex_Type_Definitions</source>
 			</definition>
-			<definition xsi:type="typeDefinition" name ="xml-string">
+			<definition xsi:type="typeDefinition" name="xml-string">
 				<description>The string datatype represents character strings in XML. The ·value space· of string is the set of finite-length sequences of characters (as defined in [XML 1.0 (Second Edition)]) that ·match· the Char production from [XML 1.0 (Second Edition)]. A character is an atomic unit of communication; it is not further specified except to note that every character has a corresponding Universal Character Set code point, which is an integer.</description>
 				<specification>XML Schema Part 2: Datatypes</specification>
 				<source>https://www.w3.org/TR/xmlschema-2/#string</source>
@@ -418,7 +423,7 @@
 				<charset>UTF-8</charset>
 			</fileType>
 			<groupType name="xml-group" xsi:type="xmlGroupType" definitionReference="xml-complex">
-				<description></description>
+				<description/>
 			</groupType>
 			<fieldType name="noark5-ID" label="Tekstfelt" xsi:type="xmlFieldType">
 				<description>Tekststreng</description>
