@@ -1,7 +1,7 @@
 ![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuShBJqbL22ufAiqkAIs2y5nIqpBpCekpylCW_93AWbG8Aw0elpYrk3YrY0kcGq7N3bazWWcK06j4gBJHrKKOWAGIJS8XDIy5w300)<br>
 *Koblingen mellom ulike deler i addml*<p>
 
-![](http://www.plantuml.com/plantuml/png/NP1H3e8m38RVTufTW9t0419vCRuOzG9BA161pgpTWxTNhD3g6__NhwnjGnmpbtboc3hmRUH8mEmadg67794WIpuWtjBKIJWcP1Y9dLg-gkfD-iMgk_MH3rRh--R-xSK1jtpXN4OkML8B_O03tHDAlZuV85-dd0Xe-S_QuKDjVSMXbZuj-bq8mZPh8VhFFrKBjX9qUKljxkjsCeLQzYYMQyDIq6DONGQtn0vkiTws0UpAFBq0)<br>
+![](//www.plantuml.com/plantuml/png/LP0n3i8m34Ltdo8NQ4w0gWvT40i2BX2fhYWj3hAT0I7k3fM9QhRyv-_eVtUYYRNS5w0yOEYJ9a5LC7d24JcH88UNaJtHDI-3YKCcnLaKtW16pifbri8_sUCuqIItJAOlpmVQwyXPK0GPwag8hVCx75lRsuPX5wEnwbg9-zDP_mVW6gqJPmIevKFJkkOEDpwXvpMX8pwDmzk5EgJXU_SF)<br>
 *Foreslått endring*<p>
 
 - Løsrivelse av struktur fra definisjon
