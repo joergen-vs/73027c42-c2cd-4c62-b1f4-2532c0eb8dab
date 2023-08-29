@@ -1,7 +1,7 @@
 ![](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuShBJqbL22ufAiqkAIs2y5nIqpBpCekpylCW_93AWbG8Aw0elpYrk3YrY0kcGq7N3bazWWcK06j4gBJHrKKOWAGIJS8XDIy5w300)<br>
 *Koblingen mellom ulike deler i addml*<p>
 
-![](//www.plantuml.com/plantuml/png/LP0n3i8m34Ltdo8NQ4w0gWvT40i2BX2fhYWj3hAT0I7k3fM9QhRyv-_eVtUYYRNS5w0yOEYJ9a5LC7d24JcH88UNaJtHDI-3YKCcnLaKtW16pifbri8_sUCuqIItJAOlpmVQwyXPK0GPwag8hVCx75lRsuPX5wEnwbg9-zDP_mVW6gqJPmIevKFJkkOEDpwXvpMX8pwDmzk5EgJXU_SF)<br>
+![](http://www.plantuml.com/plantuml/png/LP0n3i8m34Ltdo8NQ4w0gWvT40i2BX2fhYWj3hAT0I7k3fM9QhRyv-_eVtUYYRNS5w0yOEYJ9a5LC7d24JcH88UNaJtHDI-3YKCcnLaKtW16pifbri8_sUCuqIItJAOlpmVQwyXPK0GPwag8hVCx75lRsuPX5wEnwbg9-zDP_mVW6gqJPmIevKFJkkOEDpwXvpMX8pwDmzk5EgJXU_SF)<br>
 *Foreslått endring*<p>
 
 - Løsrivelse av struktur fra definisjon
