@@ -329,7 +329,7 @@
   </xs:element>
   <xs:element name="code">
     <xs:complexType>
-      <xs:attribute name="codeValue" type="addml:notEmtpyString" use="required" />
+      <xs:attribute name="codeValue" type="xs:string" use="required" />
       <xs:attribute name="explan" type="addml:notEmtpyString" />
     </xs:complexType>
   </xs:element>
@@ -885,11 +885,11 @@
         </xs:simpleType>
         <xs:simpleType>
           <xs:restriction base="xs:string">
-            <xs:pattern value=".+">
+            <xs:minLength value="1">
               <xs:annotation>
                 <xs:documentation>Andre skilletegn</xs:documentation>
               </xs:annotation>
-            </xs:pattern>
+            </xs:minLength>
           </xs:restriction>
         </xs:simpleType>
       </xs:union>
@@ -906,7 +906,7 @@
   <xs:simpleType name="dataTyperForAV">
     <xs:union>
       <xs:simpleType>
-        <xs:restriction base="xs:string">
+        <xs:restriction base="addml:notEmtpyString">
           <xs:enumeration value="string">
             <xs:annotation>
               <xs:documentation xml:lang="no">Tekst</xs:documentation>
