@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xs:schema xmlns:addml="http://www.arkivverket.no/standarder/addml_tw"
-  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="http://www.arkivverket.no/standarder/addml_tw" elementFormDefault="qualified"
-  version="8.3">
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.arkivverket.no/standarder/addml_tw" elementFormDefault="qualified" version="8.3">
   <xs:annotation>
     <xs:documentation xml:lang="en"> Changes made in versions up to 8.2 are not documented in this
       document. Updated 2014-08-15 and 2014-09-29, Terje Pettersen-Dahl: Version 8.3: 1. Element
@@ -39,6 +37,10 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="context">
+    <xs:annotation>
+      <xs:documentation>Kontekst-informasjon</xs:documentation>
+      <xs:documentation>Aktører</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:description" minOccurs="0" />
@@ -150,6 +152,14 @@
     </xs:keyref>
   </xs:element>
   <xs:element name="flatFile">
+    <xs:annotation>
+      <xs:documentation>Inneholder informasjon om en enkelt fil.</xs:documentation>
+      <xs:documentation>Skal ha følgende egenskaper:</xs:documentation>
+      <xs:documentation>fileName - Relativ filbane</xs:documentation>
+      <xs:documentation>numberOfOccurrences - Antall post-forekomster i filen</xs:documentation>
+      <xs:documentation>checksum/algorithm - Fast verdi 'SHA-256'</xs:documentation>
+      <xs:documentation>checksum/value - Sjekksum-verdi for fil</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:properties" minOccurs="0" />
@@ -159,6 +169,10 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="flatFileDefinitions">
+    <xs:annotation>
+      <xs:documentation>Inneholder beskrivelser av filer, poster og felter. Inneholder også hvor de er å finne.</xs:documentation>
+      <xs:documentation>Er ment å ha en definisjon per fil/post/felt.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:flatFileDefinition" maxOccurs="unbounded" />
@@ -166,6 +180,9 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="flatFileDefinition">
+    <xs:annotation>
+      <xs:documentation>Inneholder situasjonsspesifikk informasjon som benyttes for å beskrive en fil. </xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:description" minOccurs="0" />
@@ -189,8 +206,7 @@
       </xs:sequence>
     </xs:complexType>
     <xs:unique name="uniqueFieldReferenceRepetingGroups">
-      <xs:selector
-        xpath="addml:recordDefinition/addml:repeatingGroups/addml:repeatingGroup/addml:fieldDefinitionReferences/addml:fieldDefinitionReference" />
+      <xs:selector xpath="addml:recordDefinition/addml:repeatingGroups/addml:repeatingGroup/addml:fieldDefinitionReferences/addml:fieldDefinitionReference" />
       <xs:field xpath="@name" />
     </xs:unique>
   </xs:element>
@@ -321,6 +337,9 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="codes">
+    <xs:annotation>
+      <xs:documentation>Definerer gyldige koder for feltet.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:code" maxOccurs="unbounded" />
@@ -328,12 +347,19 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="code">
+    <xs:annotation>
+      <xs:documentation>Inneholder verdi og forklaring</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:attribute name="codeValue" type="xs:string" use="required" />
       <xs:attribute name="explan" type="addml:notEmtpyString" />
     </xs:complexType>
   </xs:element>
   <xs:element name="structureTypes">
+    <xs:annotation>
+      <xs:documentation>Inneholder informasjon om hvordan filer, poster og felter skal leses.</xs:documentation>
+      <xs:documentation>I motsetning til definisjon, er type ment å gjelde for flere definisjoner.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:flatFileTypes" />
@@ -350,6 +376,10 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="flatFileType">
+    <xs:annotation>
+      <xs:documentation>Inneholder tegnsett, post- og felt-skilletegn, anførselstegn og bit-tolkninger av hva et tegn skal være.</xs:documentation>
+      <xs:documentation>Fastlenge-filer skal ikke ha feltskille eller anførselstegn.</xs:documentation>
+    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:description" minOccurs="0" />
