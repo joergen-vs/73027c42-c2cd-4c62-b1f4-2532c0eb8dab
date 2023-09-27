@@ -308,7 +308,7 @@
 					<xs:documentation>Mange til en</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
-			<xs:enumeration value="1:1">
+			<xs:enumeration value="m:n">
 				<xs:annotation>
 					<xs:documentation>Mange til mange</xs:documentation>
 				</xs:annotation>
