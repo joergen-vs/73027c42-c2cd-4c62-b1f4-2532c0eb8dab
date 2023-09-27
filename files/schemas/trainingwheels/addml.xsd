@@ -291,7 +291,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="relationType" type="addml:notEmtpyString" />
+	<xs:element name="relationType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Shows the relation between to post-definitions; </xs:documentation>
+			<xs:documentation xml:lang="no">Viser forholdet mellom to post-definisjoner; </xs:documentation>
+		</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="addml:notEmtpyString">
+			<xs:enumeration value="1:1">
+				<xs:annotation>
+					<xs:documentation>En til en</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="n:1">
+				<xs:annotation>
+					<xs:documentation>Mange til en</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1:1">
+				<xs:annotation>
+					<xs:documentation>Mange til mange</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	</xs:element>
   <xs:element name="fieldDefinitions">
     <xs:complexType>
       <xs:sequence>
@@ -525,6 +549,7 @@
   <xs:element name="padChar" type="addml:notEmtpyString" />
   <xs:element name="packType" type="addml:notEmtpyString" />
   <xs:element name="nullValues">
+	  <xs:annotation><xs:documentation>List over definerte null-verdier for felt-typen.</xs:documentation></xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="addml:nullValue" maxOccurs="unbounded">
@@ -559,7 +584,58 @@
   <xs:element name="flatFileProcesses">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="addml:processes" minOccurs="0" />
+        <xs:element name="processes" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="process" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="addml:parameters" minOccurs="0" />
+                  </xs:sequence>
+                  <xs:attribute name="name" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="addml:notEmtpyString">
+                        <xs:enumeration value="Analyse_CountRecords">
+                          <xs:annotation>
+                            <xs:documentation>Teller opp antall poster i en fil.</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Analyse_CountChars">
+                          <xs:annotation>
+                            <xs:documentation>Teller opp antall tegn i en fil.</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Control_AllFixedLength">
+                          <xs:annotation>
+                            <xs:documentation>Kontrollerer at oppgitt postlengde på samtlige posttyper er korrekt.</xs:documentation>
+                            <xs:documentation>Gjelder kun fast format</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Control_NumberOfRecords">
+                          <xs:annotation>
+                            <xs:documentation>Teller opp og kontrollerer at antall poster i filen er lik antallet som er oppgitt i egenskapen numberOfOccurrences under flatFile.</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Control_Key">
+                          <xs:annotation>
+                            <xs:documentation>Kontrollerer at nøkkelen er unik.</xs:documentation>
+                            <xs:documentation>Kun primary eller alternate</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Control_ForeignKey">
+                          <xs:annotation>
+                            <xs:documentation>Kontrollerer fremmednøkler for å sjekke at de går til
+                              en faktisk forekomst.</xs:documentation>
+                          </xs:annotation>
+                        </xs:enumeration>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element ref="addml:recordProcesses" minOccurs="0" maxOccurs="unbounded" />
       </xs:sequence>
       <xs:attribute name="flatFileReference" type="addml:notEmtpyString" use="required" />
@@ -603,7 +679,7 @@
                         <xs:enumeration value="Control_FixedLength">
                           <xs:annotation>
                             <xs:documentation>Kontrollerer om oppgitt postlengde er korrekt</xs:documentation>
-                            <xs:documentation>Kun fast format</xs:documentation>
+                            <xs:documentation>Gjelder kun fast format</xs:documentation>
                           </xs:annotation>
                         </xs:enumeration>
                         <xs:enumeration value="Control_NotUsedRecordDef">
