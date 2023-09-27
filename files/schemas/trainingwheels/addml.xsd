@@ -192,7 +192,7 @@
         <xs:element ref="addml:recordDefinitions" />
       </xs:sequence>
       <xs:attribute name="name" type="addml:notEmtpyString" use="required" />
-      <xs:attribute name="typeReference" type="addml:notEmtpyString" />
+      <xs:attribute name="typeReference" type="addml:notEmtpyString" use="required" />
     </xs:complexType>
   </xs:element>
   <xs:element name="external">
@@ -224,7 +224,7 @@
         <xs:element ref="addml:headerLevel" minOccurs="0" />
       </xs:sequence>
       <xs:attribute name="name" type="addml:notEmtpyString" use="required" />
-      <xs:attribute name="typeReference" type="addml:notEmtpyString" />
+      <xs:attribute name="typeReference" type="addml:notEmtpyString" use="required" />
     </xs:complexType>
   </xs:element>
   <xs:element name="recordDefinitionFieldValue" type="addml:notEmtpyString" />
