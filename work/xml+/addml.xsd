@@ -192,11 +192,11 @@
 					<xs:choice minOccurs="0">
 						<xs:element name="value" type="addml:value"/>
 						<xs:element name="object">
-							<xsd:complexType>
-								<xsd:sequence>
-									<xsd:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
-								</xsd:sequence>
-							</xsd:complexType>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
+								</xs:sequence>
+							</xs:complexType>
 						</xs:element>
 					</xs:choice>
 					<xs:element name="property" type="addml:property" maxOccurs="unbounded"/>
@@ -219,11 +219,11 @@
 		<xs:choice minOccurs="0">
 			<xs:element name="value" type="addml:value"/>
 			<xs:element name="object">
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
-					</xsd:sequence>
-				</xsd:complexType>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
+					</xs:sequence>
+				</xs:complexType>
 			</xs:element>
 		</xs:choice>
 	</xs:complexType>
