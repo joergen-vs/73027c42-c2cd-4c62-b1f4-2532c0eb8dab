@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<addml xmlns="http://www.arkivverket.no/standarder/addml/v9"
+xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Test">
+	<dataset name="Test">
+		<structure>
+			<container name="Test" xsi:type="extraction"
+				definitionReference="saksbehandling:noark:n3">
+				<period>
+					<startDate>1995-01-01</startDate>
+					<endDate>1999-12-31</endDate>
+				</period>
+				<file name="Saksregister" xsi:type="fixedFile" definitionReference="n3:Saksregister"
+					typeReference="Fastlengde">
+					<path>SAK.DAT</path>
+					<checksum algorithm="SHA-256">
+						BABDBAEDA44EB7350ADB639DC6DE49F6550B1F02FF842E09009A1DED9DF5A83D</checksum>
+					<numberOfOccurrences>
+						<value>123</value>
+					</numberOfOccurrences>
+					<group name="Saksregisterpost" xsi:type="fixedGroup"
+						definitionReference="n3:Saksregisterpost">
+						<length>25</length>
+						<field name="ID" xsi:type="fixedField"
+							definitionReference="ID" typeReference="txt:string">
+							<description topic="Bruk">Unik ID</description>
+							<startPos>1</startPos>
+							<fixedLength>16</fixedLength>
+						</field>
+						<field name="Saksnr" xsi:type="fixedField"
+							definitionReference="Saksnr" typeReference="txt:string">
+							<description topic="Bruk">Saksnummer</description>
+							<startPos>17</startPos>
+							<fixedLength>8</fixedLength>
+						</field>
+					</group>
+				</file>
+				<file name="Arkivnoekkelregister" xsi:type="fixedFile"
+					definitionReference="n3:Arkivnoekkelregister" typeReference="Fastlengde">
+					<path>ARKIV.DAT</path>
+					<checksum algorithm="SHA-256">
+						BABDBAEDA44EB7350ADB639DC6DE49F6550B1F02FF842E09009A1DED9DF5A83D</checksum>
+					<numberOfOccurrences>
+						<value>123</value>
+					</numberOfOccurrences>
+					<group name="Arkivnoekkelregisterpost" xsi:type="fixedGroup"
+						definitionReference="n3:Arkivnoekkelregisterpost">
+						<length>25</length>
+						<field name="ID" xsi:type="fixedField"
+							definitionReference="ID" typeReference="txt:string">
+							<description topic="Bruk">Unik ID</description>
+							<startPos>1</startPos>
+							<fixedLength>16</fixedLength>
+						</field>
+						<field name="Saksnr" xsi:type="fixedField"
+							definitionReference="Saksnr" typeReference="txt:string">
+							<description topic="Bruk">Saksnummer</description>
+							<startPos>17</startPos>
+							<fixedLength>8</fixedLength>
+						</field>
+					</group>
+				</file>
+			</container>
+		</structure>
+		<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<definition name="saksbehandling:noark:n3" xsi:type="containerDefinition">
+				<description>Extraction of with fixed-length and xml-files.</description>
+				<reference value="n3:Saksregister" min="1" max="1" />
+				<reference value="n3:Arkivnoekkelregister" min="1" max="1" />
+				<reference value="n3:journal" min="1" max="1" />
+				<reference value="fk_2" />
+			</definition>
+			<definition name="n3:Saksregister" xsi:type="fileDefinition">
+				<description>Fixed-length file, containing one or more saksregister-records</description>
+				<reference value="n3:Saksregisterpost" min="1" max="unbounded" />
+			</definition>
+			<definition name="n3:Saksregisterpost" xsi:type="groupDefinition">
+				<reference value="fk_" />
+				<reference value="ID" min="1" max="1" />
+				<reference value="Saksnr" min="1" max="1" />
+			</definition>
+			<definition name="n3:Arkivnoekkelregister" xsi:type="groupDefinition">
+				<description>Fixed-length file, containing one or more arkivnoekkelregister-records</description>
+				<reference value="n3:Arkivnoekkelregisterpost" min="1" max="unbounded" />
+			</definition>
+			<definition name="n3:Arkivnoekkelregisterpost" xsi:type="groupDefinition">
+				<reference value="ID" min="1" max="1" />
+				<reference value="Saksnr" min="1" max="1" />
+			</definition>
+			<definition name="n3:journal" xsi:type="fileDefinition">
+				<description>The xml-file, containig two types of record. endringslogg, the
+					root-element, and endring, containing Saksnr and Tittel.</description>
+				<reference value="n3:journal:kopibok" />
+				<reference value="n3:journal:journalpost"
+					max="unbounded" />
+			</definition>
+			<definition name="n3:journal:kopibok" xsi:type="groupDefinition">
+				<reference value="n3:journal:journalpost"
+					max="unbounded" />
+			</definition>
+			<definition name="n3:journal:journalpost" xsi:type="groupDefinition">
+				<reference value="Saksnr" />
+				<reference value="Tittel" />
+			</definition>
+			<definition name="n3:pk_Saksregisterpost" xsi:type="keyDefinition">
+				<primaryKey />
+				<fields>
+					<definitionReference value="Saksnr" />
+				</fields>
+			</definition>
+			<definition name="n3:pk_ID" xsi:type="keyDefinition">
+				<primaryKey />
+				<fields>
+					<definitionReference value="ID" />
+				</fields>
+			</definition>
+			<definition name="fk_" xsi:type="keyDefinition">
+				<foreignKey>
+					<definitionReference value="n3:Arkivnoekkelregisterpost" />
+					<fields>
+						<definitionReference value="Saksnr" />
+					</fields>
+					<relationType>1:N</relationType>
+				</foreignKey>
+				<fields>
+					<definitionReference value="Saksnr" />
+				</fields>
+			</definition>
+			<definition name="fk_2" xsi:type="keyDefinition">
+				<foreignKey>
+					<definitionReference value="n3:journal" />
+					<definitionReference value="n3:journal:journalpost" />
+					<fields>
+						<definitionReference value="Saksnr" />
+					</fields>
+					<relationType>1:N</relationType>
+				</foreignKey>
+				<definitionReference value="n3:Saksregister" />
+				<definitionReference value="n3:Saksregisterpost" />
+				<fields>
+					<definitionReference value="Saksnr" />
+				</fields>
+			</definition>
+			<definition name="ID" xsi:type="fieldDefinition" />
+			<definition name="Saksnr" xsi:type="fieldDefinition"/>
+			<definition name="Tittel" xsi:type="fieldDefinition" />
+		</definitions>
+		<structureTypes>
+			<type name="Fastlengde" xsi:type="fixedFileType">
+				<format>
+					<name>FIXED</name>
+				</format>
+				<charset>ISO-8859-1</charset>
+			</type>
+			<type name="txt:string" xsi:type="fixedFieldType">
+				<description>Vanlig tekst-streng</description>
+				<dataType>string</dataType>
+				<padChar> </padChar>
+			</type>
+		</structureTypes>
+	</dataset>
+</addml>
