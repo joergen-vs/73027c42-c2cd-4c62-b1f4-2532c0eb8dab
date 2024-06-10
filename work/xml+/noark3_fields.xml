@@ -1,0 +1,123 @@
+<definition name="Saksnr-def" xsi:type="fieldDefinition">
+	<description>Består av Årstall, Skråstrek og Fortløpende nr.</description>
+</definition>
+<definition name="Sakstittel-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Sak_avsluttet-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Doknr-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Doktype-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Siste_dok-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Antall_dok-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Dato-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Delarkiv-def" xsi:type="fieldDefinition">
+	<description>Angir delarkiv</description>
+</definition>
+<definition name="Arkivkode-def" xsi:type="fieldDefinition">
+	<description>Arkivkode/Arkivbetegnelse</description>
+</definition>
+<definition name="Blankt_felt-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Journaldato-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Internt_dok_fra-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Internt_dok_til-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Journalenhet_1-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Journalenhet_2-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Behandler_1-def" xsi:type="fieldDefinition">
+	<description>Mottakers kontor</description>
+</definition>
+<definition name="Behandler_2-def" xsi:type="fieldDefinition">
+	<description>Mottakers initialer</description>
+</definition>
+<definition name="Saksbeh_for_dok_1-def" xsi:type="fieldDefinition">
+	<description>Mottakers initialer</description>
+</definition>
+<definition name="Saksbeh_for_dok_2-def" xsi:type="fieldDefinition">
+	<description>Mottakers initialer</description>
+</definition>
+<definition name="Dokumentbeskrivelse-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Kryssreferanse-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Bdato-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Vedlegg-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Tillegg-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Avskrivning_doknr-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Avskrivning_dato-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Avskrivning_maate-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Loepenr-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Filreferanse-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Saksansv_1-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Saksansv_2-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Sekundaerkode-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Avs_mot-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Avs_mot_forkortelse-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Uoff-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Avgradering-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Journalenhet-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Presedens-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Kassasjon-def" xsi:type="fieldDefinition">
+
+</definition>
+<definition name="Gruppetekst-def" xsi:type="fieldDefinition">
+
+</definition>

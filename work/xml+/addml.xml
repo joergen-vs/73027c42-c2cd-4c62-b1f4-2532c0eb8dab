@@ -5,11 +5,11 @@
 			<context>
 			</context>
 			<content>
-				<standard name="Addml for AV">
+				<documentationElement name="Addml for AV">
 					<title>Archival Data Description Markup Language</title>
 					<version>9.0</version>
 					<source>http://www.arkivverket.no/standarder/addml</source>
-				</standard>
+				</documentationElement>
 				<standard name="Noark5">
 					<title>Noark 5-standarden</title>
 					<version>5.0</version>
@@ -226,7 +226,7 @@
 					</element>
 				</group>
 			</file>
-			<file name="addml-schema" label="XML-skjema for addml" xsi:type="dataFile" definitionReference="addml-schema" typeReference="XML">
+			<file name="addml-schema" label="XML-skjema for addml" xsi:type="dataFiledefinitionReference="addml-schema" typeReference="XML">
 				<path>addml.xsd</path>
 				<checksum>
 					<algorithm>SHA-256</algorithm>
@@ -250,8 +250,8 @@
 		</container>
 		<definitions>
 			<definition xsi:type="containerDefinition" name="Noark-arkivuttrekk">
-				<description>Arkivuttrekk fra sak-/arkivsystem</description>
-				<specification>Noark5</specification>
+				<description>Arkivuttrekk fra fsak-/arkivsystem</description>
+				<documentation>Noark5</documentation>
 				<source>https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden</source>
 			</definition>
 			<definition xsi:type="fileDefinition" name="Infotekst">

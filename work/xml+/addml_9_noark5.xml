@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<addml xmlns="http://www.arkivverket.no/standarder/addml/v9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd"
+    name="Test">
+	<dataset name="6f102dda424f">
+		<reference>
+			<context>
+			</context>
+			<content>
+				<contentElement name="uuid" xsi:type="documentationElement">
+					<title>Universally Unique IDentifiers (UUIDs)</title>
+					<resource name="Universally Unique IDentifiers (UUIDs)">
+						<link>https://datatracker.ietf.org/doc/html/rfc9562</link>
+					</resource>
+				</contentElement>
+			</content>
+		</reference>
+		<structure>
+		<container name="Test" xsi:type="extraction" definitionReference="noark:n5">
+			<description>Beskrivelse av et Noark 5-uttrekk</description>
+			<version scheme="Semantic">v5.5.0</version>
+			<period>
+				<startDate fieldformat="yyyy-MM-dd">2023-01-01</startDate>
+				<endDate fieldformat="yyyy-MM-dd">2023-12-31</endDate>
+			</period>
+			<file name="endringslogg" xsi:type="xmlFile"
+				  definitionReference="n5:endringslogg:xml"
+				  typeReference="fileformat:xml">
+				<path>endringslogg.xml</path>
+				<checksum algorithm="SHA-256">02C2DB230A358D6DC6B1E896FAA1929EE1DFF7BF1F3DB2BA414485BCC1BB17C7</checksum>
+				<numberOfOccurrences>
+					<value>1</value>
+				</numberOfOccurrences>
+				<targetNamespace>http://www.arkivverket.no/standarder/noark5/endringslogg</targetNamespace>
+				<schemas>
+					<schema>
+						<namespace>http://www.arkivverket.no/standarder/noark5/endringslogg</namespace>
+						<fileReference>endringslogg-xsd</fileReference>
+					</schema>
+					<schema>
+						<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
+						<prefix>n5mdk</prefix>
+						<fileReference>metadatakatalog-xsd</fileReference>
+					</schema>
+				</schemas>
+				<root>endringslogg</root>
+				<group name="endringslogg" xsi:type="xmlGroup"
+					   definitionReference="n5:endringslogg:endringslogg"
+					   typeReference="grouping:xml:sequence">
+					<elementName>endringslogg</elementName>
+					<attribute name="VERSION" xsi:type="xmlAttribute"
+							   definitionReference="n5:version" typeReference="datatype:string">
+					</attribute>
+					<groupReference min="0" max="unbounded">n5:endringslogg:endring</groupReference>
+				</group>
+				<group name="n5:endringslogg:endring" xsi:type="xmlGroup"
+					   definitionReference="n5:endringslogg:endring" typeReference="grouping:xml:sequence">
+					<elementName>endring</elementName>
+					<field name="n5mdk:referanseArkivenhet" definitionReference="n5:metadatakatalog:referanseArkivenhet" typeReference="datatype:string:uuid">
+						<name>referanseArkivenhet</name>
+					</field>
+					<field name="n5mdk:referanseMetadata" definitionReference="n5:metadatakatalog:referanseMetadata" typeReference="datatype:string">
+						<name>referanseArkivenhet</name>
+					</field>
+					<field name="n5mdk:endretDato" definitionReference="n5:metadatakatalog:endretDato" typeReference="datatype:datetime:iso8601">
+						<name>referanseArkivenhet</name>
+					</field>
+					<field name="n5mdk:endretAv" definitionReference="n5:metadatakatalog:endretAv" typeReference="datatype:string">
+						<name>referanseArkivenhet</name>
+					</field>
+					<field name="n5mdk:tidligereVerdi" definitionReference="6f102dda424f:tidligereVerdi" typeReference="datatype:string">
+						<nullValues>
+							<nullValue>ingen verdi</nullValue>
+						</nullValues>
+						<name>referanseArkivenhet</name>
+					</field>
+					<field name="n5mdk:nyVerdi" definitionReference="n5:metadatakatalog:nyVerdi" typeReference="datatype:string">
+						<nullValues>
+							<nullValue>ingen verdi</nullValue>
+						</nullValues>
+						<name>referanseArkivenhet</name>
+					</field>
+				</group>
+			</file>
+			<file name="endringslogg-xsd" xsi:type="dataFile" definitionReference="n5:endringslogg:xsd" typeReference="fileformat:xml">
+				<path>endringslogg.xsd</path>
+				<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
+			</file>
+			<file name="metadatakatalog-xsd" xsi:type="dataFile" definitionReference="n5:metadatakatalog:xsd" typeReference="fileformat:xml">
+				<path>metadatakatalog.xsd</path>
+				<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
+			</file>
+		</container>
+		</structure>
+		<definitions>
+			<definition name="noark:n5">
+				<description>Noark 5..</description>
+				<version>5.0</version>
+				<relation>
+					<concept>hasFile</concept>
+					<definitionReference value="n5:endringslogg:xml"/>
+					<definitionReference value="n5:endringslogg:xsd"/>
+					<definitionReference value="n5:metadatakatalog:xsd"/>
+				</relation>
+			</definition>
+			<definition name="n5:version">
+				<description topic="Usage">Versjon av Noark 5-arkivuttrekk</description>
+				<description topic="Usage">Versjon av xml-skjema</description>
+				<version>5.0</version>
+			</definition>
+			<definition name="n5:endringslogg:xml">
+				<relation>
+					<concept>hasGroup</concept>
+					<definitionReference value="n5:endringslogg:endringslogg"/>
+					<definitionReference value="n5:endringslogg:endring"
+							   max="unbounded"/>
+				</relation>
+			</definition>
+			<definition name="n5:endringslogg:xsd">
+				<version>5.0</version>
+			</definition>
+			<definition name="n5:metadatakatalog:xsd">
+				<version>5.0</version>
+			</definition>
+			<definition name="n5:endringslogg:endringslogg">
+				<relation>
+					<concept>hasGroup</concept>
+					<definitionReference value="n5:endringslogg:endring"
+						   max="unbounded"/>
+				</relation>
+			</definition>
+			<definition name="n5:endringslogg:endring">
+				<relation>
+					<concept>hasField</concept>
+					<definitionReference value="n5:metadatakatalog:referanseArkivenhet"/>
+					<definitionReference value="n5:metadatakatalog:referanseMetadata"/>
+					<definitionReference value="n5:metadatakatalog:endretDato"/>
+					<definitionReference value="n5:metadatakatalog:endretAv"/>
+					<definitionReference value="6f102dda424f:tidligereVerdi"/>
+					<definitionReference value="6f102dda424f:nyVerdi"/>
+				</relation>
+				<relation>
+					<concept>hasKey</concept>
+					<definitionReference value="n5:endringslogg:pk_endring"/>
+				</relation>
+			</definition>
+			<definition name="n5:endringslogg:pk_endring" xsi:type="keyDefinition">
+				<primaryKey/>
+				<fields>
+					<definitionReference value="n5:metadatakatalog:referanseArkivenhet"/>
+					<definitionReference value="n5:metadatakatalog:referanseMetadata"/>
+					<definitionReference value="n5:metadatakatalog:endretDato"/>
+				</fields>
+			</definition>
+			<definition name="n5:metadatakatalog:referanseArkivenhet">
+				<additionalProperties>
+					<property name="Noark 5">
+						<property name="metadataelement">
+							<property name="Arkivenhet">
+								<value>M680</value>
+							</property>
+							<property name="Arv" dataType="boolean">
+								<value>True</value>
+							</property>
+							<property name="Betingelser">
+								<value>Må inneholde gyldig systemID for aktuell arkivenhet</value>
+								<property name="Datatype">
+									<value>Tekststreng</value>
+								</property>
+								<property name="Definisjon">
+									<value>
+										Referanse til arkivenheten (systemID) som inneholder metadata­elementet som ble endret
+									</value>
+								</property>
+								<property name="Gruppe">
+									<value>Logging av endringer</value>
+								</property>
+								<property name="Kilde">
+									<value>Registreres automatisk ved endring av metadata</value>
+								</property>
+								<property name="Navn">
+									<value>referanseArkivenhet</value>
+								</property>
+								<property name="Nr">
+									<value>M680</value>
+								</property>
+								<property name="Utdatert">
+									<value>False</value>
+								</property>
+							</property>
+						</property>
+					</property>
+				</additionalProperties>
+				<typeReference>datatype:string:uuid</typeReference>
+			</definition>
+			<definition name="n5:metadatakatalog:referanseMetadata">
+				<typeReference>datatype:string</typeReference>
+			</definition>
+			<definition name="n5:metadatakatalog:endretDato">
+				<typeReference>datatype:datetime:iso8601</typeReference>
+			</definition>
+			<definition name="n5:metadatakatalog:endretAv">
+				<typeReference>datatype:string</typeReference>
+			</definition>
+			<definition name="n5:metadatakatalog:tidligereVerdi">
+				<typeReference>datatype:string</typeReference>
+			</definition>
+			<definition name="6f102dda424f:tidligereVerdi">
+				<description topic="Usage">Denne definisjonen tillater at feltet kan ha verdi, men tolkes som tomt / null.</description>
+				<relation>
+					<concept>subTypeOf</concept>
+					<definitionReference value="n5:metadatakatalog:tidligereVerdi"/>
+				</relation>
+				<typeReference>datatype:string</typeReference>
+			</definition>
+			<definition name="n5:metadatakatalog:nyVerdi">
+				<typeReference>datatype:string</typeReference>
+			</definition>
+			<definition name="6f102dda424f:nyVerdi">
+				<description topic="Usage">Denne definisjonen tillater at feltet kan ha verdi, men tolkes som tomt / null.</description>
+				<relation>
+					<concept>subTypeOf</concept>
+					<definitionReference value="n5:metadatakatalog:nyVerdi"/>
+				</relation>
+			<typeReference>datatype:string</typeReference>
+			</definition>
+			<definition name="filetype:xml">
+				<description>Fil-format som følger XML 1.0</description>
+			</definition>
+			<definition name="datatype:xs:string">
+				<description>Tekst-streng spesifisert i xml-schema standarden</description>
+			</definition>
+			<definition name="datatype:xs:dateTime">
+				<description>Datotid-streng spesifisert i ISO-standard 8601, og brukt i xml-skjema standarden</description>
+			</definition>
+			<definition name="datatype:xs:string:uuid">
+				<description>Tekst-streng spesifisert i xml-skjema standarden</description>
+			</definition>
+		</definitions>
+		<structureTypes>
+			<type name="fileformat:xml" xsi:type="xmlFileType" definitionReference="filetype:xml">
+				<format>
+					<name>XML</name>
+					<version scheme="Semantic">1.0</version>
+				</format>
+				<charset>UTF-8</charset>
+			</type>
+			<type name="grouping:xml:sequence" xsi:type="xmlGroupType">
+				<groupModel>sequence</groupModel>
+			</type>
+			<type name="datatype:string" xsi:type="fieldType" definitionReference="datatype:xs:string">
+				<dataType>string</dataType>
+			</type>
+			<type name="datatype:string:uuid" xsi:type="fieldType" definitionReference="datatype:xs:string:uuid">
+				<dataType>string</dataType>
+				<fieldFormat dialect="regex">[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}</fieldFormat>
+			</type>
+			<type name="datatype:datetime:iso8601" xsi:type="fieldType" definitionReference="datatype:xs:dateTime">
+				<dataType>dateTime</dataType>
+				<fieldFormat dialect="ISO 8601">yyyy-MM-ddTHH:mm:ss</fieldFormat>
+			</type>
+		</structureTypes>
+	</dataset>
+</addml>
