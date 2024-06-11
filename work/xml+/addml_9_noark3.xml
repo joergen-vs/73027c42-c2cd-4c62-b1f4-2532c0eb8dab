@@ -23,13 +23,11 @@
 						definitionReference="n3:Saksregisterpost">
 						<length>280</length>
 						<field name="Posttype" xsi:type="fixedField"
-							definitionReference="Posttype_S-def" typeReference="txt:string">
+							definitionReference="Posttype-def" typeReference="txt:string">
 							<description topic="Bruk">Fast verdi S</description>
+							<code definitionReference="Posttype_S">S</code>
 							<startPos>1</startPos>
 							<fixedLength>1</fixedLength>
-							<code name="Posttype-sak" definitionReference="Posttype_S-def">
-								<value>S</value>
-							</code>
 						</field>
 						<field name="Grad" xsi:type="fixedField" definitionReference="Grad-def"
 							typeReference="txt:string">
@@ -136,12 +134,9 @@
 							definitionReference="Posttype-def"
 							typeReference="txt:string">
 							<description topic="Bruk">Fast verdi B</description>
+							<code definitionReference="Posttype_B">B</code>
 							<startPos>1</startPos>
 							<fixedLength>1</fixedLength>
-							<code name="Posttype-Eksterne_dokumenter"
-								definitionReference="Posttype_B-def">
-								<value>B</value>
-							</code>
 						</field>
 						<field name="Grad" xsi:type="fixedField" definitionReference="Grad-def"
 							typeReference="txt:string">
@@ -166,14 +161,10 @@
 						<field name="Doktype" xsi:type="fixedField"
 							definitionReference="Doktype-def"
 							typeReference="txt:string">
+							<code definitionReference="Doktype_kode-def">I</code>
+							<code definitionReference="Doktype2_kode-def">U</code>
 							<startPos>26</startPos>
 							<fixedLength>1</fixedLength>
-							<code name="Doktype_kode_I" definitionReference="Doktype_kode-def">
-								<value>I</value>
-							</code>
-							<code name="Doktype_kode_U" definitionReference="Doktype2_kode-def">
-								<value>U</value>
-							</code>
 						</field>
 						<field name="Uoff" xsi:type="fixedField" definitionReference="Uoff-def"
 							typeReference="txt:string">
@@ -280,12 +271,9 @@
 							definitionReference="Posttype-def"
 							typeReference="txt:string">
 							<description topic="Bruk">Fast verdi N</description>
+							<code definitionReference="Posttype_N">N</code>
 							<startPos>1</startPos>
 							<fixedLength>1</fixedLength>
-							<code name="Posttype-Interne_dokumenter"
-								definitionReference="Posttype_N-def">
-								<value>N</value>
-							</code>
 						</field>
 						<field name="Grad" xsi:type="fixedField" definitionReference="Grad-def"
 							typeReference="txt:string">
@@ -310,20 +298,12 @@
 						<field name="Doktype" xsi:type="fixedField"
 							definitionReference="Doktype-def"
 							typeReference="txt:string">
+							<code definitionReference="Doktype2_kode-def">I</code>
+							<code definitionReference="Doktype2_kode-def">U</code>
+							<code definitionReference="Doktype2_kode-def">X</code>
+							<code definitionReference="Doktype2_kode-def">N</code>
 							<startPos>26</startPos>
 							<fixedLength>1</fixedLength>
-							<code name="Doktype2_kode_I" definitionReference="Doktype2_kode-def">
-								<value>I</value>
-							</code>
-							<code name="Doktype2_kode_U" definitionReference="Doktype2_kode-def">
-								<value>U</value>
-							</code>
-							<code name="Doktype2_kode_X" definitionReference="Doktype2_kode-def">
-								<value>X</value>
-							</code>
-							<code name="Doktype2_kode_N" definitionReference="Doktype2_kode-def">
-								<value>N</value>
-							</code>
 						</field>
 						<field name="Uoff" xsi:type="fixedField" definitionReference="Uoff-def"
 							typeReference="txt:string">
@@ -577,9 +557,12 @@
 			</definition>
 
 			<definition name="Posttype-def">
+				<description>Angivelse av posttype</description>
 				<relation>
 					<concept>hasCode</concept>
-					<definitionReference value="Posttype_kode-def"/>
+					<definitionReference value="Posttype_S"/>
+					<definitionReference value="Posttype_B"/>
+					<definitionReference value="Posttype_N"/>
 				</relation>
 			</definition>
 			<definition name="Saksnr-def" />
@@ -650,7 +633,7 @@
 				</fields>
 			</definition>
 
-			<definition name="Posttype_S-def" xsi:type="codeDefinition">
+			<definition name="Posttype_S" xsi:type="codeDefinition">
 				<description>Posttype for Sak</description>
 				<code>
 					<value>S</value>
@@ -685,14 +668,14 @@
 					<value>N</value>
 				</code>
 			</definition>
-			<definition name="Posttype_B-def" xsi:type="codeDefinition">
+			<definition name="Posttype_B" xsi:type="codeDefinition">
 				<description>Posttype for eksterne dokumenter</description>
 				<code>
 					<value>B</value>
 					<explanation>Brev</explanation>
 				</code>
 			</definition>
-			<definition name="Posttype_N-def" xsi:type="codeDefinition">
+			<definition name="Posttype_N" xsi:type="codeDefinition">
 				<description>Posttype for interne dokumenter</description>
 				<code>
 					<value>N</value>

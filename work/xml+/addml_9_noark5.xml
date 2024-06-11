@@ -17,81 +17,81 @@
 			</content>
 		</reference>
 		<structure>
-		<container name="Test" xsi:type="extraction" definitionReference="noark:n5">
-			<description>Beskrivelse av et Noark 5-uttrekk</description>
-			<version scheme="Semantic">v5.5.0</version>
-			<period>
-				<startDate fieldformat="yyyy-MM-dd">2023-01-01</startDate>
-				<endDate fieldformat="yyyy-MM-dd">2023-12-31</endDate>
-			</period>
-			<file name="endringslogg" xsi:type="xmlFile"
-				  definitionReference="n5:endringslogg:xml"
-				  typeReference="fileformat:xml">
-				<path>endringslogg.xml</path>
-				<checksum algorithm="SHA-256">02C2DB230A358D6DC6B1E896FAA1929EE1DFF7BF1F3DB2BA414485BCC1BB17C7</checksum>
-				<numberOfOccurrences>
-					<value>1</value>
-				</numberOfOccurrences>
-				<targetNamespace>http://www.arkivverket.no/standarder/noark5/endringslogg</targetNamespace>
-				<schemas>
-					<schema>
-						<namespace>http://www.arkivverket.no/standarder/noark5/endringslogg</namespace>
-						<fileReference>endringslogg-xsd</fileReference>
-					</schema>
-					<schema>
-						<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
-						<prefix>n5mdk</prefix>
-						<fileReference>metadatakatalog-xsd</fileReference>
-					</schema>
-				</schemas>
-				<root>endringslogg</root>
-				<group name="endringslogg" xsi:type="xmlGroup"
-					   definitionReference="n5:endringslogg:endringslogg"
-					   typeReference="grouping:xml:sequence">
-					<elementName>endringslogg</elementName>
-					<attribute name="VERSION" xsi:type="xmlAttribute"
-							   definitionReference="n5:version" typeReference="datatype:string">
-					</attribute>
-					<groupReference min="0" max="unbounded">n5:endringslogg:endring</groupReference>
-				</group>
-				<group name="n5:endringslogg:endring" xsi:type="xmlGroup"
-					   definitionReference="n5:endringslogg:endring" typeReference="grouping:xml:sequence">
-					<elementName>endring</elementName>
-					<field name="n5mdk:referanseArkivenhet" definitionReference="n5:metadatakatalog:referanseArkivenhet" typeReference="datatype:string:uuid">
-						<name>referanseArkivenhet</name>
-					</field>
-					<field name="n5mdk:referanseMetadata" definitionReference="n5:metadatakatalog:referanseMetadata" typeReference="datatype:string">
-						<name>referanseArkivenhet</name>
-					</field>
-					<field name="n5mdk:endretDato" definitionReference="n5:metadatakatalog:endretDato" typeReference="datatype:datetime:iso8601">
-						<name>referanseArkivenhet</name>
-					</field>
-					<field name="n5mdk:endretAv" definitionReference="n5:metadatakatalog:endretAv" typeReference="datatype:string">
-						<name>referanseArkivenhet</name>
-					</field>
-					<field name="n5mdk:tidligereVerdi" definitionReference="6f102dda424f:tidligereVerdi" typeReference="datatype:string">
-						<nullValues>
-							<nullValue>ingen verdi</nullValue>
-						</nullValues>
-						<name>referanseArkivenhet</name>
-					</field>
-					<field name="n5mdk:nyVerdi" definitionReference="n5:metadatakatalog:nyVerdi" typeReference="datatype:string">
-						<nullValues>
-							<nullValue>ingen verdi</nullValue>
-						</nullValues>
-						<name>referanseArkivenhet</name>
-					</field>
-				</group>
-			</file>
-			<file name="endringslogg-xsd" xsi:type="dataFile" definitionReference="n5:endringslogg:xsd" typeReference="fileformat:xml">
-				<path>endringslogg.xsd</path>
-				<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
-			</file>
-			<file name="metadatakatalog-xsd" xsi:type="dataFile" definitionReference="n5:metadatakatalog:xsd" typeReference="fileformat:xml">
-				<path>metadatakatalog.xsd</path>
-				<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
-			</file>
-		</container>
+			<container name="Test" xsi:type="extraction" definitionReference="noark:n5">
+				<description>Beskrivelse av et Noark 5-uttrekk</description>
+				<version scheme="Semantic">v5.5.0</version>
+				<period>
+					<startDate fieldformat="yyyy-MM-dd">2023-01-01</startDate>
+					<endDate fieldformat="yyyy-MM-dd">2023-12-31</endDate>
+				</period>
+				<file name="endringslogg" xsi:type="xmlFile"
+					  definitionReference="n5:endringslogg:xml"
+					  typeReference="fileformat:xml">
+					<path>endringslogg.xml</path>
+					<checksum algorithm="SHA-256">02C2DB230A358D6DC6B1E896FAA1929EE1DFF7BF1F3DB2BA414485BCC1BB17C7</checksum>
+					<numberOfOccurrences>
+						<value>1</value>
+					</numberOfOccurrences>
+					<targetNamespace>http://www.arkivverket.no/standarder/noark5/endringslogg</targetNamespace>
+					<schemas>
+						<schema>
+							<namespace>http://www.arkivverket.no/standarder/noark5/endringslogg</namespace>
+							<fileReference>endringslogg-xsd</fileReference>
+						</schema>
+						<schema>
+							<namespace>http://www.arkivverket.no/standarder/noark5/metadatakatalog</namespace>
+							<prefix>n5mdk</prefix>
+							<fileReference>metadatakatalog-xsd</fileReference>
+						</schema>
+					</schemas>
+					<root>endringslogg</root>
+					<group name="endringslogg" xsi:type="xmlGroup"
+						   definitionReference="n5:endringslogg:endringslogg"
+						   typeReference="grouping:xml:sequence">
+						<elementName>endringslogg</elementName>
+						<attribute name="VERSION" xsi:type="xmlAttribute"
+								   definitionReference="n5:version" typeReference="datatype:string">
+						</attribute>
+						<groupReference min="0" max="unbounded">n5:endringslogg:endring</groupReference>
+					</group>
+					<groupRef name="n5:endringslogg:endring" xsi:type="xmlGroup"
+						   definitionReference="n5:endringslogg:endring" typeReference="grouping:xml:sequence">
+						<elementName>endring</elementName>
+						<field name="n5mdk:referanseArkivenhet" definitionReference="n5:metadatakatalog:referanseArkivenhet" typeReference="datatype:string:uuid">
+							<elementName>referanseArkivenhet</elementName>
+						</field>
+						<field name="n5mdk:referanseMetadata" definitionReference="n5:metadatakatalog:referanseMetadata" typeReference="datatype:string">
+							<elementName>referanseArkivenhet</elementName>
+						</field>
+						<field name="n5mdk:endretDato" definitionReference="n5:metadatakatalog:endretDato" typeReference="datatype:datetime:iso8601">
+							<elementName>referanseArkivenhet</elementName>
+						</field>
+						<field name="n5mdk:endretAv" definitionReference="n5:metadatakatalog:endretAv" typeReference="datatype:string">
+							<elementName>referanseArkivenhet</elementName>
+						</field>
+						<field name="n5mdk:tidligereVerdi" definitionReference="6f102dda424f:tidligereVerdi" typeReference="datatype:string">
+							<nullValues>
+								<nullValue>ingen verdi</nullValue>
+							</nullValues>
+							<elementName>referanseArkivenhet</elementName>
+						</field>
+						<field name="n5mdk:nyVerdi" definitionReference="n5:metadatakatalog:nyVerdi" typeReference="datatype:string">
+							<nullValues>
+								<nullValue>ingen verdi</nullValue>
+							</nullValues>
+							<elementName>referanseArkivenhet</elementName>
+						</field>
+					</groupRef>
+				</file>
+				<file name="endringslogg-xsd" xsi:type="dataFile" definitionReference="n5:endringslogg:xsd" typeReference="fileformat:xml">
+					<path>endringslogg.xsd</path>
+					<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
+				</file>
+				<file name="metadatakatalog-xsd" xsi:type="dataFile" definitionReference="n5:metadatakatalog:xsd" typeReference="fileformat:xml">
+					<path>metadatakatalog.xsd</path>
+					<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
+				</file>
+			</container>
 		</structure>
 		<definitions>
 			<definition name="noark:n5">
@@ -223,7 +223,7 @@
 					<concept>subTypeOf</concept>
 					<definitionReference value="n5:metadatakatalog:nyVerdi"/>
 				</relation>
-			<typeReference>datatype:string</typeReference>
+				<typeReference>datatype:string</typeReference>
 			</definition>
 			<definition name="filetype:xml">
 				<description>Fil-format som følger XML 1.0</description>
