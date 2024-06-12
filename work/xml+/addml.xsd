@@ -1705,13 +1705,7 @@
 		<xs:complexContent>
 			<xs:extension base="addml:definitionUnit">
 				<xs:sequence>
-					<xs:element name="code" maxOccurs="unbounded">
-						<xs:complexType>
-							<xs:sequence>
-								<xs:element name="value" type="addml:defaultDataType"/>
-							</xs:sequence>
-						</xs:complexType>
-					</xs:element>
+					<xs:element name="value" type="addml:defaultDataType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
