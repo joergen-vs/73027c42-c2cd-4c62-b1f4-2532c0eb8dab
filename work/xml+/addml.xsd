@@ -1709,7 +1709,6 @@
 						<xs:complexType>
 							<xs:sequence>
 								<xs:element name="value" type="addml:defaultDataType"/>
-								<xs:element name="explanation" type="addml:defaultDataType" minOccurs="0"/>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
