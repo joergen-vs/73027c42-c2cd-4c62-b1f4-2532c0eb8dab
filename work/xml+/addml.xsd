@@ -200,6 +200,7 @@
 			<xs:documentation>S003</xs:documentation>
 			<xs:documentation>Topic for description, single word of phrase</xs:documentation>
 			<xs:documentation>Ex: 'Usage', 'History', 'Comments'</xs:documentation>
+			<xs:documentation>Ex: 'Unit', as in "unit of measurement. Describes if any particular understanding is needed, such as 'Year between 1900 and 1999', if there is only two integers [YY], or 'cost in 1000 [currency]', to avoid miscommunications.</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="addml:defaultDataType"/>
 	</xs:simpleType>
