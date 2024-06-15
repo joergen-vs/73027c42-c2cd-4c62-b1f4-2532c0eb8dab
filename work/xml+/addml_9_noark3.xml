@@ -635,21 +635,15 @@
 
 			<definition name="Posttype_S" xsi:type="codeDefinition">
 				<description>Posttype for Sak</description>
-				<code>
-					<value>S</value>
-					<explanation>Sak</explanation>
-				</code>
+				<value>S</value>
 			</definition>
-			<definition name="Doktype_kode-def" xsi:type="codeDefinition">
-				<description>Verdi I eller U</description>
-				<code>
-					<value>I</value>
-					<explanation>Inngående</explanation>
-				</code>
-				<code>
-					<value>U</value>
-					<explanation>Utgående</explanation>
-				</code>
+			<definition name="Doktype_I-def" xsi:type="codeDefinition">
+				<description>Inngående</description>
+				<value>I</value>
+			</definition>
+			<definition name="Doktype_U-def" xsi:type="codeDefinition">
+				<description>Utgående</description>
+				<value>I</value>
 			</definition>
 			<definition name="Doktype2_kode-def" xsi:type="codeDefinition">
 				<description>Doktype for Sak</description>

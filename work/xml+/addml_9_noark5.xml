@@ -153,7 +153,8 @@
 					<definitionReference value="n5:metadatakatalog:endretDato"/>
 				</fields>
 			</definition>
-			<definition name="n5:metadatakatalog:referanseArkivenhet">
+			<definition name="n5:metadatakatalog:referanseArkivenhet"
+						typeReference="datatype:string:uuid">
 				<additionalProperties>
 					<property name="Noark 5">
 						<property name="metadataelement">
@@ -192,38 +193,31 @@
 						</property>
 					</property>
 				</additionalProperties>
-				<typeReference>datatype:string:uuid</typeReference>
 			</definition>
-			<definition name="n5:metadatakatalog:referanseMetadata">
-				<typeReference>datatype:string</typeReference>
+			<definition name="n5:metadatakatalog:referanseMetadata"
+						typeReference="datatype:string">
 			</definition>
-			<definition name="n5:metadatakatalog:endretDato">
-				<typeReference>datatype:datetime:iso8601</typeReference>
+			<definition name="n5:metadatakatalog:endretDato" typeReference="datatype:datetime:iso8601">
 			</definition>
-			<definition name="n5:metadatakatalog:endretAv">
-				<typeReference>datatype:string</typeReference>
+			<definition name="n5:metadatakatalog:endretAv" typeReference="datatype:string">
 			</definition>
-			<definition name="n5:metadatakatalog:tidligereVerdi">
-				<typeReference>datatype:string</typeReference>
+			<definition name="n5:metadatakatalog:tidligereVerdi" typeReference="datatype:string">
 			</definition>
-			<definition name="6f102dda424f:tidligereVerdi">
+			<definition name="6f102dda424f:tidligereVerdi" typeReference="datatype:string">
 				<description topic="Usage">Denne definisjonen tillater at feltet kan ha verdi, men tolkes som tomt / null.</description>
 				<relation>
 					<concept>subTypeOf</concept>
 					<definitionReference value="n5:metadatakatalog:tidligereVerdi"/>
 				</relation>
-				<typeReference>datatype:string</typeReference>
 			</definition>
-			<definition name="n5:metadatakatalog:nyVerdi">
-				<typeReference>datatype:string</typeReference>
+			<definition name="n5:metadatakatalog:nyVerdi" typeReference="datatype:string">
 			</definition>
-			<definition name="6f102dda424f:nyVerdi">
+			<definition name="6f102dda424f:nyVerdi" typeReference="datatype:string">
 				<description topic="Usage">Denne definisjonen tillater at feltet kan ha verdi, men tolkes som tomt / null.</description>
 				<relation>
 					<concept>subTypeOf</concept>
 					<definitionReference value="n5:metadatakatalog:nyVerdi"/>
 				</relation>
-				<typeReference>datatype:string</typeReference>
 			</definition>
 			<definition name="filetype:xml">
 				<description>Fil-format som følger XML 1.0</description>

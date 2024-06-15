@@ -174,9 +174,9 @@ xsi:schemaLocation="http://www.arkivverket.no/standarder/addml/v9 addml.xsd"
 					<definitionReference value="Saksnr" />
 				</fields>
 			</definition>
-			<definition name="ID"/>
-			<definition name="Saksnr"/>
-			<definition name="Tittel"/>
+			<definition name="ID" typeReference="txt:string"/>
+			<definition name="Saksnr" typeReference="txt:string"/>
+			<definition name="Tittel" typeReference="txt:string"/>
 		</definitions>
 		<structureTypes>
 			<type name="Fastlengde" xsi:type="fixedFileType">

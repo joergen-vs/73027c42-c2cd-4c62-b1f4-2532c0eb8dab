@@ -200,7 +200,6 @@
 			<xs:documentation>S003</xs:documentation>
 			<xs:documentation>Topic for description, single word of phrase</xs:documentation>
 			<xs:documentation>Ex: 'Usage', 'History', 'Comments'</xs:documentation>
-			<xs:documentation>Ex: 'Unit', as in "unit of measurement. Describes if any particular understanding is needed, such as 'Year between 1900 and 1999', if there is only two integers [YY], or 'cost in 1000 [currency]', to avoid miscommunications.</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="addml:defaultDataType"/>
 	</xs:simpleType>
@@ -215,8 +214,21 @@
 					</xs:choice>
 					<xs:element name="property" type="addml:property" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
-				<xs:attribute name="dataType" type="addml:defaultDataType"/>
-				<xs:attribute name="format" type="addml:defaultDataType"/>
+				<xs:attribute name="namespace" type="addml:defaultDataType">
+					<xs:annotation>
+						<xs:documentation>Reference to a collection of properties</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="dataType" type="addml:defaultDataType">
+					<xs:annotation>
+						<xs:documentation>Datatype of the property.value</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="format" type="addml:defaultDataType">
+					<xs:annotation>
+						<xs:documentation> of the property.value</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -521,7 +533,7 @@
 							<xs:documentation>Reference to base-unit</xs:documentation>
 							<xs:documentation>
 								Ex: value='Testing fails due to missing documents'
-								regarding='reference to process'
+								regarding 'reference to process' and 'reference to folder with documents'
 							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
@@ -1502,20 +1514,6 @@
 		<xs:complexContent>
 			<xs:extension base="addml:unit">
 				<xs:sequence>
-					<!--
-					<xs:element name="type">
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="containerDefinition"/>
-								<xs:enumeration value="fileDefinition"/>
-								<xs:enumeration value="groupDefinition"/>
-								<xs:enumeration value="fieldDefinition"/>
-								<xs:enumeration value="keyDefinition"/>
-								<xs:enumeration value="codeDefinition"/><
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
-					-->
 					<xs:element name="version" type="addml:versionDataType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Connected to variantOf, displaying a specific iteration of a definition</xs:documentation>
@@ -1554,31 +1552,17 @@
 						<xs:complexType/>
 					</xs:element>
 					<xs:element name ="relation" type="addml:relation" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="typeReference" type="addml:typeReference" minOccurs="0">
-						<xs:annotation>
-							<xs:documentation>Specifies an expected format.</xs:documentation>
-							<xs:documentation>Ex: A standard specifying files to be of xml-format</xs:documentation>
-							<xs:documentation>Ex: Field with boolean value True and False, while definition uses 1 and 0, uses different structureTypes, but will be transform-able, due to being read as boolean values.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
 				</xs:sequence>
+				<xs:attribute name="typeReference" type="addml:typeReference">
+					<xs:annotation>
+						<xs:documentation>Specifies an expected format.</xs:documentation>
+						<xs:documentation>Ex: A standard specifying files to be of xml-format</xs:documentation>
+						<xs:documentation>Ex: Field with boolean value True and False, while definition uses 1 and 0, uses different structureTypes, but will be transform-able, due to being read as boolean values.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-
-	<xs:group name="referenceGroup">
-		<xs:sequence>
-			<xs:element name="reference" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation>Linking relations between definitions</xs:documentation>
-				</xs:annotation>
-				<xs:complexType>
-					<xs:attribute name="value" type="addml:defaultDataType"/>
-					<xs:attributeGroup ref="addml:MinMaxAttributes"/>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:group>
 
 	<xs:complexType name="relation">
 		<xs:sequence>
