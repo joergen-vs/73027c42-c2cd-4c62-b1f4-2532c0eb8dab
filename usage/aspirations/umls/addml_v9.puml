@@ -12,52 +12,55 @@ node reference {
 
 dataset -> reference
 
-package container
-package file
-package folder
-package group
-package field
-package code
+package structure {
+    package container
+    package file
+    package folder
+    package group
+    package field
+    package attribute
+    package code
+}
 
-dataset --> container
+dataset --> structure
 container --> folder
 container --> file
 file --> group
-group --> field
+group -> field
+field --> attribute
 field --> code
 
 package definitions{
-    node containerDefinition
-    node fileDefinition
-    node folderDefinition
-    node groupDefinition
-    node fieldDefinition
-    node codeDefinition
-    node typeDefinition
+    node catalog
+    node definition
+    node key
+    node "view"
 }
+
+catalog -[hidden]- definition
+key-[hidden]- view
 
 dataset --> definitions
 
 package types {
-    package fileType{
-        node fixedFileType
-        node DelimitedFileType
-        node XmlFileType
-    }
+    package fileType
     package groupType
     package fieldType
     package attributeType
 
-    fileType -[hidden]-- groupType
-    fileType -[hidden]-- fieldType
-    fileType -[hidden]-- attributeType
+    fileType -[hidden]- groupType
+    fileType -[hidden]- fieldType
+    fileType -[hidden]- attributeType
 }
 
 dataset --> types
 
 package processes {
-
+node process
+node parameter
 }
+
+process --> parameter
 
 dataset --> processes
 @enduml
