@@ -662,19 +662,27 @@
 					<value>N</value>
 				</code>
 			</definition>
-			<definition name="Posttype_B" xsi:type="codeDefinition">
+			<definition name="Posttype_B">
 				<description>Posttype for eksterne dokumenter</description>
-				<code>
-					<value>B</value>
-					<explanation>Brev</explanation>
-				</code>
+				<additionalProperties>
+					<property name="value">
+						<value>B</value>
+					</property>
+					<property name="explanation">
+						<value>Brev</value>
+					</property>
+				</additionalProperties>
 			</definition>
-			<definition name="Posttype_N" xsi:type="codeDefinition">
+			<definition name="Posttype_N">
 				<description>Posttype for interne dokumenter</description>
-				<code>
-					<value>N</value>
-					<explanation>Notat</explanation>
-				</code>
+				<additionalProperties>
+					<property name="value">
+						<value>N</value>
+					</property>
+					<property name="explanation">
+						<value>Notat</value>
+					</property>
+				</additionalProperties>
 			</definition>
 		</definitions>
 		<structureTypes>

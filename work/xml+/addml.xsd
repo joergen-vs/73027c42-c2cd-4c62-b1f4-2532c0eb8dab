@@ -63,7 +63,7 @@
 
 				<!-- Definition-keys -->
 				<xs:key name="definitionKey">
-					<xs:selector xpath=".//addml:definitions/addml:definition"/>
+					<xs:selector xpath=".//addml:definitions/*"/>
 					<xs:field xpath="@name"/>
 				</xs:key>
 
@@ -237,7 +237,7 @@
 		<xs:annotation>
 			<xs:documentation>Value of object</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="addml:defaultDataType"/>
+		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
 
 	<xs:complexType name="object">
@@ -1584,7 +1584,14 @@
 	</xs:complexType>
 
 	<xs:simpleType name="conceptDataValue">
+		<xs:annotation>
+			<xs:documentation>
+				Consists of a small structural ontology, along with validating against others.
+			
+				Duplicate a simpleType with enumeration-values and edit for ontologies for documentation-purposes.</xs:documentation>
+		</xs:annotation>
 		<xs:union>
+			<!--  -->
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="subTypeOf">
@@ -1638,7 +1645,9 @@
 				</xs:restriction>
 			</xs:simpleType>
 			<xs:simpleType>
-
+				<xs:annotation>
+					<xs:documentation>Allows the declaration of other ontologies.</xs:documentation>
+				</xs:annotation>
 				<xs:restriction base="xs:string">
 					<xs:pattern value=".+?" />
 				</xs:restriction>
