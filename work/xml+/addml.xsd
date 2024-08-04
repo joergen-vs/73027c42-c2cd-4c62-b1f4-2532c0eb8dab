@@ -1017,6 +1017,9 @@
 	<xs:complexType name="groupObject">
 		<xs:complexContent>
 			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="attribute" type="addml:attributeObject" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
 				<xs:attributeGroup ref="addml:referenceModelProperties"/>
 			</xs:extension>
 		</xs:complexContent>
@@ -1221,12 +1224,7 @@
 
 	<xs:group name="xmlGroupObjects">
 		<xs:sequence>
-			<xs:element name="attribute" type="addml:xmlAttribute" minOccurs="0" maxOccurs="unbounded">
-				<xs:annotation>
-					<xs:documentation/>
-				</xs:annotation>
-			</xs:element>
-			<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:choice maxOccurs="unbounded">
 				<xs:element name="field">
 					<xs:complexType>
 						<xs:complexContent>
@@ -1317,24 +1315,12 @@
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
+					<xs:element name="attribute" type="addml:attributeObject" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="code" type="addml:codeObject" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attributeGroup ref="addml:referenceModelProperties"/>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="codeObject">
-		<xs:annotation>
-			<xs:documentation>Coded value in a field.</xs:documentation>
-			<xs:documentation>Ex. 0, 1 or A, B, C</xs:documentation>
-		</xs:annotation>
-		<xs:simpleContent>
-			<xs:extension base="xs:string">
-				<xs:attribute name="definitionReference" type="addml:definitionReference"
-					use="required"/>
-			</xs:extension>
-		</xs:simpleContent>
 	</xs:complexType>
 
 	<xs:complexType name="fixedField">
@@ -1396,18 +1382,28 @@
 							<xs:documentation>Namespace-shorthand in element-name</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="attribute" type="addml:xmlAttribute" minOccurs="0"
-						maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation/>
-						</xs:annotation>
-					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
+	<xs:complexType name="codeObject">
+		<xs:annotation>
+			<xs:documentation>Coded value in a field.</xs:documentation>
+			<xs:documentation>Ex. 0, 1 or A, B, C</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="definitionReference" type="addml:definitionReference"
+					use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
 	<xs:complexType name="attributeObject">
+		<xs:annotation>
+			<xs:documentation>Information to understand the group or field.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="addml:unit">
 				<xs:sequence>
@@ -1496,13 +1492,16 @@
 	<!-- Definitions -->
 
 	<xs:complexType name="definitions">
-		<xs:sequence>
-			<xs:element name="catalog" type="addml:definitionCatalog" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="catalog" type="addml:definitionCatalog" maxOccurs="unbounded"/>
 			<xs:element name="definition" type="addml:definitionUnit" maxOccurs="unbounded"/>
-		</xs:sequence>
+			<xs:element name="key" type="addml:definitionKey" maxOccurs="unbounded"/>
+			<xs:element name="view" type="addml:definitionView" maxOccurs="unbounded"/>
+		</xs:choice>
 	</xs:complexType>
 
 	<xs:complexType name="definitionCatalog">
+		<xs:attribute name="name" type="addml:name" use="required"/>
 		<xs:attribute name="fileReference" type="addml:defaultDataType" use="required">
 			<xs:annotation>
 				<xs:documentation>Reference to the file containing additional definitions.</xs:documentation>
@@ -1655,9 +1654,9 @@
 		</xs:union>
 	</xs:simpleType>
 
-	<xs:complexType name="keyDefinition">
+	<xs:complexType name="definitionKey">
 		<xs:complexContent>
-			<xs:extension base="addml:definitionUnit">
+			<xs:extension base="addml:unit">
 				<xs:sequence>
 					<xs:choice>
 						<xs:element name="primaryKey">
@@ -1695,11 +1694,13 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="codeDefinition">
+	<xs:complexType name="definitionView">
+		<xs:annotation>
+			<xs:documentation>Defines information independent of structural limits (partials, joined, value-dependent..)</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="addml:definitionUnit">
 				<xs:sequence>
-					<xs:element name="value" type="xs:string"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

@@ -161,8 +161,8 @@
 						<field name="Doktype" xsi:type="fixedField"
 							definitionReference="Doktype-def"
 							typeReference="txt:string">
-							<code definitionReference="Doktype_kode-def">I</code>
-							<code definitionReference="Doktype2_kode-def">U</code>
+							<code definitionReference="Doktype_I-def">I</code>
+							<code definitionReference="Doktype_U-def">U</code>
 							<startPos>26</startPos>
 							<fixedLength>1</fixedLength>
 						</field>
@@ -298,10 +298,10 @@
 						<field name="Doktype" xsi:type="fixedField"
 							definitionReference="Doktype-def"
 							typeReference="txt:string">
-							<code definitionReference="Doktype2_kode-def">I</code>
-							<code definitionReference="Doktype2_kode-def">U</code>
-							<code definitionReference="Doktype2_kode-def">X</code>
-							<code definitionReference="Doktype2_kode-def">N</code>
+							<code definitionReference="Doktype_I-def">I</code>
+							<code definitionReference="Doktype_U-def">U</code>
+							<code definitionReference="Doktype_X-def">X</code>
+							<code definitionReference="Doktype_N-def">N</code>
 							<startPos>26</startPos>
 							<fixedLength>1</fixedLength>
 						</field>
@@ -451,7 +451,7 @@
 			</container>
 		</structure>
 		<definitions>
-			<catalog fileReference="noark3_fields.xml" />
+			<catalog name="Noark-3 felter" fileReference="noark3_fields.xml" />
 			<definition name="saksbehandling:noark:n3">
 				<relation>
 					<concept>hasFile</concept>
@@ -502,12 +502,12 @@
 					<definitionReference value="Grad-def" min="0"/>
 				</relation>
 			</definition>
-			<definition name="n3:Saksregisterpost:pk" xsi:type="keyDefinition">
+			<key name="n3:Saksregisterpost:pk">
 				<primaryKey/>
 				<fields>
 					<definitionReference value="Saksnr"/>
 				</fields>
-			</definition>
+			</key>
 			<definition name="n3:Eksterne_dokumenter">
 
 				<!--
@@ -615,61 +615,72 @@
 					<definitionReference value="Gruppetekst-def"/>
 				</relation>
 			</definition>
-			<definition name="n3:Arkivnoekkelregisterpost:pk" xsi:type="keyDefinition">
+			<key name="n3:Arkivnoekkelregisterpost:pk">
 				<primaryKey/>
 				<fields>
 					<definitionReference value="Arkivkode-def"/>
 				</fields>
-			</definition>
+			</key>
 			<definition name="Grad-def" />
 			<definition name="Arkivkode-def" />
 			<definition name="Gruppetekst-def" />
-
-
-			<definition name="PK_Saksregister" xsi:type="keyDefinition">
+			<key name="PK_Saksregister">
 				<primaryKey />
 				<fields>
 					<definitionReference value="Saksnr-def"/>
 				</fields>
-			</definition>
-
-			<definition name="Posttype_S" xsi:type="codeDefinition">
+			</key>
+			<definition name="Posttype_S">
 				<description>Posttype for Sak</description>
-				<value>S</value>
+				<description topic="explanation">Sak</description>
+				<additionalProperties>
+					<property name="value">
+						<value>S</value>
+					</property>
+				</additionalProperties>
 			</definition>
-			<definition name="Doktype_I-def" xsi:type="codeDefinition">
-				<description>Inngående</description>
-				<value>I</value>
-			</definition>
-			<definition name="Doktype_U-def" xsi:type="codeDefinition">
-				<description>Utgående</description>
-				<value>I</value>
-			</definition>
-			<definition name="Doktype2_kode-def" xsi:type="codeDefinition">
+			<definition name="Doktype_I-def">
 				<description>Doktype for Sak</description>
-				<code>
-					<value>I</value>
-					<explanation>Inngående</explanation>
-				</code>
-				<code>
-					<value>U</value>
-					<explanation>Utgående</explanation>
-				</code>
-				<code>
-					<value>X</value>
-				</code>
-				<code>
-					<value>N</value>
-				</code>
+				<description topic="explanation">Inngående</description>
+				<additionalProperties>
+					<property name="value">
+						<value>I</value>
+					</property>
+				</additionalProperties>
+			</definition>
+			<definition name="Doktype_U-def">
+				<description>Doktype for Sak</description>
+				<description topic="explanation">Utgående</description>
+				<additionalProperties>
+					<property name="value">
+						<value>U</value>
+					</property>
+				</additionalProperties>
+			</definition>
+			<definition name="Doktype_X-def">
+				<description>Doktype for Sak</description>
+				<description topic="explanation">X-notat</description>
+				<additionalProperties>
+					<property name="value">
+						<value>X</value>
+					</property>
+				</additionalProperties>
+			</definition>
+			<definition name="Doktype_N-def">
+				<description>Doktype for Sak</description>
+				<description topic="explanation">Notat</description>
+				<additionalProperties>
+					<property name="value">
+						<value>N</value>
+					</property>
+				</additionalProperties>
 			</definition>
 			<definition name="Posttype_B">
 				<description>Posttype for eksterne dokumenter</description>
+				<description topic="explanation">Brev</description>
 				<additionalProperties>
 					<property name="value">
 						<value>B</value>
-					</property>
-					<property name="explanation">
-						<value>Brev</value>
 					</property>
 				</additionalProperties>
 			</definition>
