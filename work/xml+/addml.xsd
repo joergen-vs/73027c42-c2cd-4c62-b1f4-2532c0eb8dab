@@ -1493,10 +1493,10 @@
 
 	<xs:complexType name="definitions">
 		<xs:choice maxOccurs="unbounded">
-			<xs:element name="catalog" type="addml:definitionCatalog" maxOccurs="unbounded"/>
-			<xs:element name="definition" type="addml:definitionUnit" maxOccurs="unbounded"/>
-			<xs:element name="key" type="addml:definitionKey" maxOccurs="unbounded"/>
-			<xs:element name="view" type="addml:definitionView" maxOccurs="unbounded"/>
+			<xs:element name="catalog" type="addml:definitionCatalog"/>
+			<xs:element name="definition" type="addml:definitionUnit"/>
+			<xs:element name="key" type="addml:definitionKey"/>
+			<xs:element name="view" type="addml:definitionView"/>
 		</xs:choice>
 	</xs:complexType>
 
@@ -1648,7 +1648,7 @@
 					<xs:documentation>Allows the declaration of other ontologies.</xs:documentation>
 				</xs:annotation>
 				<xs:restriction base="xs:string">
-					<xs:pattern value=".+?" />
+					<xs:pattern value=".+" />
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:union>
@@ -2056,7 +2056,7 @@
 					<xs:documentation>Extensible Markup Language (XML).</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
-			<xs:pattern value=".+?">
+			<xs:pattern value=".+">
 				<xs:annotation>
 					<xs:documentation>Other, yet to be specified</xs:documentation>
 				</xs:annotation>
@@ -2082,7 +2082,7 @@
 			</xs:simpleType>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:pattern value=".+?">
+					<xs:pattern value=".+">
 						<xs:annotation>
 							<xs:documentation>Other, yet to be specified</xs:documentation>
 						</xs:annotation>
