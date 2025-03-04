@@ -81,10 +81,6 @@
       <xs:selector xpath="addml:flatFileDefinitions/addml:flatFileDefinition" />
       <xs:field xpath="@name" />
     </xs:key>
-    <xs:key name="recordDefinitionKey">
-      <xs:selector xpath=".//addml:recordDefinitions/addml:recordDefinition" />
-      <xs:field xpath="@name" />
-    </xs:key>
 
     <!-- Type-nøkler -->
     <xs:key name="flatFileTypeKey">
@@ -190,6 +186,10 @@
       <xs:attribute name="name" type="addml:notEmtpyString" use="required" />
       <xs:attribute name="typeReference" type="addml:notEmtpyString" use="required" />
     </xs:complexType>
+	  <xs:key name="recordDefinitionKey">
+		  <xs:selector xpath="addml:recordDefinitions/addml:recordDefinition" />
+		  <xs:field xpath="@name" />
+	  </xs:key>
   </xs:element>
   <xs:element name="external">
     <xs:complexType />
