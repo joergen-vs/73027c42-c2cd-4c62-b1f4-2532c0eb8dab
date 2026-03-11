@@ -8,12 +8,10 @@
 			<context>
 			</context>
 			<content>
-				<contentElement name="uuid" xsi:type="documentationElement">
+				<documentation name="uuid">
 					<title>Universally Unique IDentifiers (UUIDs)</title>
-					<resource name="Universally Unique IDentifiers (UUIDs)">
-						<link>https://datatracker.ietf.org/doc/html/rfc9562</link>
-					</resource>
-				</contentElement>
+					<resource name="Universally Unique IDentifiers (UUIDs)">https://datatracker.ietf.org/doc/html/rfc9562</resource>
+				</documentation>
 			</content>
 		</reference>
 		<structure>
@@ -83,126 +81,61 @@
 						</field>
 					</groupRef>
 				</file>
-				<file name="endringslogg-xsd" xsi:type="dataFile" definitionReference="n5:endringslogg:xsd" typeReference="fileformat:xml">
+				<file name="endringslogg-xsd" xsi:type="dataFile" definitionReference="n5:endringslogg:xsd">
 					<path>endringslogg.xsd</path>
 					<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
 				</file>
-				<file name="metadatakatalog-xsd" xsi:type="dataFile" definitionReference="n5:metadatakatalog:xsd" typeReference="fileformat:xml">
+				<file name="metadatakatalog-xsd" xsi:type="dataFile" definitionReference="n5:metadatakatalog:xsd">
 					<path>metadatakatalog.xsd</path>
 					<checksum algorithm="MD5">d41d8cd98f00b204e9800998ecf8427e</checksum>
 				</file>
 			</container>
 		</structure>
 		<definitions>
-			<definition name="noark:n5">
+			<definition name="noark:n5" xsi:type="containerDefinition">
 				<description>Noark 5..</description>
 				<version>5.0</version>
-				<relation>
-					<concept>hasFile</concept>
-					<definitionReference value="n5:endringslogg:xml"/>
-					<definitionReference value="n5:endringslogg:xsd"/>
-					<definitionReference value="n5:metadatakatalog:xsd"/>
-				</relation>
+				<fileDefinition definitionReference="n5:endringslogg:xml"/>
+				<fileDefinition definitionReference="n5:endringslogg:xsd"/>
+				<fileDefinition definitionReference="n5:metadatakatalog:xsd"/>
 			</definition>
-			<definition name="n5:version">
-				<description topic="Usage">Versjon av Noark 5-arkivuttrekk</description>
-				<description topic="Usage">Versjon av xml-skjema</description>
-				<version>5.0</version>
-			</definition>
-			<definition name="n5:endringslogg:xml">
-				<relation>
-					<concept>hasGroup</concept>
-					<definitionReference value="n5:endringslogg:endringslogg"/>
-					<definitionReference value="n5:endringslogg:endring"
-							   max="unbounded"/>
-				</relation>
+			<definition name="n5:endringslogg:xml" xsi:type="fileDefinition">
+				<groupDefinition definitionReference="n5:endringslogg:endringslogg"/>
+				<groupDefinition definitionReference="n5:endringslogg:endring"/>
 			</definition>
 			<definition name="n5:endringslogg:xsd">
+				<description>XML-Skjema med logisk modell for endringslogg.xml</description>
 				<version>5.0</version>
 			</definition>
 			<definition name="n5:metadatakatalog:xsd">
+				<description>XML-Skjema med konseptuell modell for alle felter</description>
 				<version>5.0</version>
+				<documentation></documentation>
 			</definition>
-			<definition name="n5:endringslogg:endringslogg">
-				<relation>
-					<concept>hasGroup</concept>
-					<definitionReference value="n5:endringslogg:endring"
-						   max="unbounded"/>
-				</relation>
+			<definition name="n5:endringslogg:endringslogg" xsi:type="groupDefinition">
+				<groupDefinition definitionReference="n5:endringslogg:endring"/>
 			</definition>
-			<definition name="n5:endringslogg:endring">
-				<relation>
-					<concept>hasField</concept>
-					<definitionReference value="n5:metadatakatalog:referanseArkivenhet"/>
-					<definitionReference value="n5:metadatakatalog:referanseMetadata"/>
-					<definitionReference value="n5:metadatakatalog:endretDato"/>
-					<definitionReference value="n5:metadatakatalog:endretAv"/>
-					<definitionReference value="6f102dda424f:tidligereVerdi"/>
-					<definitionReference value="6f102dda424f:nyVerdi"/>
-				</relation>
+			<definition name="n5:endringslogg:endring"
+						xsi:type="groupDefinition">
 				<relation>
 					<concept>hasKey</concept>
 					<definitionReference value="n5:endringslogg:pk_endring"/>
 				</relation>
+				<fieldDefinition definitionReference="n5:metadatakatalog:referanseArkivenhet"/>
+				<fieldDefinition definitionReference="n5:metadatakatalog:referanseMetadata"/>
+				<fieldDefinition definitionReference="n5:metadatakatalog:endretDato"/>
+				<fieldDefinition definitionReference="n5:metadatakatalog:endretAv"/>
+				<fieldDefinition definitionReference="6f102dda424f:tidligereVerdi"/>
+				<fieldDefinition definitionReference="6f102dda424f:nyVerdi"/>
 			</definition>
-			<definition name="n5:endringslogg:pk_endring" xsi:type="keyDefinition">
+			<key name="n5:endringslogg:pk_endring">
 				<primaryKey/>
 				<fields>
 					<definitionReference value="n5:metadatakatalog:referanseArkivenhet"/>
 					<definitionReference value="n5:metadatakatalog:referanseMetadata"/>
 					<definitionReference value="n5:metadatakatalog:endretDato"/>
 				</fields>
-			</definition>
-			<definition name="n5:metadatakatalog:referanseArkivenhet"
-						typeReference="datatype:string:uuid">
-				<additionalProperties>
-					<property name="Noark 5">
-						<property name="metadataelement">
-							<property name="Arkivenhet">
-								<value>M680</value>
-							</property>
-							<property name="Arv" dataType="boolean">
-								<value>True</value>
-							</property>
-							<property name="Betingelser">
-								<value>Må inneholde gyldig systemID for aktuell arkivenhet</value>
-								<property name="Datatype">
-									<value>Tekststreng</value>
-								</property>
-								<property name="Definisjon">
-									<value>
-										Referanse til arkivenheten (systemID) som inneholder metadata­elementet som ble endret
-									</value>
-								</property>
-								<property name="Gruppe">
-									<value>Logging av endringer</value>
-								</property>
-								<property name="Kilde">
-									<value>Registreres automatisk ved endring av metadata</value>
-								</property>
-								<property name="Navn">
-									<value>referanseArkivenhet</value>
-								</property>
-								<property name="Nr">
-									<value>M680</value>
-								</property>
-								<property name="Utdatert">
-									<value>False</value>
-								</property>
-							</property>
-						</property>
-					</property>
-				</additionalProperties>
-			</definition>
-			<definition name="n5:metadatakatalog:referanseMetadata"
-						typeReference="datatype:string">
-			</definition>
-			<definition name="n5:metadatakatalog:endretDato" typeReference="datatype:datetime:iso8601">
-			</definition>
-			<definition name="n5:metadatakatalog:endretAv" typeReference="datatype:string">
-			</definition>
-			<definition name="n5:metadatakatalog:tidligereVerdi" typeReference="datatype:string">
-			</definition>
+			</key>
 			<definition name="6f102dda424f:tidligereVerdi" typeReference="datatype:string">
 				<description topic="Usage">Denne definisjonen tillater at feltet kan ha verdi, men tolkes som tomt / null.</description>
 				<relation>

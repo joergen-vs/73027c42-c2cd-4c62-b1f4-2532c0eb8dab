@@ -30,6 +30,13 @@
 
 * Changed all elements to complex- or simpletype, except root-element
 * Added xsd-keys to validate references
-* 
+* Structure:
+  * Added the level container, to reference different structures of information. Ex. a dataset may reference several databases.
+    * Went back to flatFiles, for ease-of-use instead of varying implementations of dataObject.<p>TBD: how to define structural areas for information for files from datafile up, without being part of groups (f.ex. XMP). Maybe dataObject has a purpose yet..
+* Definitions
+* Types
+  * Classic "how to read" for file, group, field and attribute
+* Processes
+  * Flattened and decoupled from the previous model. References the unit to trigger the verification.<br>Contains definitionReference to connect a process to a higher level "test", defining processes per type of dataset, connection to a testsuite, comments regarding testresults, 
 
 ![Version 9](https://www.plantuml.com/plantuml/png/5SvDje8m343X-Ll5Sm4bM53K4Jlnf6c4Ulh3QLBSlZYwm_lDebYrfVXt2fbYyzng_5zLDta0LFnqIz2rkIPSgMJbh1sL1E_2TU5iTe5fwEr4epLaoPkHhjQuysiqzZ9OwjdTF3f8ACeLck32WBA5YXfA5ZZM0kXzYi_ztcq_oSpP7_q2)

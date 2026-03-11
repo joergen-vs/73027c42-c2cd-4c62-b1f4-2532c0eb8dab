@@ -49,8 +49,8 @@ package types {
     package attributeType
 
     fileType -[hidden]- groupType
-    fileType -[hidden]- fieldType
     fileType -[hidden]- attributeType
+    
 }
 
 dataset --> types

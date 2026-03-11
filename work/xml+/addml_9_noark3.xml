@@ -722,5 +722,10 @@
 				<fieldFormat>YYYYMMDD</fieldFormat>
 			</type>
 		</structureTypes>
+		<processes>
+			<process name="Saksregister_checksum">
+				<reference>Saksregister</reference>
+			</process>
+		</processes>
 	</dataset>
 </addml>

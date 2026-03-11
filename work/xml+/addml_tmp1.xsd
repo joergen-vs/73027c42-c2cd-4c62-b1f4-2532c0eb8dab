@@ -1,0 +1,2298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:addml="http://www.arkivverket.no/standarder/addml/v9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.arkivverket.no/standarder/addml/v9" elementFormDefault="qualified"
+	version="9.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">
+			Changes made in versions up to 8.2 are not documented in
+			this document.
+			Updated 2014-08-15 and 2014-09-29, Terje Pettersen-Dahl:
+			Version 8.3:
+			1. Element reference in dataset made optional.
+			2. Optional possibility for header-lines.
+			3. FieldDefinitionReference made unique within an instance.
+			4. Created this documentation section.
+		</xs:documentation>
+		<xs:documentation xml:lang="en">
+			Version 9.0:
+			1. Changed all elements to complex- or simpletype, except root-element.
+			2. Changed structure from specialised to object-oriented, where new objects may be implemented on abstract types.
+			3. Clarification: All indices are 1-based.
+			4. Locked down certain properties for objects, while allowing flexibility with 'additionalInfo'.
+		</xs:documentation>
+	</xs:annotation>
+
+	<!-- 0: Root-elements -->
+
+	<xs:element name="addml">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Root-element for addml-document</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="dataset" type="addml:dataset" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="name" type="addml:name" use="required">
+				<xs:annotation>
+					<xs:documentation>Unique name of this document</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="addmlCatalog">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Root-element for addml's catalog-document</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>C000</xs:documentation>
+				<xs:documentation>Contains everything besides the structure and query, to understand information such as a logical model or a standard.</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="catalog" type="addml:catalogSection" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="context" type="addml:contextSection" minOccurs="0"/>
+				<xs:element name="content" type="addml:contentSection" minOccurs="0"/>
+				<xs:element name="definitions" type="addml:definitionSection" />
+				<xs:element name="types" type="addml:typeSection" minOccurs="0" />
+				<xs:element name="processes" type="addml:processSection" minOccurs="0" />
+			</xs:sequence>
+			<xs:attribute name="name" type="addml:name" use="required">
+				<xs:annotation>
+					<xs:documentation>Unique name of this document</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="created" type="xs:date" use="required">
+				<xs:annotation>
+					<xs:documentation>The date of when the catalog is documented</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="lastModified" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>The date of when the documentation of the catalog is last modified</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Main components -->
+
+	<!-- 2: Dataset -->
+
+	<xs:complexType name="dataset">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="catalogs" type="addml:catalogSection" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="context" type="addml:contextSection" minOccurs="0"/>
+			<xs:element name="content" type="addml:contentSection" minOccurs="0"/>
+			<xs:element name="structure" type="addml:structureSection" />
+			<xs:element name="queries" type="addml:querySection" minOccurs="0" />
+			<xs:element name="definitions" type="addml:definitionSection" minOccurs="0" />
+			<xs:element name="types" type="addml:typeSection" minOccurs="0" />
+			<xs:element name="processes" type="addml:processSection" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="name" type="addml:name" use="required" />
+		<xs:attribute name="created" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation>Date when the dataset is documented</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lastModified" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Date when the dataset is last modified</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<!-- 3: Catalog -->
+
+	<xs:complexType name="catalogSection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>List of files containing pre-defined units</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="catalog" type="addml:catalogElement" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="catalogElement">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>External file containing pre-defined units</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="fileReference" type="addml:NonEmptyString">
+						<xs:annotation>
+							<xs:documentation>Reference to the file</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 4: Context -->
+
+	<xs:complexType name="contextSection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Information regarding the context of the described material</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="agent" type="addml:agent" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="documentation" type="addml:documentationElement" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="comments" minOccurs="0" type="addml:commentElements" />
+			<xs:element name="additionalElements" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="element" type="addml:element" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="agent">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Defines an agent involved in the process of creating, preserving or other in the present or earlier archival environment</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:element">
+				<xs:sequence>
+					<xs:element name="resource" type="addml:resource" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="role" type="addml:role" use="required"/>
+				<xs:attribute name="otherrole" type="addml:NonEmptyString"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="documentationElement">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:element">
+				<xs:sequence>
+					<xs:element name="title" type="addml:NonEmptyString">
+						<xs:annotation>
+							<xs:documentation>Formal name of documentation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="version" type="addml:versionDataType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Version of the archived documentation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="resource" type="addml:resource" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Source of documentation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="commentElements">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="comment" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation/>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:group ref="addml:ValueOrObject" maxOccurs="unbounded"/>
+						<xs:element name="regarding" type="addml:NonEmptyString" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Reference to base-unit</xs:documentation>
+								<xs:documentation>
+									Ex: value='Testing fails due to missing documents'
+									regarding 'reference to process' and 'reference to folder with documents'
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- 4: Content -->
+
+	<xs:complexType name="contentSection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Information regarding the content of the described material</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="container" type="addml:containerElement" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="documentation" type="addml:documentationElement" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="comments" type="addml:commentElements" minOccurs="0" />
+			<xs:element name="additionalElements" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="element" type="addml:element" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="containerElement">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:element">
+				<xs:sequence>
+					<xs:element name="type" type="addml:NonEmptyString">
+						<xs:annotation>
+							<xs:documentation>Extraction-classification, </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="version" type="addml:versionDataType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subjects" type="addml:NonEmptyString" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 5: Structure -->
+
+	<xs:complexType name="structureSection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Where to find information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="container" type="addml:containerObject" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- 5.1 Basic objects -->
+
+	<xs:complexType name="containerObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Physical data-location, such as file-structure, system or database</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="folderObject">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Basic folder</xs:documentation>
+			<xs:documentation>References significant files or folders</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="path" type="addml:name">
+						<xs:annotation>
+							<xs:documentation>Path to folder relative to the addml-file.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="numberOfOccurrences" type="addml:numberOfOccurrences" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Number of files. '*.*' signifies all files.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Files or subfolders. TODO:why</xs:documentation>
+						</xs:annotation>
+						<xs:element name="file" type="addml:fileObject"/>
+						<xs:element name="folder" type="addml:folderObject"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="content" type="addml:folderType" use="required">
+					<xs:annotation>
+						<xs:documentation>Type of content in folder.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="dataFolderObject">
+		<xs:complexContent>
+			<xs:extension base="addml:folderObject">
+				<xs:sequence>
+					<xs:element name="targetNamespace" type="addml:NonEmptyString" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Reference to the main namespace of the
+								xml-files in folder.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="schemas">
+						<xs:annotation>
+							<xs:documentation>
+								Connects to one or more validation-files.
+							</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="schema" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Connects a validation-file to a xml-file.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:attribute name="namespace" type="addml:NonEmptyString">
+											<xs:annotation>
+												<xs:documentation>Reference to the namespace of the xml-schema.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="prefix" type="addml:NonEmptyString">
+											<xs:annotation>
+												<xs:documentation>Prefix of the namespace of the xml-schema in main schema.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="fileReference" type="addml:NonEmptyString">
+											<xs:annotation>
+												<xs:documentation>Reference to the file to validate the xml-file against.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="content" type="addml:folderType" use="required" fixed="DATAFILES" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fileObject">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>A basic file</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="path" type="addml:NonEmptyString">
+						<xs:annotation>
+							<xs:documentation>Path to file, relative to the addml-file.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="checksum">
+						<xs:annotation>
+							<xs:documentation>
+								Contains the algorithm and value of filehash-calculation.
+							</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:extension base="addml:NonEmptyString">
+									<xs:attribute name="algorithm" type="addml:algorithmValue" default="SHA-256">
+										<xs:annotation>
+											<xs:documentation>Algorithm used for filehash-calculation</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:extension>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="dataFile">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:fileObject">
+				<xs:sequence>
+					<xs:element name="numberOfOccurrences" type="addml:numberOfOccurrences" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>
+								Number of occurrences per record identified in file or total
+								number of records in file
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+				<xs:attribute name="typeReference" type="addml:typeReference" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="groupObject">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Non-record information-object, grouping similar fields or records</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+
+	<xs:complexType name="recordObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+				<xs:attribute name="typeReference" type="addml:typeReference" use="optional"/>
+				<xs:attributeGroup ref="addml:MinMaxAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fieldObject" abstract="true">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="unique" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name="nullValues" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="nullValue" type="xs:string" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="code" type="addml:codeObject" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+				<xs:attribute name="typeReference" type="addml:typeReference" use="optional"/>
+				<xs:attributeGroup ref="addml:MinMaxAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="attributeObject">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="unique" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name="nullValues" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="nullValue" type="xs:string" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="code" type="addml:codeObject" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+				<xs:attribute name="typeReference" type="addml:typeReference" use="optional"/>
+				<xs:attributeGroup ref="addml:MinMaxAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="codeObject">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Coded value in a field.</xs:documentation>
+			<xs:documentation>Ex. 0, 1 or A, B, C</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="definitionReference" type="addml:definitionReference"
+					use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="IdentifyingFieldValues">
+		<xs:annotation>
+			<xs:documentation>Values identifying type of record.</xs:documentation>
+			<xs:documentation>Obligatory when file contains multiple records</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fieldValue" type="addml:value" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Field-value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- 5.2: Container objects -->
+
+	<xs:group name="FilesAndFolders">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="file" type="addml:fileObject" />
+				<xs:element name="folder" type="addml:folderObject" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+
+	<!-- 5.2.1: Extraction-type objects -->
+
+	<xs:complexType name="extraction">
+		<xs:annotation>
+			<xs:documentation>Root-catalog for files and folders making up an export of archival data from regular data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:containerObject">
+				<xs:sequence>
+					<xs:group ref="addml:FilesAndFolders"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="files">
+		<xs:annotation>
+			<xs:documentation>File-catalog for files and folders not yet described</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:containerObject">
+				<xs:sequence>
+					<xs:group ref="addml:FilesAndFolders"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 5.2.2: System objects -->
+
+	<xs:complexType name="system">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+
+	<!-- 5.2.3: Database objects -->
+
+	<xs:complexType name="database">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+
+	<!-- 5.3: Fixed-length objects -->
+
+	<xs:complexType name="fixedFile">
+		<xs:complexContent>
+			<xs:extension base="addml:dataFile">
+				<xs:sequence>
+					<xs:element name="IdentifyingFields" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Field-index or indices identifying type of
+								record.
+							</xs:documentation>
+							<xs:documentation>
+								Obligatory when file contains multiple
+								records.
+							</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="fieldIndex" type="xs:nonNegativeInteger"
+									maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Index of field in record</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="record" type="addml:recordObject" />
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="record" type="addml:recordObject" />
+						<xs:element name="recordRef" type="addml:recordObject">
+							<xs:annotation>
+								<xs:documentation>Record referenced inside the hiearchy. Placed along the root-record for cycle-free references.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fixedRecord">
+		<xs:annotation>
+			<xs:documentation>TODO</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:recordObject">
+				<xs:sequence>
+					<xs:element name="IdentifyingFieldValues" type="addml:IdentifyingFieldValues"
+						minOccurs="0"/>
+					<xs:element name="length" type="xs:nonNegativeInteger">
+						<xs:annotation>
+							<xs:documentation>Length of fixed post</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<!-- Fixed-length record objects -->
+					<xs:choice maxOccurs="unbounded">
+						<xs:element name="field" type="addml:fixedField"/>
+						<xs:element name="record" type="addml:recordObject"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fixedField">
+		<xs:complexContent>
+			<xs:extension base="addml:fieldObject">
+				<xs:sequence>
+					<xs:element name="startPos" type="xs:nonNegativeInteger">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:element name="endPos" type="xs:nonNegativeInteger">
+							<xs:annotation>
+								<xs:documentation/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="fixedLength" type="xs:nonNegativeInteger">
+							<xs:annotation>
+								<xs:documentation/>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+					<xs:element name="attribute" type="addml:fixedAttribute" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fixedAttribute">
+		<xs:complexContent>
+			<xs:extension base="addml:attributeObject">
+				<xs:sequence>
+					<xs:element name="startPos" type="xs:nonNegativeInteger">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:element name="endPos" type="xs:nonNegativeInteger">
+							<xs:annotation>
+								<xs:documentation/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="fixedLength" type="xs:nonNegativeInteger">
+							<xs:annotation>
+								<xs:documentation/>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 5.4: Character-delimited objects -->
+
+	<!-- 5.5: Xml objects -->
+
+	<xs:complexType name="xmlFile">
+		<xs:complexContent>
+			<xs:extension base="addml:dataFile">
+				<xs:sequence>
+					<xs:element name="targetNamespace" type="addml:NonEmptyString" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								Reference to the main namespace of the
+								xml-file.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="schemas">
+						<xs:annotation>
+							<xs:documentation>
+								Connects one or more validation-files to a
+								xml-file.
+							</xs:documentation>
+							<xs:documentation>
+								First xml-schema is designated 'main'. Also the one possibly
+								missing prefix.
+							</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="schema" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>Connects a validation-file to a xml-file.</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:attribute name="namespace" type="addml:NonEmptyString">
+											<xs:annotation>
+												<xs:documentation>Reference to the namespace of the xml-schema.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="prefix" type="addml:NonEmptyString">
+											<xs:annotation>
+												<xs:documentation>Prefix of the namespace of the xml-schema in main schema.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+										<xs:attribute name="fileReference" type="addml:NonEmptyString">
+											<xs:annotation>
+												<xs:documentation>Reference to the file to validate the xml-file against.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="root" type="addml:NonEmptyString">
+						<xs:annotation>
+							<xs:documentation>Reference to root-element of xml-file,</xs:documentation>
+							<xs:documentation>Either a record or single element</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="record" type="addml:recordObject"/>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:element name="recordRef" type="addml:recordObject">
+									<xs:annotation>
+										<xs:documentation>Record referenced inside the hiearchy. Placed along the root-record for cycle-free references.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="field" type="addml:fieldObject">
+									<xs:annotation>
+										<xs:documentation>Single-element xml-file</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+						<xs:element name="field" type="addml:fieldObject">
+							<xs:annotation>
+								<xs:documentation>Single-element xml-file</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="xmlRecord">
+		<xs:annotation>
+			<xs:documentation>TODO</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:recordObject">
+				<xs:sequence>
+					<xs:element name="elementName" type="addml:NonEmptyString" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Element-name.</xs:documentation>
+							<xs:documentation>No name if recording of elements.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="orderedBy" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+								record is defined in schema-instance
+								type-attribute
+							</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="all">
+									<xs:annotation>
+										<xs:documentation>https://www.w3.org/TR/xmlschema11-1/#element-all</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="choice">
+									<xs:annotation>
+										<xs:documentation>https://www.w3.org/TR/xmlschema11-1/#element-choice</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="sequence">
+									<xs:annotation>
+										<xs:documentation>https://www.w3.org/TR/xmlschema11-1/#element-sequence</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="attribute" type="addml:attributeObject" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element name="field">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="addml:xmlField">
+										<xs:attributeGroup ref="addml:MinMaxAttributes"/>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="recordReference">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="addml:NonEmptyString">
+										<xs:annotation>
+											<xs:documentation>Reference to an already defined record-structure located inside current object.</xs:documentation>
+											<xs:documentation>May use different record-type.</xs:documentation>
+										</xs:annotation>
+										<xs:attributeGroup ref="addml:MinMaxAttributes"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="record">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="addml:recordObject">
+										<xs:attributeGroup ref="addml:MinMaxAttributes"/>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="xmlField">
+		<xs:complexContent>
+			<xs:extension base="addml:fieldObject">
+				<xs:sequence>
+					<xs:element name="tag" type="addml:NonEmptyString">
+						<xs:annotation>
+							<xs:documentation>Element-name</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="prefix" type="addml:NonEmptyString" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Namespace-shorthand in element-name</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="attribute" type="addml:xmlAttribute" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="xmlAttribute">
+		<xs:complexContent>
+			<xs:extension base="addml:attributeObject">
+				<xs:sequence>
+					<xs:element name="tag" type="addml:NonEmptyString">
+						<xs:annotation>
+							<xs:documentation>Element-name</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="prefix" type="addml:NonEmptyString" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Namespace-shorthand in element-name</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 5.6: Pattern objects -->
+	
+	<!-- TODO: 5.7: Log-file -->
+
+	<xs:complexType name="patternFile">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:fileObject">
+
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="patternRecord">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:recordObject">
+
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- 5.8: Siard objects -->
+
+	<xs:complexType name="siardFile">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:fileObject">
+				
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="siardTable">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+
+	<!-- 6: Queries -->
+
+	<xs:complexType name="querySection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>How to use information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="queryGroup">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="addml:unit">
+								<xs:sequence>
+									<xs:element name="query" type="addml:query" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="query" type="addml:query" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="query">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="created" type="xs:date">
+						<xs:annotation>
+							<xs:documentation>The date of when the statement is documented</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lastModified" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The date of when the documentation of the statement is last modified</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lastUsed" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The last date of when the query is last used</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="format" type="addml:format">
+						<xs:annotation>
+							<xs:documentation>Defines the language the statement is written in</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="version" type="addml:versionDataType">
+						<xs:annotation>
+							<xs:documentation>Defines the version of the language the statement is written in</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+ 					<xs:element name="statement" type="addml:NonEmptyString" maxOccurs="unbounded">
+					</xs:element>
+					<xs:element name="record" type="addml:recordObject" />
+			</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- 7: Definitions -->
+
+	<xs:complexType name="definitionSection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>How to understand information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="definition" type="addml:definitionUnit"/>
+				<xs:element name="key" type="addml:keyUnit"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="definitionUnit">
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="type">
+						<xs:annotation>
+							<xs:documentation>The type of definition, i.e. "Extraction" or "Record"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="version" type="addml:versionDataType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Connected to variantOf, displaying a specific iteration of a definition</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="documentation" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Documentation in reference-section</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="reference">
+								<xs:annotation>
+									<xs:documentation>Reference to documentation in reference-section</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="incomplete" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Shows if a object is described in full or less</xs:documentation>
+						</xs:annotation>
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name ="relation" type="addml:relationType" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+				<xs:attribute name="typeReference" type="addml:typeReference">
+					<xs:annotation>
+						<xs:documentation>Specifies an expected format.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="relationType">
+		<xs:annotation>
+			<xs:documentation>Creating building blocks of definitions</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="relation" type="addml:relationType" />
+			<xs:element name="definition" >
+				<xs:annotation>
+					<xs:documentation>Linking relations between definitions</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="reference" type="addml:definitionReference" use="required"/>
+					<xs:attributeGroup ref="addml:MinMaxAttributes"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="type" type="addml:conceptDataValue" use="required">
+			<xs:annotation>
+				<xs:documentation>Description of the relation between definitions</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="keyUnit">
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="primaryKey">
+							<xs:complexType/>
+						</xs:element>
+						<xs:element name="alternateKey">
+							<xs:complexType/>
+						</xs:element>
+						<xs:element name="foreignKey">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="container" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Reference to another solution, system or filstructure, documented as a container</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="record">
+										<xs:annotation>
+											<xs:documentation>Reference to recording</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="field" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>Reference to recording</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="relation" type="addml:relationDataType" use="required" />
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+					<xs:element name="record">
+						<xs:annotation>
+							<xs:documentation>Reference to record</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="field" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Reference to field</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="definitionReference" type="addml:definitionReference" use="required"/>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 8: Types -->
+
+	<xs:complexType name="typeSection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>How to read information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="type" type="addml:typeUnit" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="typeUnit" abstract="true">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Generic type</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:attribute name="definitionReference" type="addml:definitionReference"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fileType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:typeUnit">
+				<xs:sequence>
+					<xs:element name="format" minOccurs="0" type="addml:formatType" />
+					<xs:element name="version" type="addml:versionDataType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="dataFileType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:fileType">
+				<xs:sequence>
+					<xs:element name="charset" type="addml:charset" minOccurs="0" />
+					<xs:element name="charDefinitions" minOccurs="0">
+						<xs:complexType>
+							<xs:annotation>
+								<xs:documentation>tbd</xs:documentation>
+							</xs:annotation>
+							<xs:sequence>
+								<xs:element name="charDefinition" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="fromChar" type="addml:charDefinitionUnit">
+												<xs:annotation>
+													<xs:documentation>tbd</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="toChar" type="addml:charDefinitionUnit">
+												<xs:annotation>
+													<xs:documentation>tbd</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="charDefinitionUnit">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="format" type="addml:NonEmptyString" default="text">
+					<xs:annotation>
+						<xs:documentation>Enables different ways of representing the character</xs:documentation>
+						<xs:documentation>'text', 'hex' or similar</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="fixedFileType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:dataFileType">
+				<xs:sequence>
+					<xs:element name="recordSeparator" type="addml:recordSeparator" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="patternFileType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:dataFileType">
+				<xs:sequence>
+					<xs:element name="recordSeparator" type="addml:recordSeparator" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="delimitedFileType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:dataFileType">
+				<xs:sequence>
+					<xs:element name="recordSeparator" type="addml:recordSeparator" minOccurs="0"/>
+					<xs:element name="fieldSeparator" type="addml:fieldSeparator"/>
+					<xs:element name="quotingChar" type="addml:NonEmptyString" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="xmlFileType">
+		<xs:complexContent>
+			<xs:extension base="addml:dataFileType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="jsonFileType">
+		<xs:complexContent>
+			<xs:extension base="addml:dataFileType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="siardFileType">
+		<xs:complexContent>
+			<xs:extension base="addml:fileType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="recordType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:typeUnit">
+				<xs:sequence>
+					<xs:element name="trimmed" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>TBD: Tabell- mot journal-format</xs:documentation>
+						</xs:annotation>
+						<xs:complexType/>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fixedRecordType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:recordType">
+				<xs:sequence>
+					<xs:element name="recordSeparator" type="addml:recordSeparator" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="delimitedRecordType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:recordType">
+				<xs:sequence>
+					<xs:element name="recordSeparator" type="addml:recordSeparator" minOccurs="0"/>
+					<xs:element name="fieldSeparator" type="addml:fieldSeparator"/>
+					<xs:element name="quotingChar" type="addml:NonEmptyString" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="xmlRecordType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:recordType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="patternRecordType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:recordType">
+				<xs:sequence>
+					<xs:element name="recordSeparator" type="addml:recordSeparator" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="fieldType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:typeUnit">
+				<xs:sequence>
+					<xs:group ref="addml:fieldTypeProperties"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:group name="fieldTypeProperties">
+		<xs:sequence>
+			<xs:element name="dataType" type="addml:dataType">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fieldFormat" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="addml:NonEmptyString">
+							<xs:attribute name="type" type="addml:format" use="optional">
+								<xs:annotation>
+									<xs:documentation>Regex, 'Date/time Seven-property Model' or ISO</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="alignment" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Aligns content to left, center or right.</xs:documentation>
+					<xs:documentation>TODO: Should it be defined here, or not?</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="right"/>
+						<xs:enumeration value="left"/>
+						<xs:enumeration value="center"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="padChar" type="addml:NonEmptyString" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="packType" type="addml:NonEmptyString" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nullValues" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nullValue" type="xs:string" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="attributeType">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:typeUnit">
+				<xs:sequence>
+					<xs:group ref="addml:fieldTypeProperties"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 9: Processes -->
+
+	<xs:complexType name="processSection">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>How to review information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="process" type="addml:process" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="process">
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="reference" type="addml:name" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Reference to unit process whould be run on</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="parameter" type="addml:parameter" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="definitionReference" type="addml:definitionReference"
+					use="required">
+					<xs:annotation>
+						<xs:documentation>Reference to the definition regarding processes for dataset</xs:documentation>
+						<xs:documentation>Rules in standard, support by testing-tool, etc. Ex: validating documented number of records against read in file</xs:documentation>
+						<xs:documentation>Can also be used to link an extraction to different testsuites, "this extraction has these processes with this testsuite"</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="parameter">
+		<xs:annotation>
+			<xs:documentation>May be used for input when supported by software</xs:documentation>
+			<xs:documentation>Ex: field A defines a relative path, and field B defines checksum-value of file. Then refer to field A and B by the rules of the software. Like a cli function-call ControlChecksum path=A algorithm=SHA-256 checksumValue=B</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:element name="key" type="addml:value"/>
+					<xs:element name="value" type="addml:value" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- 10: Objects -->
+
+	<xs:complexType name="unit" abstract="true">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Base unit</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="identifier" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Unique ID for unit, such as uuid or namespace-referance</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="addml:value">
+							<xs:attribute name="namespace" type="addml:namespace" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="description" type="addml:description" minOccurs="0"	maxOccurs="unbounded"/>
+			<xs:element name="property" type="addml:property" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="addml:name" use="required"/>
+		<xs:attribute name="label" type="addml:label" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="element">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Defines an element with a value and optional child-elements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:group ref="addml:ValueOrObject" minOccurs="0" />
+					<xs:element name="element" type="addml:element" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="namespace" type="addml:namespace" />
+				<xs:attribute name="dataType" type="addml:dataType" />
+				<xs:attribute name="format" type="addml:format" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="property">
+		<xs:annotation>
+			<xs:documentation>C000</xs:documentation>
+			<xs:documentation>Defines a property with a value, complex xml-structure and/or child-properties.</xs:documentation>
+			<xs:documentation>Allows further </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="addml:unit">
+				<xs:sequence>
+					<xs:group ref="addml:ValueOrObject" minOccurs="0" />
+				</xs:sequence>
+				<xs:attribute name="namespace" type="addml:namespace" />
+				<xs:attribute name="dataType" type="addml:dataType" />
+				<xs:attribute name="format" type="addml:format" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="numberOfOccurrences">
+		<xs:sequence>
+			<xs:element name="reference" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Allows to identify any, one or more items to sum up, such as "*.pdf" + "*.tiff" for 'archival formats'</xs:documentation>
+					<xs:documentation>When reference is not used, the value defines the total number of sub-units.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="addml:NonEmptyString">
+							<xs:attribute name="type" type="addml:format">
+								<xs:annotation>
+									<xs:documentation>TODO: xpath, filepath with wildcards, fieldname etc.</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="value" type="xs:nonNegativeInteger" />
+		</xs:sequence>
+		<xs:attribute name="name" type="addml:name">
+			<xs:annotation>
+				<xs:documentation>Defines a name for the items, (e.g. PDF, Record X). No name should refer to unit/@name</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- 11: Variables -->
+
+	<xs:simpleType name="name">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Identifying machine- or human-readable name of object</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="label">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Human-readable name of object</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="value">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Value of object</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:complexType name="object">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Complex object outside the addml-domain</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="namespace">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Reference to a collection of properties</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="dataType">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Datatype of the property.value</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="format">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Format of the value</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="recordReference">
+		<xs:annotation>
+			<xs:documentation>Reference to a record located inside current object.</xs:documentation>
+			<xs:documentation>May use different record-type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="definitionReference">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Reference to definition-object which contains the description of the file.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="typeReference">
+		<xs:annotation>
+			<xs:documentation>References an expected format.</xs:documentation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Ex: A standard specifying files to be of xml-format</xs:documentation>
+			<xs:documentation>Ex: Field with boolean value True and False, while definition uses 1 and 0, uses different structureTypes, but will be transform-able, due to being read as boolean values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="addml:NonEmptyString"/>
+	</xs:simpleType>
+
+	<xs:attributeGroup name="MinMaxAttributes">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Assigns a number of occurrences to a unit as part of a composition</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="min" default="1">
+			<xs:annotation>
+				<xs:documentation>Minimum, from 0 up.</xs:documentation>
+				<xs:documentation>0 = null-able,</xs:documentation>
+				<xs:documentation>1 = Default</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:nonNegativeInteger"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="max" default="1">
+			<xs:annotation>
+				<xs:documentation>Maximum, from 1 up, included 'unbounded'.</xs:documentation>
+				<xs:documentation>1 = Default,</xs:documentation>
+				<xs:documentation>'unbounded' = No specific limit / '1 or more'</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:union>
+					<xs:simpleType>
+						<xs:restriction base="xs:nonNegativeInteger"/>
+					</xs:simpleType>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="unbounded"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:union>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:simpleType name="role">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Role of agent</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CREATOR"/>
+			<xs:enumeration value="EDITOR"/>
+			<xs:enumeration value="ARCHIVIST"/>
+			<xs:enumeration value="PRESERVATION"/>
+			<xs:enumeration value="DISSEMINATOR"/>
+			<xs:enumeration value="CUSTODIAN"/>
+			<xs:enumeration value="IPOWNER"/>
+			<xs:enumeration value="OTHER"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="algorithmValue">
+		<xs:annotation>
+			<xs:documentation>S014</xs:documentation>
+			<xs:documentation>Checksum-algorithm used for calculating filehash</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="MD5"/>
+					<xs:enumeration value="SHA-256"/>
+					<xs:enumeration value="SHA-512"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:annotation>
+						<xs:documentation>Allows non-specified hash-algorithms</xs:documentation>
+					</xs:annotation>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="folderType">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DATAFILES"/>
+			<xs:enumeration value="DOCUMENTATION"/>
+			<xs:enumeration value="DOCUMENTS"/>
+			<xs:enumeration value="REPORTS"/>
+			<xs:enumeration value="OTHER"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="conceptDataValue">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>
+				Consists of a small structural ontology, along with validating against others.
+
+				Duplicate a simpleType with enumeration-values and edit for ontologies for documentation-purposes.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="addml:subTypeOf">
+						<xs:annotation>
+							<xs:documentation>Reference to subtype of definition.</xs:documentation>
+							<xs:documentation>Ex: (a, b) is subtype of (a, b, c*) [Specialised entity]</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:superTypeOf">
+						<xs:annotation>
+							<xs:documentation>Reference to supertype of definition.</xs:documentation>
+							<xs:documentation>Ex: (a, b) is supertype of (a, b, c) [Generalised entity, ]</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:variantOf">
+						<xs:annotation>
+							<xs:documentation>Reference to variant of definition.</xs:documentation>
+							<xs:documentation>Ex: (a, b, c) is variant of (a, b, c*) [Different restraints on same field/record]</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:hasFile">
+						<xs:annotation>
+							<xs:documentation>Defines relation between container-level and file-object</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:hasFolder">
+						<xs:annotation>
+							<xs:documentation>Defines relation between container-level and folder-object</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:hasRecord">
+						<xs:annotation>
+							<xs:documentation>Defines relation between container-level or specific object and record</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:hasField">
+						<xs:annotation>
+							<xs:documentation>Defines relation between record and field</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:hasAttribute">
+						<xs:annotation>
+							<xs:documentation>Defines relation between field and attribute</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="addml:hasCode">
+						<xs:annotation>
+							<xs:documentation>Defines relation between field and code</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<!-- Define thesaurus for -->
+					<!-- UML -->
+					<xs:enumeration value="uml:aggregation">
+						<xs:annotation>
+							<xs:documentation>Aggregation is a special form of association where one object contains another object. However, the contained object can exist independently of the container. In other words, the lifetime of the contained object is not dependent on the lifetime of the container.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="uml:composition">
+						<xs:annotation>
+							<xs:documentation>Composition is a stronger form of association where one object contains another object, and the contained object cannot exist independently of the container. In other words, the lifetime of the contained object depends on the lifetime of the container.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="uml:association">
+						<xs:annotation>
+							<xs:documentation>Association represents a relationship where one object is linked to another object. The association can be one-way or two-way. It implies that two classes are related, but neither class owns the other.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>Allows the declaration of other ontologies.</xs:documentation>
+				</xs:annotation>
+				<!-- And more -->
+				<xs:restriction base="xs:string">
+					<xs:pattern value=".+" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="definitionType">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Pre-defined values and allowing other values</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<!--  -->
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="container">
+						<xs:annotation>
+							<xs:documentation>Reference to a container-level definition.</xs:documentation>
+							<xs:documentation>Ex: Extraction, System or System component</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="file">
+						<xs:annotation>
+							<xs:documentation>Reference a file-level definition.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="record">
+						<xs:annotation>
+							<xs:documentation>Reference a record-level definition.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="field">
+						<xs:annotation>
+							<xs:documentation>Reference a field-level definition.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="attribute">
+						<xs:annotation>
+							<xs:documentation>Reference a attribute-level definition.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="code">
+						<xs:annotation>
+							<xs:documentation>Reference a code-level definition.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>Allows the declaration of other levels / modules.</xs:documentation>
+					<xs:documentation>Ex: "Business function", such as "disposal" and "audit"</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:pattern value=".+" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="modelType">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Pre-defined values and allowing other values</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<!--  -->
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<!-- UML -->
+					<xs:enumeration value="aggregation">
+						<xs:annotation>
+							<xs:documentation>Reference to a container-level definition.</xs:documentation>
+							<xs:documentation>Ex: Extraction or System</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="composition">
+						<xs:annotation>
+							<xs:documentation>Reference a file-level definition.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="association">
+						<xs:annotation>
+							<xs:documentation>Reference a record-level definition.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:documentation>Allows the declaration of other modeling methods.</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:pattern value=".+" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="formatType">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:enumeration value="FIXED">
+						<xs:annotation>
+							<xs:documentation>Fixed-length records with possible newline separators between records</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="CSV">
+						<xs:annotation>
+							<xs:documentation>
+								Comma-separated values, that uses a comma to separate
+								values.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="TSV">
+						<xs:annotation>
+							<xs:documentation>
+								Tabular-separated values, that uses a tab to separate
+								values.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="DELIMITED">
+						<xs:annotation>
+							<xs:documentation>
+								Custom delimited file format, using custom characters for
+								separation and quotation.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="XML">
+						<xs:annotation>
+							<xs:documentation>Formatted according to Extensible Markup Language (XML).</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:pattern value=".+">
+						<xs:annotation>
+							<xs:documentation>Other, yet to be specified</xs:documentation>
+						</xs:annotation>
+					</xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="charset">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:enumeration value="UTF-8">
+						<xs:annotation>
+							<xs:documentation>Unicode is a variable-length character encoding standard, and UTF-8 represents characters between 1 and 4 byte.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="OTHER">
+						<xs:annotation>
+							<xs:documentation>No identifiable charset</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:pattern value=".+">
+						<xs:annotation>
+							<xs:documentation>Other, yet to be specified</xs:documentation>
+						</xs:annotation>
+					</xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="recordSeparator">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:enumeration value="CR">
+						<xs:annotation>
+							<xs:documentation>Carriage Return</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="LF">
+						<xs:annotation>
+							<xs:documentation>Line Feed</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="CRLF">
+						<xs:annotation>
+							<xs:documentation>Combination</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:pattern value=".+">
+						<xs:annotation>
+							<xs:documentation>Other, yet to be specified</xs:documentation>
+						</xs:annotation>
+					</xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="fieldSeparator">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:enumeration value=",">
+						<xs:annotation>
+							<xs:documentation>
+								Comma-separated values, that uses a comma to separate
+								values.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value=";">
+						<xs:annotation>
+							<xs:documentation>
+								Semicolon-separated values, that uses a comma to separate
+								values.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="TAB">
+						<xs:annotation>
+							<xs:documentation>
+								Tabular-separated values, that uses tabulator to separate
+								values.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:pattern value=".+">
+						<xs:annotation>
+							<xs:documentation>Other, yet to be specified</xs:documentation>
+						</xs:annotation>
+					</xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="quotingChararcher">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+		</xs:annotation>
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:enumeration value="&quot;">
+						<xs:annotation>
+							<xs:documentation>
+								Double-quote
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="addml:NonEmptyString">
+					<xs:pattern value=".+">
+						<xs:annotation>
+							<xs:documentation>Other, yet to be specified</xs:documentation>
+						</xs:annotation>
+					</xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<!-- Complex variables -->
+
+	<xs:complexType name="description">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Description of unit</xs:documentation>
+			<xs:documentation>No topic-attribute defines "What is.."</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="addml:NonEmptyString">
+				<xs:attribute name="topic" type="addml:NonEmptyString">
+					<xs:annotation>
+						<xs:documentation>Ex: 'Usage', 'History', 'Comments'</xs:documentation>
+						<xs:documentation>No topic defines the basic understanding of the unit</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:group name="ValueOrObject">
+		<xs:annotation>
+			<xs:documentation>Choose between a value or complex object</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="value" type="addml:value"/>
+			<xs:element name="object" type="addml:object"/>
+		</xs:choice>
+	</xs:group>
+
+	<xs:complexType name="versionDataType">
+		<xs:simpleContent>
+			<xs:extension base="addml:NonEmptyString">
+				<xs:attribute name="scheme" default="Semantic">
+					<xs:annotation>
+						<xs:documentation/>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="addml:NonEmptyString">
+							<xs:enumeration value="Semantic">
+								<xs:annotation>
+									<xs:documentation/>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:enumeration value="Calendar">
+								<xs:annotation>
+									<xs:documentation/>
+								</xs:annotation>
+							</xs:enumeration>
+							<xs:pattern value=".+">
+								<xs:annotation>
+									<xs:documentation>Other schemes</xs:documentation>
+								</xs:annotation>
+							</xs:pattern>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="relationDataType">
+		<xs:annotation>
+			<xs:documentation>List of values defining the relationship between records</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1:1">
+				<xs:annotation>
+					<xs:documentation>One-to-one</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1:N">
+				<xs:annotation>
+					<xs:documentation>One-to-many</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="N:1">
+				<xs:annotation>
+					<xs:documentation>Many-to-one</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="N:M">
+				<xs:annotation>
+					<xs:documentation>Many-to-many</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="resource">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+			<xs:documentation>Relative path to resource included in dataset</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attribute name="name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Official name of resource</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<!-- Abstract variables -->
+
+	<xs:simpleType name="NonEmptyString">
+		<xs:annotation>
+			<xs:documentation>S000</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

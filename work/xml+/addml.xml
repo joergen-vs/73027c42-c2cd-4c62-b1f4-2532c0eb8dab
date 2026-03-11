@@ -253,6 +253,7 @@
 				<description>Arkivuttrekk fra fsak-/arkivsystem</description>
 				<documentation>Noark5</documentation>
 				<source>https://www.arkivverket.no/forvaltning-og-utvikling/noark-standarden</source>
+				
 			</definition>
 			<definition xsi:type="fileDefinition" name="Infotekst">
 				<description>Infofil, inneholder skjønnlitterær tekst med informasjon om arkivuttrekket</description>
